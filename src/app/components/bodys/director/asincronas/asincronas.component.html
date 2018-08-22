@@ -1,0 +1,18 @@
+<table id="tabla" class="table table-hover m-4">
+  <thead class=" bg-warning">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Incidencias</th>
+      <th scope="col">Criticidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="seleccionar(i)" *ngFor="let alerta of alertas, let i= index" style="cursor: pointer">
+      <th #actual scope="row">{{i+1}}</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>

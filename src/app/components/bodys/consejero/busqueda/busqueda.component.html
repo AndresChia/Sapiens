@@ -1,0 +1,48 @@
+<div class="row">
+
+
+  <div class="col-sm-4">
+
+    <form class="m-4" [(formGroup)]="forma" (ngSubmit)="buscar()">
+      <div class="form-group">
+
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+
+        <label for="correoTexto">Correo</label>
+        <input type="email" class="form-control" placeholder="Correo" formControlName="correo">
+
+      </div>
+      <button type="submit" name="aceptar" id="aceptar" class="btn btn-primary" role="button">Buscar</button>
+    </form>
+
+  </div>
+
+
+
+  <div class="col-sm-8 ">
+    <table id="tabla" class="table table-hover">
+      <thead class=" bg-warning">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Semestre</th>
+          <th scope="col">Ultima visita</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (click)="seleccionar(i)" *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
+          <th scope="row">{{i+1}}</th>
+          <td>{{estudiante.nombre}}</td>
+          <td>{{estudiante.apellido}}</td>
+          <td>{{estudiante.semestre}}</td>
+          <td>Otto</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+</div>

@@ -1,0 +1,65 @@
+<form [formGroup]="forma" class="form-group ">
+  <label for="alertar">Seleccione el motivo de la alerta:</label>
+  <select #alerta formControlName="opcion" name="opcion" class="form-control" id="alertar">
+    <option>Seleccion una opción</option>
+    <option *ngFor="let alerta of alertas">{{alerta}}</option>
+  </select>
+</form>
+
+
+<div *ngIf="forma.dirty && alerta.value!=='Seleccion una opción'" class="row container animated fadeIn ">
+  <div *ngFor="let consejero of consejeros, let i= index" class="card-group col-sm-6 ">
+    <div class="card m-3">
+      <img class="card-img-top " src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
+          " alt="Card image cap ">
+      <div class="card-body ">
+
+
+        <h5 class="card-title "> {{consejero.nombre}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{consejero.cargo}}</h6>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Area de interes: {{consejero.areasInteres}}</li>
+          <li class="list-group-item">Correo: {{consejero.correo}}</li>
+        </ul>
+        <h5 class="card-text ">Horarios</h5>
+        <div *ngFor="let horario of consejero.horario" class="card-group col-12 ">
+          {{horario}}
+        </div>
+        <h1></h1>
+        <p class="card-text ">
+          <button (click)=mostrarModal(i) type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Agendar</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div *ngIf="activarModal" id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agendamiento de cita</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1>
+          {{modal.nombre}}
+        </h1>
+        <ul *ngFor="let hor of modal.horario">
+          <li> {{hor}} </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger " data-dismiss="modal">Salir</button>
+        <button (click)="agendar()" type="button" class="btn btn-primary " data-dismiss="modal">Agendar</button>
+      </div>
+    </div>
+  </div>

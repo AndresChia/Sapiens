@@ -1,0 +1,48 @@
+<div class="form-group">
+  <label for="exampleFormControlSelect1">Seleccione la alerta</label>
+  <select class="form-control" id="exampleFormControlSelect1">
+    <option>Seleccione una opción</option>
+    <option *ngFor="let alerta of alertas">{{alerta}}</option>
+  </select>
+</div>
+
+<div class="row">
+
+
+  <div class="col-md-10">
+
+
+    <app-datos-academicos *ngIf="btn=='1'"></app-datos-academicos>
+    <app-datos-demograficos *ngIf="btn=='2'"></app-datos-demograficos>
+    <app-historial-alertas *ngIf="btn=='3'"></app-historial-alertas>
+
+  </div>
+  <div class="col-md-2">
+
+
+    <div class="list-group">
+      <button class="btn btn-primary" [class.active]="btn=='1'" (click)="setActive('1')" type="button" class="list-group-item list-group-item-action ">Datos academicos</button>
+      <button class="btn btn-primary" [class.active]="btn=='2'" (click)="setActive('2')" type="button" class="list-group-item list-group-item-action">Datos demograficos</button>
+      <button class="btn btn-primary" [class.active]="btn=='3'" (click)="setActive('3')" type="button" class="list-group-item list-group-item-action">historial de alertas</button>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+  <label for="anotacion">Anotaciones:</label>
+  <textarea class="form-control" name="anotacion" id="anotacion" rows="3"></textarea>
+</div>
+
+<div class="botones" style="height: 45px">
+  <button class="btn btn-primary pull-right m-1" (click)="regresar()" name="regresar" id="regresar" role="button">Regresar</button>
+  <button class="btn btn-danger pull-right m-1" (click)="regresar()" name="regresar" id="regresar" role="button">Escalar</button>
+
+</div>

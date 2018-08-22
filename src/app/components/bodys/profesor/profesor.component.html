@@ -1,0 +1,100 @@
+<form [formGroup]="forma" class="form-group ">
+
+  <div class="form-group ">
+    <label for="Alertas">Seleccione la carrera:</label>
+    <select #carrera formControlName="opcion" [(ngModel)]="actualAlerta" class="form-control" id="Alertas">
+      <option value='0'>Seleccione una opción</option>
+      <option *ngFor="let alerta of alertas,let indi=index">{{alerta}}</option>
+    </select>
+  </div>
+
+</form>
+
+
+
+<HR>
+
+<div *ngIf="!(carrera.value==0)" class="row container-fluid m-2">
+  <div class="col-sm-4">
+    <table id="tablaAlertas" class="table table-hover">
+      <thead class=" bg-warning">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Numero</th>
+          <th scope="col">Numero de estudiantes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (click)="seleccionarClase(i)" *ngFor="let clase of clases, let i= index" style="cursor: pointer">
+          <td>{{clase.nombre}}</td>
+          <td class="text-center">{{clase.numero}}</td>
+          <td class="text-center">{{clase.numeroEstudiantes}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mostrarEstudiantes" class="col-sm-8">
+
+    <table id="tablaEstudiantes" class="table table-hover">
+      <thead class=" bg-warning">
+        <tr>
+          <th scope="col">Seleccionar</th>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Semestre</th>
+          <th scope="col">Ultima visita</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (click)="seleccionarCheck(i)" *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
+          <td class="checkContent">
+            <input type="checkbox" [(ngModel)]="estudiante.check">
+          </td>
+          <td>{{i+1}}</td>
+          <td>{{estudiante.nombre}}</td>
+          <td>{{estudiante.apellido}}</td>
+          <td>{{estudiante.semestre}}</td>
+          <td>Otto</td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="seleccionarEstudiante()" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Alertar</button>
+  </div>
+
+</div>
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div *ngIf="activarModal" id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agendamiento de cita</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p style="font-weight: bold;font-size: 2em; text-align: center">
+          {{actualAlerta}}
+        </p>
+        <h6>Estudiantes</h6>
+        <ul>
+          <li *ngFor="let estudiante of estudiantes |filtroEstudiantesChecked">{{estudiante.nombre}} {{estudiante.apellido}} </li>
+
+        </ul>
+        <label for="exampleFormControlTextarea1">Mas informacion de la alerta:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)=reset() type="button" class="btn btn-primary" data-dismiss="modal">Alertar</button>
+      </div>
+    </div>
+  </div>
