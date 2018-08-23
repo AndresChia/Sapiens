@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from "@angular/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //imports
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -29,20 +30,17 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { DemandaComponent } from './components/bodys/director/demanda/demanda.component';
 import { AsincronasComponent } from './components/bodys/director/asincronas/asincronas.component';
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
+import { BusquedaComponent } from './components/bodys/consejero/busqueda/busqueda.component';
+import { AlertaComponent } from './components/bodys/consejero/alerta/alerta.component';
+
 //servicios
 import { LogInService } from "./services/log-in.service";
 
 //fonts
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BusquedaComponent } from './components/bodys/consejero/busqueda/busqueda.component';
-import { AlertaComponent } from './components/bodys/consejero/alerta/alerta.component';
+
+//pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
-import { DatosAcademicosComponent } from './components/bodys/consejero/alerta/datos-academicos/datos-academicos.component';
-import { DatosDemograficosComponent } from './components/bodys/consejero/alerta/datos-demograficos/datos-demograficos.component';
-import { HistorialAlertasComponent } from './components/bodys/consejero/alerta/historial-alertas/historial-alertas.component';
-
-
 
 @NgModule({
   declarations: [
@@ -62,11 +60,7 @@ import { HistorialAlertasComponent } from './components/bodys/consejero/alerta/h
     PeriodicasComponent,
     BusquedaComponent,
     AlertaComponent,
-    FiltroEstudiantesCheckedPipe,
-    DatosAcademicosComponent,
-    DatosDemograficosComponent,
-    HistorialAlertasComponent
-
+    FiltroEstudiantesCheckedPipe
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,
