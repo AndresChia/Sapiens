@@ -1,92 +1,130 @@
-<div class="form-group">
-  <label for="exampleFormControlSelect1">Seleccione la alerta</label>
-  <select class="form-control" id="exampleFormControlSelect1">
-    <option>Seleccione una opción</option>
+<form [formGroup]="forma" class="form-group ">
+  <label for="alerta">Seleccione la alerta</label>
+  <select #alerta formControlName="opcion" class="form-control" id="alerta">
+    <option value="0">Seleccione una opción</option>
     <option *ngFor="let alerta of alertas">{{alerta}}</option>
   </select>
-</div>
+</form>
 
 
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button style="box-shadow: none;" class="text-left btncolor btn btn-default text-dark btn-block" type="button" data-toggle="collapse"
-          data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h5>
+<div *ngIf="forma.dirty && alerta.value!=='0'" class="cuerpo">
+
+
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button style="box-shadow: none;" class="text-left btncolor btn btn-default text-dark btn-block" type="button" data-toggle="collapse"
+            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Datos demograficos
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+          non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+          aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+          craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+          occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+          labore sustainable VHS.
+        </div>
+      </div>
     </div>
-
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-        aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button style="box-shadow: none;" class="text-left btncolor btn btn-default text-dark btn-block" type="button" data-toggle="collapse"
+            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Datos academicos
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+          non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+          aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+          craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+          occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+          labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button style="box-shadow: none;" class="text-left btncolor btn btn-default text-dark btn-block" type="button" data-toggle="collapse"
+            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Historial de alertas
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <table id="tabla" class="table table-hover">
+            <thead class=" bg-warning">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Semestre</th>
+                <th scope="col">Alerta</th>
+                <th scope="col">Creador</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let historial of historialAlerta, let i= index" style="cursor: pointer">
+                <th scope="row">{{i+1}}</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Otto</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button style="box-shadow: none;" class="text-left btncolor btn btn-default text-dark btn-block" type="button" data-toggle="collapse"
-          data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
+
+
+
+  <div class="form-group m-2">
+    <label for="anotacion">Anotaciones:</label>
+    <textarea class="form-control" name="anotacion" id="anotacion" rows="3"></textarea>
+  </div>
+
+  <div class="botones" style="height: 7px">
+    <button class="btn btn-primary pull-right m-1" (click)="modal()" name="regresar" id="regresar" role="button" data-toggle="modal"
+      data-target="#myModal">Escalar</button>
+    <button class="btn btn-danger pull-right m-1" (click)="regresar()" name="regresar" id="regresar" role="button">Regresar</button>
+  </div>
+
+
+</div>
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div *ngIf="activarModal" id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agendamiento de cita</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
         </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-        aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
+      </div>
+      <div class="modal-body">
+        <h1>
+          ssss
+        </h1>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger " data-dismiss="modal">Salir</button>
+        <button (click)="escalar()" type="button" class="btn btn-primary " data-dismiss="modal">Escalar</button>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button style="box-shadow: none;" class="text-left btncolor btn btn-default text-dark btn-block" type="button" data-toggle="collapse"
-          data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-        aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-  <label for="anotacion">Anotaciones:</label>
-  <textarea class="form-control" name="anotacion" id="anotacion" rows="3"></textarea>
-</div>
-
-<div class="botones" style="height: 45px">
-  <button class="btn btn-primary pull-right m-1" (click)="regresar()" name="regresar" id="regresar" role="button">Regresar</button>
-  <button class="btn btn-danger pull-right m-1" (click)="regresar()" name="regresar" id="regresar" role="button">Escalar</button>
-
-</div>

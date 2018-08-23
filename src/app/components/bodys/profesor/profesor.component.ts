@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { estudiante, clase } from "../../../interface/interfaces";
 
 
 @Component({
@@ -71,18 +72,19 @@ export class ProfesorComponent implements OnInit {
   seleccionarClase(i: number) {
     this.mostrarEstudiantes = true;
 
-    console.log("hola clase");
   }
   seleccionarEstudiante(i: number) {
-    console.log(this.estudiantes);
 
     this.activarModal = true;
   }
   seleccionarCheck(i: number) {
     this.estudiantes[i].check = !this.estudiantes[i].check;
   }
-  reset() {
-    console.log("s");
+
+  //FIXME: crear alerta
+  alertar() {
+    console.log("falta crear la alerta");
+
     let a: object = {
       opcion: 0
     }
@@ -96,16 +98,4 @@ export class ProfesorComponent implements OnInit {
   }
 
 
-}
-export interface estudiante {
-  nombre: string;
-  apellido: string;
-  carrera: string;
-  semestre: number;
-  check?: boolean;
-}
-interface clase {
-  nombre: string;
-  numeroEstudiantes: string;
-  numero: string;
 }

@@ -55,17 +55,14 @@ export class BusquedaComponent implements OnInit {
   ngOnInit() { }
 
   seleccionar(actual: number) {
-    console.log(this.estudiantes[actual]);
     this.consejeroComponent.alertar();
 
   }
 
-
+  //FIXME:
   buscar() {
 
-    console.log(this.forma.value.nombre);
-    console.log(this.forma.value.correo);
-
+    console.log("Falta buscar las alertas y ponerlas en la tabla");
 
   }
 

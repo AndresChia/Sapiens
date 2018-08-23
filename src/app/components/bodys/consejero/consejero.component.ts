@@ -12,7 +12,6 @@ export class ConsejeroComponent implements OnInit {
   url;
 
   constructor(private router: Router) {
-    console.log(router.url);
     this.router.navigate([router.url, "busqueda"]);
     this.url = router.url;
   }

@@ -9,11 +9,12 @@ export class AsincronasComponent implements OnInit {
 
   alertas: string[] = ["1", "2", "1"];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+  //FIXME:
   seleccionar(actual) {
-    console.log(actual);
+
   }
 }

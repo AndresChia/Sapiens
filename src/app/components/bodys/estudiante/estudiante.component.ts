@@ -6,6 +6,7 @@ import { LogInService } from "../../../services/log-in.service";
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
+import { consejero } from "../../../interface/interfaces";
 
 @Component({
   selector: 'app-estudiante',
@@ -70,13 +71,12 @@ export class EstudianteComponent implements OnInit {
 
   mostrarModal(i: number) {
     this.activarModal = true;
-    console.log(i);
     this.modal = this.consejeros[i];
   }
 
-
+  //FIXME: Falta crear la alerta
   agendar() {
-
+    console.log("Falta crear alerta");
     this._LogInService.acceso = false;
     this.router.navigate(['']);
     this.snackBar.open("Cita creada", "Cerrar", {
@@ -88,10 +88,3 @@ export class EstudianteComponent implements OnInit {
 
 }
 
-interface consejero {
-  nombre: string;
-  cargo: string;
-  areasInteres: string;
-  correo: string;
-  horario: string[];
-}

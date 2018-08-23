@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
+import { datoBusqueda } from "../../../../interface/interfaces";
+
 @Component({
   selector: 'app-demanda',
   templateUrl: './demanda.component.html',
@@ -64,16 +66,10 @@ export class DemandaComponent implements OnInit {
     this.busqueda.push(JSON.parse(a));
   }
 
+  //FIXME: falta crear la consulta y mostrarla en otra tabla
+  crearConsulta() {
+    console.log("falta crear donde ver la consulta y cargarla");
 
-}
+  }
 
-interface datoBusqueda {
-  nombreAsignatura: string,
-  parametro: string,
-  menor: number,
-  mayor: number
-}
-
-export interface User {
-  name: string;
 }

@@ -40,7 +40,7 @@
 
     <button name="agregar" id="agregar" class="btn btn-primary m-1 pull-right" (click)="agregarModal()" role="button" data-toggle="modal"
       data-target="#myModal">Agregar</button>
-    <a name="consultar" id="consultar" class="btn btn-primary m-1 pull-right" href="#" role="button">Consultar</a>
+    <button (click)="crearConsulta()" name="consultar" id="consultar" class="btn btn-primary m-1 pull-right" role="button">Consultar</button>
 
   </div>
 
@@ -145,7 +145,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary " data-dismiss="modal">Regresar</button>
+        <button type="button" class="btn btn-danger " data-dismiss="modal">Regresar</button>
         <button type="submit" class="btn btn-primary " data-dismiss="modal" (click)="agregarAsignatura()">Agregar</button>
 
       </div>

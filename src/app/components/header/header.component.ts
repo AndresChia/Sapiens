@@ -18,9 +18,7 @@ export class HeaderComponent implements OnInit {
 
   //FIXME:  cambiar correo por si es tipo estudiantes, consejero etc
   login(clave: string, correo: string) {
-    //console.log("hola entro");
-    //console.log(clave);
-    //console.log(correo);
+
     this._LogInService.acceso = true;
     this.appComponent.load = true;
     this.router.navigate([correo, clave]);

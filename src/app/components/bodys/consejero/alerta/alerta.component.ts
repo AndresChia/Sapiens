@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsejeroComponent } from "../consejero.component";
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-alerta',
   templateUrl: './alerta.component.html',
@@ -7,10 +10,17 @@ import { ConsejeroComponent } from "../consejero.component";
 })
 export class AlertaComponent implements OnInit {
   btn = "0";
+  forma: FormGroup;
+  historialAlerta;
+  activarModal = false;
 
-  constructor(private consejeroComponent: ConsejeroComponent) {
+  constructor(private consejeroComponent: ConsejeroComponent, public snackBar: MatSnackBar) {
 
     this.btn = "1";
+
+    this.forma = new FormGroup({
+      opcion: new FormControl()
+    });
 
   }
 
@@ -36,6 +46,25 @@ export class AlertaComponent implements OnInit {
   setActive(opcion: string) {
 
     this.btn = opcion;
+  }
+  //FIXME: crear escalamiento
+  escalar() {
+    console.log("Falta crear el modal y escalar");
+    let a: object = {
+      opcion: 0
+    }
+    this.forma.setValue(a);
+
+    this.snackBar.open("Escalamiento creado", "Cerrar", {
+      duration: 2000,
+    });
+
+  }
+
+  modal() {
+    this.activarModal = true;
+
+
   }
 
 }
