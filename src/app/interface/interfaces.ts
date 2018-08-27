@@ -23,3 +23,10 @@ export interface datoBusqueda {
     menor: number,
     mayor: number
 }
+export interface alerta {
+    nombreAlerta: string;
+    estudiante?: estudiante[];
+    remitente: string;
+    criticidad: string;
+    incidencias: number;
+}

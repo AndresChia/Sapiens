@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { alerta } from '../../../../interface/interfaces';
 
 @Component({
   selector: 'app-asincronas',
@@ -7,7 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsincronasComponent implements OnInit {
 
-  alertas: string[] = ["1", "2", "1"];
+  alertas: alerta[] = [
+    {
+      estudiante: [
+        {
+          nombre: "carlos",
+          apellido: "salfa",
+          carrera: "Ingenieria de sistemas",
+          semestre: 5,
+        }
+
+      ],
+      nombreAlerta: "Problema con profesor",
+      remitente: "string",
+      criticidad: "Alta",
+      incidencias: 1
+    }
+
+  ]
 
   constructor() { }
 
@@ -15,6 +33,9 @@ export class AsincronasComponent implements OnInit {
 
   //FIXME:
   seleccionar(actual) {
+
+    console.log();
+
 
   }
 }

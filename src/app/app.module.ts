@@ -41,6 +41,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
+import { AdminComponent } from './components/admin/admin.component';
+import { ConsultaComponent } from './components/bodys/director/demanda/consulta/consulta.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     PeriodicasComponent,
     BusquedaComponent,
     AlertaComponent,
-    FiltroEstudiantesCheckedPipe
+    FiltroEstudiantesCheckedPipe,
+    AdminComponent,
+    ConsultaComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

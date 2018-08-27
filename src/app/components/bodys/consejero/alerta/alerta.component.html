@@ -23,12 +23,78 @@
 
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-          non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-          aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-          craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-          occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-          labore sustainable VHS.
+
+          <form>
+
+            <h4>Datos personales</h4>
+
+            <div class="row">
+              <div class="col">
+
+                <label for="id">Id</label>
+                <input id="id" type="text" class="form-control" placeholder="id" disabled="true">
+
+                <label for="nacimiento">Nacimiento</label>
+                <input id="nacimiento" type="date" class="form-control" placeholder="nacimiento" disabled="true">
+
+                <label for="origen">País Origen</label>
+                <input id="origen" type="text" class="form-control" placeholder="origen" disabled="true">
+
+
+
+              </div>
+              <div class="col">
+                <label for="Genero">Genero</label>
+                <input id="Genero" type="text" class="form-control" placeholder="Genero" disabled="true">
+
+                <label for="estado">Estado Civil</label>
+                <input id="estado" type="text" class="form-control" placeholder="estado" disabled="true">
+
+                <label for="ciudad">Ciudad de origen</label>
+                <input id="ciudad" type="text" class="form-control" placeholder="ciudad" disabled="true">
+
+              </div>
+
+            </div>
+            <h4>Origen Étnico</h4>
+
+            <div class="row">
+              <div class="col">
+                <label for="grupo">Grupo Étnico</label>
+                <input class="form-control" type="text" id="grupo" placeholder="grupo" disabled="true">
+              </div>
+              <div class="col">
+                <label for="descripcion">Descripción</label>
+                <input class="form-control" type="text" id="descripcion" placeholder="descripcion" disabled="true">
+
+              </div>
+              <div class="col">
+                <label for="principal">Principal</label>
+                <input class="form-control" type="text" id="principal" placeholder="principal" disabled="true">
+
+              </div>
+            </div>
+
+
+            <h4>Discapacidad</h4>
+            <div class="row">
+              <div class="col">
+                <label for="discapacidad">Tipo de discapacidad</label>
+                <input class="form-control" type="text" id="discapacidad" placeholder="discapacidad" disabled="true">
+              </div>
+              <div class="col">
+                <label for="descripcionDiscapacidad">Descripción</label>
+                <input class="form-control" type="text" id="descripcionDiscapacidad" placeholder="descripcionDiscapacidad" disabled="true">
+
+              </div>
+
+            </div>
+
+
+
+          </form>
+
+
         </div>
       </div>
     </div>
@@ -43,12 +109,29 @@
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-          non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-          aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-          craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-          occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-          labore sustainable VHS.
+
+          <table id="tabla" class="table table-hover">
+            <thead class=" bg-warning">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Semestre</th>
+                <th scope="col">Creditos aprobados</th>
+                <th scope="col">Creditos retirados</th>
+                <th scope="col">Promedio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr (click)="seleccionar(i)" *ngFor=" let i= index" style="cursor: pointer">
+                <th scope="row">{{i+1}}</th>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>Otto</td>
+              </tr>
+            </tbody>
+          </table>
+
+
         </div>
       </div>
     </div>
@@ -92,13 +175,15 @@
 
   <div class="form-group m-2">
     <label for="anotacion">Anotaciones:</label>
-    <textarea class="form-control" name="anotacion" id="anotacion" rows="3"></textarea>
+    <textarea class="form-control" name="anotacion" id="anotacion" rows="2"></textarea>
   </div>
 
   <div class="botones" style="height: 7px">
-    <button class="btn btn-primary pull-right m-1" (click)="modal()" name="regresar" id="regresar" role="button" data-toggle="modal"
+    <button class="btn btn-warning pull-right m-1" (click)="modal()" name="regresar" id="regresar" role="button" data-toggle="modal"
       data-target="#myModal">Escalar</button>
     <button class="btn btn-danger pull-right m-1" (click)="regresar()" name="regresar" id="regresar" role="button">Regresar</button>
+    <button class="btn btn-primary pull-right m-1" (click)="resolver()" name="regresar" id="regresar" role="button">Resolver</button>
+
   </div>
 
 
@@ -111,20 +196,42 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agendamiento de cita</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Escalar alerta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h1>
-          ssss
-        </h1>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <img class="card-img-top" src="../../../../../assets/cons1.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button (click)="escalar()" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Escalar</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <img class="card-img-top" src="../../../../../assets/cons1.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button (click)="escalar()" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Escalar</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger " data-dismiss="modal">Salir</button>
-        <button (click)="escalar()" type="button" class="btn btn-primary " data-dismiss="modal">Escalar</button>
       </div>
     </div>
   </div>

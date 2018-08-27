@@ -49,11 +49,8 @@ export class AlertaComponent implements OnInit {
   }
   //FIXME: crear escalamiento
   escalar() {
-    console.log("Falta crear el modal y escalar");
-    let a: object = {
-      opcion: 0
-    }
-    this.forma.setValue(a);
+    this.consejeroComponent.regresar();
+
 
     this.snackBar.open("Escalamiento creado", "Cerrar", {
       duration: 2000,
@@ -63,6 +60,24 @@ export class AlertaComponent implements OnInit {
 
   modal() {
     this.activarModal = true;
+
+
+
+  }
+  //FIXME: cuando se resuelva una alerta
+
+  resolver() {
+    this.consejeroComponent.regresar();
+
+    this.snackBar.open("Alerta resuelta", "Cerrar", {
+      duration: 2000,
+    });
+
+  }
+
+  //FIXME: cuando se seleccione un periodo academico
+
+  seleccionar() {
 
 
   }

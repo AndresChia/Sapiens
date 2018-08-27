@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { estudiante } from "../components/bodys/profesor/profesor.component";
+import { estudiante } from "../interface/interfaces";
 @Pipe({
   name: 'filtroEstudiantesChecked',
   pure: false

@@ -11,7 +11,8 @@ import { AsincronasComponent } from './components/bodys/director/asincronas/asin
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
 import { BusquedaComponent } from "./components/bodys/consejero/busqueda/busqueda.component";
 import { AlertaComponent } from "./components/bodys/consejero/alerta/alerta.component";
-
+import { AdminComponent } from "./components/admin/admin.component";
+import { ConsultaComponent } from "./components/bodys/director/demanda/consulta/consulta.component";
 
 const ROUTES: Routes = [
     {
@@ -36,6 +37,8 @@ const ROUTES: Routes = [
 
     { path: 'estudiante/:id', component: EstudianteComponent },
     { path: 'profesor/:id', component: ProfesorComponent },
+    { path: 'admin', component: AdminComponent },
+    { path: 'consulta', component: ConsultaComponent },
     { path: '', component: EmptyComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
