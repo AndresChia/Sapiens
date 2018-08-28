@@ -9,7 +9,11 @@ export class LogInService {
   tipo: string;
   usuario: string;
   contrasenia: string;
+  load: boolean;
 
 
-  constructor() { }
+  constructor() {
+    this.load = false;
+
+  }
 }

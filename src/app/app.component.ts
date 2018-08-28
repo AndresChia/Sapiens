@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogInService } from "./services/log-in.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -6,8 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Sapiens';
-  load: boolean;
-  constructor() {
-    this.load = false;
+
+  constructor(public _LogInService: LogInService) {
   }
 }
