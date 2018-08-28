@@ -1,3 +1,24 @@
-<p>
-  consulta-demanda works!
-</p>
+<h1>Parametros</h1>
+<ul>
+  <li *ngFor="let busq of busqueda; let i=index">{{busq.nombreAsignatura}} -> {{busq.parametro}} </li>
+</ul>
+
+
+<table id="tabla" class="table table-hover m-3  ">
+  <thead class=" bg-warning">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Estudiante</th>
+      <th *ngFor="let busq of busqueda; let i=index" scope="col">{{busq.nombreAsignatura}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="cursor: pointer">
+      <th scope="row">1</th>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="cerrar()" class="container btn btn-danger btn-block" role="button">Cerrar</button>

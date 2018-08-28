@@ -37,9 +37,10 @@ import { ConsultaPeriodicasComponent } from './components/bodys/director/periodi
 import { ConsultaAsincronasComponent } from './components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component';
 import { ConsultaDemandaComponent } from './components/bodys/director/demanda/consulta-demanda/consulta-demanda.component';
 
-
 //servicios
 import { LogInService } from "./services/log-in.service";
+import { ConsultardemandaService } from "./services/consultardemanda.service";
+
 
 //fonts
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -77,7 +78,7 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule
   ],
-  providers: [LogInService],
+  providers: [LogInService, ConsultardemandaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

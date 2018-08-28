@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { datoBusqueda } from "../../../../interface/interfaces";
-
+import { ConsultardemandaService } from "../../../../services/consultardemanda.service";
 @Component({
   selector: 'app-demanda',
   templateUrl: './demanda.component.html',
@@ -26,19 +26,14 @@ export class DemandaComponent implements OnInit {
 
 
 
-  busqueda: datoBusqueda[] = [{
-    nombreAsignatura: "calculo",
-    parametro: "personalizado",
-    menor: 5,
-    mayor: 6
-  }]
+  busqueda: datoBusqueda[] = [];
 
 
   activarModal = false;
 
 
 
-  constructor() {
+  constructor(private _ConsultardemandaService: ConsultardemandaService) {
 
 
   }
@@ -70,6 +65,7 @@ export class DemandaComponent implements OnInit {
   crearConsulta() {
     console.log("falta crear donde ver la consulta y cargarla");
 
+    this._ConsultardemandaService.cargar(JSON.stringify(this.busqueda));
   }
 
 }

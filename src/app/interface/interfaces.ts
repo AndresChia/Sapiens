@@ -30,4 +30,5 @@ export interface alerta {
     criticidad: string;
     incidencias: number;
     periodo?: string;
+    fecha?: string;
 }
