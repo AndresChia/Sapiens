@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { alerta } from '../../../../interface/interfaces';
 
 @Component({
   selector: 'app-periodicas',
@@ -6,7 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./periodicas.component.css']
 })
 export class PeriodicasComponent implements OnInit {
-  periodos: string[] = ["1", "2", "1"];
+
+  periodos: alerta[] = [
+    {
+      estudiante: [
+        {
+          nombre: "carlos",
+          apellido: "salfa",
+          carrera: "Ingenieria de sistemas",
+          semestre: 5,
+        }
+
+      ],
+      nombreAlerta: "Primera prueba",
+      remitente: "string",
+      criticidad: "Alta",
+      incidencias: 1,
+      periodo: "2018-3",
+    }
+
+  ]
+
 
   constructor() { }
 
@@ -14,8 +35,8 @@ export class PeriodicasComponent implements OnInit {
   }
 
 
-  seleccionar(i) {
-
+  seleccionar(i: number) {
+    window.open(`consultaPeriodicas/${this.periodos[i].periodo}/${this.periodos[i].nombreAlerta}`, '_blank')
 
   }
 }

@@ -32,6 +32,11 @@ import { AsincronasComponent } from './components/bodys/director/asincronas/asin
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
 import { BusquedaComponent } from './components/bodys/consejero/busqueda/busqueda.component';
 import { AlertaComponent } from './components/bodys/consejero/alerta/alerta.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ConsultaPeriodicasComponent } from './components/bodys/director/periodicas/consulta-periodicas/consulta-periodicas.component';
+import { ConsultaAsincronasComponent } from './components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component';
+import { ConsultaDemandaComponent } from './components/bodys/director/demanda/consulta-demanda/consulta-demanda.component';
+
 
 //servicios
 import { LogInService } from "./services/log-in.service";
@@ -41,8 +46,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
-import { AdminComponent } from './components/admin/admin.component';
-import { ConsultaComponent } from './components/bodys/director/demanda/consulta/consulta.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +68,9 @@ import { ConsultaComponent } from './components/bodys/director/demanda/consulta/
     AlertaComponent,
     FiltroEstudiantesCheckedPipe,
     AdminComponent,
-    ConsultaComponent
+    ConsultaPeriodicasComponent,
+    ConsultaAsincronasComponent,
+    ConsultaDemandaComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

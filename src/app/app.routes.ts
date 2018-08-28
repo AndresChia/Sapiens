@@ -12,8 +12,9 @@ import { PeriodicasComponent } from './components/bodys/director/periodicas/peri
 import { BusquedaComponent } from "./components/bodys/consejero/busqueda/busqueda.component";
 import { AlertaComponent } from "./components/bodys/consejero/alerta/alerta.component";
 import { AdminComponent } from "./components/admin/admin.component";
-import { ConsultaComponent } from "./components/bodys/director/demanda/consulta/consulta.component";
-
+import { ConsultaDemandaComponent } from "./components/bodys/director/demanda/consulta-demanda/consulta-demanda.component";
+import { ConsultaAsincronasComponent } from "./components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component";
+import { ConsultaPeriodicasComponent } from "./components/bodys/director/periodicas/consulta-periodicas/consulta-periodicas.component";
 const ROUTES: Routes = [
     {
         path: 'consejero/:id', component: ConsejeroComponent,
@@ -38,9 +39,12 @@ const ROUTES: Routes = [
     { path: 'estudiante/:id', component: EstudianteComponent },
     { path: 'profesor/:id', component: ProfesorComponent },
     { path: 'admin', component: AdminComponent },
-    { path: 'consulta', component: ConsultaComponent },
-    { path: '', component: EmptyComponent },
-    { path: '**', component: PageNotFoundComponent },
+    { path: 'consultaAsincrona/:id/:nombre', component: ConsultaAsincronasComponent },
+    { path: 'consultaPeriodicas/:fecha/:nombre', component: ConsultaPeriodicasComponent },
+    { path: 'consultaDemanda', component: ConsultaDemandaComponent },
+    { path: 'Home', component: EmptyComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'Home' }
+
 ];
 
 @NgModule({

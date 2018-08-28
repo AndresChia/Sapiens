@@ -25,8 +25,9 @@ export interface datoBusqueda {
 }
 export interface alerta {
     nombreAlerta: string;
-    estudiante?: estudiante[];
+    estudiante: estudiante[];
     remitente: string;
     criticidad: string;
     incidencias: number;
+    periodo?: string;
 }

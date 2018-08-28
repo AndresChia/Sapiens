@@ -32,10 +32,10 @@ export class AsincronasComponent implements OnInit {
   ngOnInit() { }
 
   //FIXME:
-  seleccionar(actual) {
+  seleccionar(actual: number) {
 
     console.log();
-
+    window.open(`consultaAsincrona/${actual}/${this.alertas[actual].nombreAlerta}`, '_blank')
 
   }
 }

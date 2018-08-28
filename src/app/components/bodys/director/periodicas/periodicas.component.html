@@ -3,8 +3,8 @@
 
 
   <label for="periodo">Buscar periodo</label>
-  <input class="form-control" type="number" id="periodo" min="1900" max="2099" step="1" value="2018" />
-  <small id="helpId" class="form-text text-muted"></small>
+  <input class="form-control" type="text" id="periodo" value="2018-3" />
+  <small id="helpId" class="form-text text-muted">Año academico - periodo academico</small>
 
 
 </div>
@@ -17,14 +17,18 @@
       <th scope="col">Nombre</th>
       <th scope="col">Incidencias</th>
       <th scope="col">Criticidad</th>
+      <th scope="col">Periodo</th>
+
     </tr>
   </thead>
   <tbody>
     <tr (click)="seleccionar(i)" *ngFor="let periodo of periodos, let i= index" style="cursor: pointer">
       <th #actual scope="row">{{i+1}}</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{{periodo.nombreAlerta}}</td>
+      <td>{{periodo.incidencias}}</td>
+      <td>{{periodo.criticidad}}</td>
+      <td>{{periodo.periodo}}</td>
+
     </tr>
   </tbody>
 </table>
