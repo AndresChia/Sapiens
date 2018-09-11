@@ -16,12 +16,14 @@ import { ConsultaPeriodicasComponent } from "./components/bodys/director/periodi
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
 import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
 import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
+import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
 
 const ROUTES: Routes = [
     {
         path: 'consejero/:id', component: ConsejeroComponent,
         children: [
             { path: 'buscar', component: BuscarComponent },
+            { path: 'buscar/:id', component: BalertarComponent },
             { path: 'asincrono', component: CasincronasComponent },
             { path: 'periodico', component: CperiodicasComponent },
             { path: '', component: EmptyComponent },

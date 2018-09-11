@@ -37,6 +37,7 @@ import { ConsultaDemandaComponent } from './components/bodys/director/demanda/co
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
 import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
 import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
+import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
 
 //servicios
 import { LogInService } from "./services/log-in.service";
@@ -74,7 +75,8 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     ConsultaDemandaComponent,
     BuscarComponent,
     CasincronasComponent,
-    CperiodicasComponent
+    CperiodicasComponent,
+    BalertarComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

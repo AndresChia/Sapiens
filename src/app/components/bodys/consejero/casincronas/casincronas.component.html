@@ -1,18 +1,83 @@
-<table id="tabla" class="table table-hover m-4">
-  <thead class=" bg-warning">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Incidencias</th>
-      <th scope="col">Criticidad</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr (click)="seleccionar(i)" *ngFor="let alerta of alertas, let i= index" style="cursor: pointer">
-      <th scope="row">{{i+1}}</th>
-      <td>{{alerta.nombreAlerta}}</td>
-      <td>{{alerta.incidencias}}</td>
-      <td>{{alerta.criticidad}}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- <input list="listacolores">
+
+<datalist id="listacolores">
+  <option value="Azul">
+  <option value="Rojo">
+  <option value="Amarillo">
+  <option value="Negro">
+  <option value="Blanco">
+</datalist> -->
+
+<div class="row">
+  <div class="col-6">
+
+    <table id="tablaAlertas" class="table table-hover m-4">
+      <thead class=" bg-warning">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Incidencias</th>
+          <th scope="col">Criticidad</th>
+          <th scope="col">Remitente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [ngClass]="{
+          'table-warning': alerta.criticidad === 'Media',
+          'table-success': alerta.criticidad === 'Baja',
+          'table-danger': alerta.criticidad === 'Alta'
+          }"
+          (click)="seleccionar(i)" *ngFor="let alerta of alertas, let i= index" style="cursor: pointer">
+          <th scope="row">{{i+1}}</th>
+          <td>{{alerta.nombreAlerta}}</td>
+          <td>{{alerta.incidencias}}</td>
+          <td>{{alerta.criticidad}}</td>
+          <td>{{alerta.remitente}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="col-6">
+
+
+
+
+    <div *ngIf=seleccionado class="opcionesEstudiantes">
+
+
+      <table id="tablaEstudiantes" class="table table-hover m-4">
+        <thead class=" bg-warning">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">apellido</th>
+            <th scope="col">semestre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr (click)="seleccionarCheck(i)" *ngFor="let estudiante of estudianteActual, let i= index">
+            <td class="checkContent">
+              <input type="checkbox" [(ngModel)]="estudiante.check">
+            </td>
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.apellido}}</td>
+            <td>{{estudiante.semestre}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+      <button name="atender" id="atender" class="btn btn-success m-1 pull-right">Atender</button>
+      <button name="escalar" id="escalar" class="btn btn-primary m-1 pull-right">Escalar</button>
+      <button name="remitir" id="remitir" class="btn btn-primary m-1 pull-right">Remitir</button>
+
+    </div>
+
+
+
+
+  </div>
+</div>

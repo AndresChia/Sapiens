@@ -3,6 +3,7 @@ import { AppComponent } from "../../../../app.component";
 import { Validators, FormGroup, FormControl } from "@angular/forms";
 import { ConsejeroComponent } from "../consejero.component";
 import { LogInService } from '../../../../services/log-in.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscar',
@@ -10,6 +11,12 @@ import { LogInService } from '../../../../services/log-in.service';
   styleUrls: ['./buscar.component.css']
 })
 export class BuscarComponent implements OnInit {
+
+  url: string;
+
+
+  busquedaBool = false;
+
 
   forma: FormGroup;
 
@@ -22,26 +29,15 @@ export class BuscarComponent implements OnInit {
 
   estudiantes: estudiante[] = [
     {
+      id: "1",
       nombre: "carlos",
-      apellido: "salda",
-      carrera: "sistemas",
-      semestre: 1
-    },
-    {
-      nombre: "pedro",
-      apellido: "salda",
-      carrera: "sistemas",
-      semestre: 2
-    },
-    {
-      nombre: "juan",
       apellido: "salda",
       carrera: "sistemas",
       semestre: 1
     }
   ];
 
-  constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent) {
+  constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router) {
     _LogInService.load = false;
 
     this.forma = new FormGroup({
@@ -50,6 +46,7 @@ export class BuscarComponent implements OnInit {
     });
     this.forma.setValue(this.busqueda);
 
+    this.url = router.url;
 
   }
 
@@ -57,7 +54,7 @@ export class BuscarComponent implements OnInit {
 
   seleccionar(actual: number) {
     //this.consejeroComponent.alertar();
-
+    this.router.navigate([this.router.url, this.estudiantes[actual].id]);
   }
 
   //FIXME:
@@ -65,12 +62,16 @@ export class BuscarComponent implements OnInit {
 
     console.log("Falta buscar las alertas y ponerlas en la tabla");
 
+    this.busquedaBool = true;
+
+
   }
 
 
 }
 
 interface estudiante {
+  id: string;
   nombre: string;
   apellido: string;
   carrera: string;

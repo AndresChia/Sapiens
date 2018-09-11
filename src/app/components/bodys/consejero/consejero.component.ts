@@ -10,8 +10,12 @@ import { Router } from "@angular/router";
 })
 export class ConsejeroComponent implements OnInit {
 
+  url: string;
+
   constructor(private router: Router, public _LogInService: LogInService) {
     _LogInService.load = false;
+    this.url = router.url;
+
   }
 
   ngOnInit() { }
