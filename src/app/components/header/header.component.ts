@@ -11,7 +11,7 @@ import { LogInService } from "../../services/log-in.service";
 export class HeaderComponent implements OnInit {
 
 
-  constructor(private router: Router, private appComponent: AppComponent, public _LogInService: LogInService) { }
+  constructor(private router: Router, public _LogInService: LogInService) { }
 
   ngOnInit() {
   }
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   login(clave: string, correo: string) {
 
     this._LogInService.acceso = true;
-    this.appComponent.load = true;
+    this._LogInService.load = true;
     this.router.navigate([correo, clave]);
   }
   salir() {

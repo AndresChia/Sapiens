@@ -1,0 +1,13 @@
+hr {
+  border: 1;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: thistle;
+  height: 1px;
+}
+
+.centrar {
+  margin-left: auto;
+  margin-right: auto;
+}

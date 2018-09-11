@@ -30,12 +30,13 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { DemandaComponent } from './components/bodys/director/demanda/demanda.component';
 import { AsincronasComponent } from './components/bodys/director/asincronas/asincronas.component';
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
-import { BusquedaComponent } from './components/bodys/consejero/busqueda/busqueda.component';
-import { AlertaComponent } from './components/bodys/consejero/alerta/alerta.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ConsultaPeriodicasComponent } from './components/bodys/director/periodicas/consulta-periodicas/consulta-periodicas.component';
 import { ConsultaAsincronasComponent } from './components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component';
 import { ConsultaDemandaComponent } from './components/bodys/director/demanda/consulta-demanda/consulta-demanda.component';
+import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
+import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
+import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
 
 //servicios
 import { LogInService } from "./services/log-in.service";
@@ -47,6 +48,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
+
 
 
 @NgModule({
@@ -65,13 +67,14 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     DemandaComponent,
     AsincronasComponent,
     PeriodicasComponent,
-    BusquedaComponent,
-    AlertaComponent,
     FiltroEstudiantesCheckedPipe,
     AdminComponent,
     ConsultaPeriodicasComponent,
     ConsultaAsincronasComponent,
-    ConsultaDemandaComponent
+    ConsultaDemandaComponent,
+    BuscarComponent,
+    CasincronasComponent,
+    CperiodicasComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

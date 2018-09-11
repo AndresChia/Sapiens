@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
+import { LogInService } from '../../../services/log-in.service';
 
 @Component({
   selector: 'app-empty',
@@ -8,8 +9,9 @@ import { AppComponent } from "../../../app.component";
 })
 export class EmptyComponent implements OnInit {
 
-  constructor(private appComponent: AppComponent) {
-    appComponent.load = false;
+  constructor(private _LogInService: LogInService) {
+    _LogInService.load = false;
+
   }
 
   ngOnInit() {

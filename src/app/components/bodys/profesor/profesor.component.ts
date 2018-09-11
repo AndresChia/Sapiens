@@ -3,6 +3,7 @@ import { AppComponent } from "../../../app.component";
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { estudiante, clase } from "../../../interface/interfaces";
+import { LogInService } from '../../../services/log-in.service';
 
 
 @Component({
@@ -57,8 +58,8 @@ export class ProfesorComponent implements OnInit {
   activarModal = false;
 
 
-  constructor(private appComponent: AppComponent, public snackBar: MatSnackBar) {
-    appComponent.load = false;
+  constructor(private _LogInService: LogInService, public snackBar: MatSnackBar) {
+    _LogInService.load = false;
     this.forma = new FormGroup({
       opcion: new FormControl()
     });

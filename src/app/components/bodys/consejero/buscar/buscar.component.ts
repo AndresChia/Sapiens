@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../../app.component";
 import { Validators, FormGroup, FormControl } from "@angular/forms";
 import { ConsejeroComponent } from "../consejero.component";
-@Component({
-  selector: 'app-busqueda',
-  templateUrl: './busqueda.component.html',
-  styleUrls: ['./busqueda.component.css']
-})
-export class BusquedaComponent implements OnInit {
+import { LogInService } from '../../../../services/log-in.service';
 
+@Component({
+  selector: 'app-buscar',
+  templateUrl: './buscar.component.html',
+  styleUrls: ['./buscar.component.css']
+})
+export class BuscarComponent implements OnInit {
 
   forma: FormGroup;
 
@@ -40,8 +41,8 @@ export class BusquedaComponent implements OnInit {
     }
   ];
 
-  constructor(private appComponent: AppComponent, private consejeroComponent: ConsejeroComponent) {
-    appComponent.load = false;
+  constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent) {
+    _LogInService.load = false;
 
     this.forma = new FormGroup({
       'nombre': new FormControl(''),
@@ -55,7 +56,7 @@ export class BusquedaComponent implements OnInit {
   ngOnInit() { }
 
   seleccionar(actual: number) {
-    this.consejeroComponent.alertar();
+    //this.consejeroComponent.alertar();
 
   }
 

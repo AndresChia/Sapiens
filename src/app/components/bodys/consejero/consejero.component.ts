@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LogInService } from "../../../services/log-in.service";
 
 import { Router } from "@angular/router";
 
@@ -9,24 +10,12 @@ import { Router } from "@angular/router";
 })
 export class ConsejeroComponent implements OnInit {
 
-  url;
-
-  constructor(private router: Router) {
-    this.router.navigate([router.url, "busqueda"]);
-    this.url = router.url;
+  constructor(private router: Router, public _LogInService: LogInService) {
+    _LogInService.load = false;
   }
 
   ngOnInit() { }
 
-  alertar() {
-
-    this.router.navigate([this.url, "alertar"]);
-
-  }
-
-  regresar() {
-    this.router.navigate([this.url, "busqueda"]);
-  }
 
 
 

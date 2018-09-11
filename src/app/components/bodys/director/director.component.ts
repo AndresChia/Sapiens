@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from "../../../app.component";
+import { LogInService } from '../../../services/log-in.service';
 
 @Component({
   selector: 'app-director',
@@ -8,8 +8,8 @@ import { AppComponent } from "../../../app.component";
 })
 export class DirectorComponent implements OnInit {
 
-  constructor(private appComponent: AppComponent) {
-    appComponent.load = false;
+  constructor(private _LogInService: LogInService) {
+    _LogInService.load = false;
   }
   ngOnInit() {
   }

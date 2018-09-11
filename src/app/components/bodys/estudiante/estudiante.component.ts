@@ -55,7 +55,7 @@ export class EstudianteComponent implements OnInit {
   //funciones
   constructor(private appComponent: AppComponent, private router: Router, public snackBar: MatSnackBar,
     private _LogInService: LogInService) {
-    appComponent.load = false;
+    _LogInService.load = false;
 
     this.forma = new FormGroup({
       opcion: new FormControl()

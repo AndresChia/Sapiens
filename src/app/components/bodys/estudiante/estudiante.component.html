@@ -3,15 +3,31 @@
   <select #alerta formControlName="opcion" name="opcion" class="form-control" id="alertar">
     <option>Seleccion una opción</option>
     <option *ngFor="let alerta of alertas">{{alerta}}</option>
+    <option>Otro</option>
   </select>
 </form>
 
 
-<div *ngIf="forma.dirty && alerta.value!=='Seleccion una opción'" class="row container animated fadeIn ">
+
+<div *ngIf="alerta.value =='Otro'" class="otro">
+
+
+  <input class="form-control" type="text" name="otro" id="otro" placeholder="Motivo otro">
+
+</div>
+
+
+
+
+<div *ngIf="forma.dirty && alerta.value!=='Seleccion una opción'" class="row container animated fadeIn centrar">
+
+  <hr>
+
   <div *ngFor="let consejero of consejeros, let i= index" class="card-group col-sm-6 ">
     <div class="card m-3">
       <img class="card-img-top " src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
-          " alt="Card image cap ">
+          "
+        alt="Card image cap ">
       <div class="card-body ">
 
 
@@ -28,7 +44,8 @@
         </div>
         <h1></h1>
         <p class="card-text ">
-          <button (click)=mostrarModal(i) type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Agendar</button>
+          <button (click)=mostrarModal(i) type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+            data-target="#myModal">Agendar</button>
         </p>
       </div>
     </div>

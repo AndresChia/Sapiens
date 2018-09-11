@@ -9,19 +9,25 @@ import { EmptyComponent } from "./components/bodys/empty/empty.component";
 import { DemandaComponent } from './components/bodys/director/demanda/demanda.component';
 import { AsincronasComponent } from './components/bodys/director/asincronas/asincronas.component';
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
-import { BusquedaComponent } from "./components/bodys/consejero/busqueda/busqueda.component";
-import { AlertaComponent } from "./components/bodys/consejero/alerta/alerta.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { ConsultaDemandaComponent } from "./components/bodys/director/demanda/consulta-demanda/consulta-demanda.component";
 import { ConsultaAsincronasComponent } from "./components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component";
 import { ConsultaPeriodicasComponent } from "./components/bodys/director/periodicas/consulta-periodicas/consulta-periodicas.component";
+import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
+import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
+import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
+
 const ROUTES: Routes = [
     {
         path: 'consejero/:id', component: ConsejeroComponent,
         children: [
-            { path: 'busqueda', component: BusquedaComponent },
-            { path: 'alertar', component: AlertaComponent },
+            { path: 'buscar', component: BuscarComponent },
+            { path: 'asincrono', component: CasincronasComponent },
+            { path: 'periodico', component: CperiodicasComponent },
+            { path: '', component: EmptyComponent },
+            { path: '**', component: PageNotFoundComponent },
         ]
+
     },
     {
         path: 'director/:id',

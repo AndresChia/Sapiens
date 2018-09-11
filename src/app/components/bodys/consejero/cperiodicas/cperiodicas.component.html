@@ -1,0 +1,34 @@
+<div class="form-group m-3">
+
+
+
+  <label for="periodo">Buscar periodo</label>
+  <input class="form-control" type="text" id="periodo" value="2018-3" />
+  <small id="helpId" class="form-text text-muted">Año academico - periodo academico</small>
+
+
+</div>
+
+
+<table id="tabla" class="table table-hover m-3  ">
+  <thead class=" bg-warning">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Incidencias</th>
+      <th scope="col">Criticidad</th>
+      <th scope="col">Periodo</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="seleccionar(i)" *ngFor="let periodo of periodos, let i= index" style="cursor: pointer">
+      <th #actual scope="row">{{i+1}}</th>
+      <td>{{periodo.nombreAlerta}}</td>
+      <td>{{periodo.incidencias}}</td>
+      <td>{{periodo.criticidad}}</td>
+      <td>{{periodo.periodo}}</td>
+
+    </tr>
+  </tbody>
+</table>
