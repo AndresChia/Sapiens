@@ -10,7 +10,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private _LogInService: LogInService) {
 
-    _LogInService.tipo = "admin";
+    _LogInService.usuario.tipo = "admin";
 
   }
 

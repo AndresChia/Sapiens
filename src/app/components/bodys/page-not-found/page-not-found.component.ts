@@ -10,7 +10,6 @@ import { LogInService } from '../../../services/log-in.service';
 export class PageNotFoundComponent implements OnInit {
 
   constructor(private _LogInService: LogInService) {
-    _LogInService.load = false;
   }
 
   ngOnInit() {

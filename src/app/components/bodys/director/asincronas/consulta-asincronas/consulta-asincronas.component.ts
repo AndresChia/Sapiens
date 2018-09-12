@@ -13,7 +13,6 @@ export class ConsultaAsincronasComponent implements OnInit {
 
   constructor(private _LogInService: LogInService) {
 
-    _LogInService.tipo = "admin";
 
   }
 

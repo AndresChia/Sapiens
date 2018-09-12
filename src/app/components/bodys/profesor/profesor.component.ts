@@ -59,7 +59,7 @@ export class ProfesorComponent implements OnInit {
 
 
   constructor(private _LogInService: LogInService, public snackBar: MatSnackBar) {
-    _LogInService.load = false;
+
     this.forma = new FormGroup({
       opcion: new FormControl()
     });

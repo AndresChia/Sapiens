@@ -12,7 +12,6 @@ export class ConsultaPeriodicasComponent implements OnInit {
 
   constructor(private _LogInService: LogInService) {
 
-    _LogInService.tipo = "admin";
 
   }
 

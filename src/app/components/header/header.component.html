@@ -16,9 +16,9 @@
 </div>
 
 
-<div *ngIf=" (_LogInService.tipo!='admin') " class="d-flex flex-row-reverse bd-highlight " style=" background-color: #000167;">
+<div *ngIf=" (_LogInService.usuario.tipo!='admin')  " class="d-flex flex-row-reverse bd-highlight " style=" background-color: #000167;">
 
-  <div *ngIf="!_LogInService.acceso" class="logIn">
+  <div *ngIf="!_LogInService.usuario.acceso" class="logIn">
     <form class="form-inline m-2">
       <div class="form-group mb-2">
         <label for="correo" class="sr-only">Email</label>
@@ -33,11 +33,11 @@
   </div>
 
 
-  <div style="height: 45px" *ngIf="_LogInService.acceso" class="inicio text-white">
+  <div style="height: 45px" *ngIf="_LogInService.usuario.acceso" class="inicio text-white">
     Nombre usuario
     <button (click)="salir()" type="button" class="btn btn-danger m-1 ">Salir</button>
   </div>
 
 </div>
 
-<app-carousel *ngIf=" (!_LogInService.acceso) && (_LogInService.tipo!='admin') "></app-carousel>
+<app-carousel *ngIf=" (!_LogInService.usuario.acceso) && (_LogInService.usuario.tipo!='admin') "></app-carousel>

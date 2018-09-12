@@ -17,7 +17,6 @@ export class ConsultaDemandaComponent implements OnInit {
   constructor(private _ConsultardemandaService: ConsultardemandaService, private _LogInService: LogInService) {
     let a = localStorage.getItem("0");
     this.busqueda = JSON.parse(a);
-    _LogInService.tipo = "admin";
 
   }
 

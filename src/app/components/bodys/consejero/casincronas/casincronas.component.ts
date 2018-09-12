@@ -7,8 +7,9 @@ import { alerta, estudiante } from '../../../../interface/interfaces';
   styleUrls: ['./casincronas.component.css']
 })
 export class CasincronasComponent implements OnInit {
-
+  activarModal = false;
   seleccionado = false;
+  indexSelecionado;
 
   alertas: alerta[] = [
     {
@@ -76,6 +77,20 @@ export class CasincronasComponent implements OnInit {
 
   seleccionarCheck(i: number) {
     this.estudianteActual[i].check = !this.estudianteActual[i].check;
+    this.indexSelecionado = i;
+  }
+
+
+  ActivarModalRemitir() {
+    this.activarModal = true;
+
 
   }
+
+  remitir() {
+
+
+
+  }
+
 }

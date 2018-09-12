@@ -38,8 +38,6 @@ export class BuscarComponent implements OnInit {
   ];
 
   constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router) {
-    _LogInService.load = false;
-
     this.forma = new FormGroup({
       'nombre': new FormControl(''),
       'correo': new FormControl('')

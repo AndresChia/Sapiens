@@ -11,29 +11,28 @@ import { LogInService } from "../../services/log-in.service";
 export class HeaderComponent implements OnInit {
 
 
-  constructor(private router: Router, public _LogInService: LogInService) { }
+  activo = false;
+
+  constructor(public _LogInService: LogInService) {
+    _LogInService.sesionActiva();
+  }
 
   ngOnInit() {
   }
 
   //FIXME:  cambiar correo por si es tipo estudiantes, consejero etc
   login(clave: string, correo: string) {
-
-    this._LogInService.acceso = true;
-    this._LogInService.load = true;
-    this.router.navigate([correo, clave]);
+    this._LogInService.iniciarSesion(clave, correo);
+    this.activo = true;
   }
   salir() {
-    this._LogInService.acceso = false;
-    this.router.navigate([""]);
+    this._LogInService.cerrarSesion();
+    this.activo = false;
 
   }
 
 
-  getAcceso() {
-    return this._LogInService.acceso;
 
-  }
 
 
 }

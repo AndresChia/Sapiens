@@ -55,7 +55,6 @@ export class EstudianteComponent implements OnInit {
   //funciones
   constructor(private appComponent: AppComponent, private router: Router, public snackBar: MatSnackBar,
     private _LogInService: LogInService) {
-    _LogInService.load = false;
 
     this.forma = new FormGroup({
       opcion: new FormControl()
@@ -77,8 +76,7 @@ export class EstudianteComponent implements OnInit {
   //FIXME: Falta crear la alerta
   agendar() {
     console.log("Falta crear alerta");
-    this._LogInService.acceso = false;
-    this.router.navigate(['']);
+    this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {
       duration: 2000,
     });

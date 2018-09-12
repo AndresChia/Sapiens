@@ -32,3 +32,10 @@ export interface alerta {
     periodo?: string;
     fecha?: string;
 }
+export interface usuario {
+    acceso: boolean;
+    tipo: string;
+    nombreUsuario: string;
+    contrasenia: string;
+    load: boolean;
+}
