@@ -17,4 +17,11 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  iniciarSesion() {
+
+
+
+  }
+
 }
