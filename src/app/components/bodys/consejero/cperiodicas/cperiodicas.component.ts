@@ -48,8 +48,16 @@ export class CperiodicasComponent implements OnInit {
   }
 
 
+
   ActivarModalRemitir() {
-    this.activarModal = true;
+
+
+  }
+  ActivarModalEscalar() {
+
+
+  }
+  ActivarModalAtender() {
 
 
   }

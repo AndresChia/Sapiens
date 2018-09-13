@@ -31,13 +31,12 @@ import { DemandaComponent } from './components/bodys/director/demanda/demanda.co
 import { AsincronasComponent } from './components/bodys/director/asincronas/asincronas.component';
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { ConsultaPeriodicasComponent } from './components/bodys/director/periodicas/consulta-periodicas/consulta-periodicas.component';
-import { ConsultaAsincronasComponent } from './components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component';
 import { ConsultaDemandaComponent } from './components/bodys/director/demanda/consulta-demanda/consulta-demanda.component';
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
 import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
 import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
 import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
+import { IaComponent } from './components/bodys/director/ia/ia.component';
 
 //servicios
 import { LogInService } from "./services/log-in.service";
@@ -70,13 +69,12 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     PeriodicasComponent,
     FiltroEstudiantesCheckedPipe,
     AdminComponent,
-    ConsultaPeriodicasComponent,
-    ConsultaAsincronasComponent,
     ConsultaDemandaComponent,
     BuscarComponent,
     CasincronasComponent,
     CperiodicasComponent,
-    BalertarComponent
+    BalertarComponent,
+    IaComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

@@ -5,14 +5,14 @@
     </span>
 
     <div class=" rs1-wrap-input100">
-      <input id="first-name" class="input100" type="text" name="username" placeholder="User name">
+      <input #usuario id="first-name" class="input100" type="text" name="username" placeholder="User name">
     </div>
     <div class=" rs2-wrap-input100">
-      <input class="input100" type="password" name="pass" placeholder="Password">
+      <input #contrasenia class="input100" type="password" name="pass" placeholder="Password">
     </div>
 
     <div class="container-login100-form-btn">
-      <button (click)="iniciarSesion()" class="login100-form-btn">
+      <button (click)="iniciarSesion(usuario.value ,contrasenia.value )" class="login100-form-btn">
         Sign in
       </button>
     </div>

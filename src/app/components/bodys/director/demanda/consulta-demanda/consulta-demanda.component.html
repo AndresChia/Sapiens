@@ -1,24 +1,41 @@
-<h1>Parametros</h1>
-<ul>
-  <li *ngFor="let busq of busqueda; let i=index">{{busq.nombreAsignatura}} -> {{busq.parametro}} </li>
-</ul>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Parametros</h1>
+    <ul>
+      <li class="lead" *ngFor="let busq of busqueda; let i=index">{{busq.nombreAsignatura}} -> {{busq.parametro}} </li>
+    </ul>
+  </div>
+</div>
+
+<div class="text-center">
 
 
-<table id="tabla" class="table table-hover m-3  ">
-  <thead class=" bg-warning">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Estudiante</th>
-      <th *ngFor="let busq of busqueda; let i=index" scope="col">{{busq.nombreAsignatura}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="cursor: pointer">
-      <th scope="row">1</th>
-      <td>--</td>
-      <td>--</td>
-    </tr>
-  </tbody>
-</table>
+  <table id="tabla" class=" table table-hover m-1  ">
+    <thead class=" bg-warning">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre del estudiante</th>
+        <th scope="col">semestre</th>
+        <th scope="col">id</th>
+        <th *ngFor="let busq of busqueda; let i=index" scope="col">{{busq.nombreAsignatura}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="seleccionarCheck(i)" *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
+        <td class="checkContent">
+          <input type="checkbox" [(ngModel)]="estudiante.check">
+        </td>
+        <td>{{estudiante.nombre}}&nbsp;{{estudiante.apellido}}</td>
+        <td>{{estudiante.semestre}}</td>
 
-<button (click)="cerrar()" class="container btn btn-danger btn-block" role="button">Cerrar</button>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="cerrar()" class="m-2 btn btn-primary fa-pull-right" role="button">Cerrar</button>
+  <button (click)="cerrar()" class="m-2 btn btn-danger fa-pull-right" role="button">Citar</button>
+
+
+
+</div>
+<hr>

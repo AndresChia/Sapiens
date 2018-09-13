@@ -38,8 +38,8 @@
 
   <div style="height: 45px" class="container m-1">
 
-    <button name="agregar" id="agregar" class="btn btn-primary m-1 pull-right" (click)="agregarModal()" role="button" data-toggle="modal"
-      data-target="#myModal">Agregar</button>
+    <button name="agregar" id="agregar" class="btn btn-primary m-1 pull-right" (click)="agregarModal()" role="button"
+      data-toggle="modal" data-target="#myModal">Agregar</button>
     <a (click)="crearConsulta()" href="/consultaDemanda" name="consultar" id="consultar" class="btn btn-primary m-1 pull-right"
       role="button" target="blank">Consultar</a>
 
@@ -56,7 +56,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agendamiento de cita</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agendar cita</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -73,8 +73,8 @@
             <h5>Asignatura</h5>
 
             <div class="form-group">
-              <input [(ngModel)]="actual.nombreAsignatura" type="text" class="form-control" name="asignatura" id="asignatura" aria-describedby="helpId"
-                placeholder="Asignatura" required>
+              <input [(ngModel)]="actual.nombreAsignatura" type="text" class="form-control" name="asignatura" id="asignatura"
+                aria-describedby="helpId" placeholder="Asignatura" required>
               <small id="helpId" class="form-text text-muted">Help text</small>
             </div>
 
@@ -88,36 +88,37 @@
 
             <h5>Parametro</h5>
             <div class="form-check">
-              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="aprobo" id="aprobo" checked
-                required>
+              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="aprobo"
+                id="aprobo" checked required>
               <label class="form-check-label" for="aprobo">
                 Aprobo
               </label>
             </div>
             <div class="form-check">
-              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="reprobo" id="reprobo"
-                checked required>
+              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="reprobo"
+                id="reprobo" checked required>
               <label class="form-check-label" for="reprobo">
                 Reprobo
               </label>
             </div>
             <div class="form-check">
-              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="retiro" id="retiro" checked
-                required>
+              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="retiro"
+                id="retiro" checked required>
               <label class="form-check-label" for="retiro">
                 Retiro
               </label>
             </div>
             <div class="form-check">
-              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="personalizado" id="personalizado"
-                checked required>
+              <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="personalizado"
+                id="personalizado" checked required>
               <label class="form-check-label" for="personalizado">
                 Personalizado
               </label>
 
               <div class="input-group">
                 <div class="input-group-append">
-                  <input [(ngModel)]="actual.menor" type="number" class="form-control" placeholder="Menor que" step="0.1" id="menor">
+                  <input [(ngModel)]="actual.menor" type="number" class="form-control" placeholder="Menor que" step="0.1"
+                    id="menor">
                   <span class="input-group-text" for="menor">
                     <h6>&lt;</h6>
                   </span>
@@ -126,7 +127,8 @@
                   <span class="input-group-text" for="mayor">
                     <h6>&lt;</h6>
                   </span>
-                  <input [(ngModel)]="actual.mayor" type="number" class="form-control" placeholder="Mayor que" step="0.1" id="mayor">
+                  <input [(ngModel)]="actual.mayor" type="number" class="form-control" placeholder="Mayor que" step="0.1"
+                    id="mayor">
 
                 </div>
                 <!-- <div class="input-group-append">

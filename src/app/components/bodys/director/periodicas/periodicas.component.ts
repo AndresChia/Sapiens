@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { alerta } from '../../../../interface/interfaces';
+import { alerta, estudiante } from '../../../../interface/interfaces';
 
 @Component({
   selector: 'app-periodicas',
@@ -7,7 +7,9 @@ import { alerta } from '../../../../interface/interfaces';
   styleUrls: ['./periodicas.component.css']
 })
 export class PeriodicasComponent implements OnInit {
-
+  estudianteActual: estudiante[];
+  seleccionado = false;
+  indexSelecionado: number;
   periodos: alerta[] = [
     {
       estudiante: [
@@ -19,7 +21,7 @@ export class PeriodicasComponent implements OnInit {
         }
 
       ],
-      nombreAlerta: "Primera prueba",
+      nombreAlerta: "Segunda prueba",
       remitente: "string",
       criticidad: "Alta",
       incidencias: 1,
@@ -36,7 +38,27 @@ export class PeriodicasComponent implements OnInit {
 
 
   seleccionar(i: number) {
-    window.open(`consultaPeriodicas/${this.periodos[i].periodo}/${this.periodos[i].nombreAlerta}`, '_blank')
+
+    this.estudianteActual = this.periodos[i].estudiante;
+    this.seleccionado = true;
+
 
   }
+
+  seleccionarCheck(i: number) {
+    this.estudianteActual[i].check = !this.estudianteActual[i].check;
+    this.indexSelecionado = i;
+  }
+
+  ActivarModalEscalar() {
+
+
+  }
+  ActivarModalAtender() {
+
+
+  }
+
+
+
 }

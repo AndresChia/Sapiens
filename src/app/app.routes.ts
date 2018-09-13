@@ -11,12 +11,11 @@ import { AsincronasComponent } from './components/bodys/director/asincronas/asin
 import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
 import { AdminComponent } from "./components/admin/admin.component";
 import { ConsultaDemandaComponent } from "./components/bodys/director/demanda/consulta-demanda/consulta-demanda.component";
-import { ConsultaAsincronasComponent } from "./components/bodys/director/asincronas/consulta-asincronas/consulta-asincronas.component";
-import { ConsultaPeriodicasComponent } from "./components/bodys/director/periodicas/consulta-periodicas/consulta-periodicas.component";
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
 import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
 import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
 import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
+import { IaComponent } from './components/bodys/director/ia/ia.component';
 
 const ROUTES: Routes = [
     {
@@ -38,6 +37,7 @@ const ROUTES: Routes = [
             { path: 'demanda', component: DemandaComponent },
             { path: 'asincrono', component: AsincronasComponent },
             { path: 'periodico', component: PeriodicasComponent },
+            { path: 'ia', component: IaComponent },
             { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
         ]
@@ -47,8 +47,6 @@ const ROUTES: Routes = [
     { path: 'estudiante/:id', component: EstudianteComponent },
     { path: 'profesor/:id', component: ProfesorComponent },
     { path: 'admin', component: AdminComponent },
-    { path: 'consultaAsincrona/:id/:nombre', component: ConsultaAsincronasComponent },
-    { path: 'consultaPeriodicas/:fecha/:nombre', component: ConsultaPeriodicasComponent },
     { path: 'consultaDemanda', component: ConsultaDemandaComponent },
     { path: 'Home', component: EmptyComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'Home' }

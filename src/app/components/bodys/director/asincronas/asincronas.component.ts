@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { alerta } from '../../../../interface/interfaces';
+import { alerta, estudiante } from '../../../../interface/interfaces';
 
 @Component({
   selector: 'app-asincronas',
@@ -7,7 +7,9 @@ import { alerta } from '../../../../interface/interfaces';
   styleUrls: ['./asincronas.component.css']
 })
 export class AsincronasComponent implements OnInit {
-
+  estudianteActual: estudiante[];
+  seleccionado = false;
+  indexSelecionado: number;
   alertas: alerta[] = [
     {
       estudiante: [
@@ -31,11 +33,26 @@ export class AsincronasComponent implements OnInit {
 
   ngOnInit() { }
 
-  //FIXME:
-  seleccionar(actual: number) {
+  seleccionar(i: number) {
 
-    console.log();
-    window.open(`consultaAsincrona/${actual}/${this.alertas[actual].nombreAlerta}`, '_blank')
+    this.estudianteActual = this.alertas[i].estudiante;
+    this.seleccionado = true;
+
+
+  }
+
+  seleccionarCheck(i: number) {
+    this.estudianteActual[i].check = !this.estudianteActual[i].check;
+    this.indexSelecionado = i;
+  }
+
+
+  ActivarModalEscalar() {
+
+
+  }
+  ActivarModalAtender() {
+
 
   }
 }

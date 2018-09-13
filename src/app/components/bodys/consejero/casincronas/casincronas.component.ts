@@ -7,7 +7,8 @@ import { alerta, estudiante } from '../../../../interface/interfaces';
   styleUrls: ['./casincronas.component.css']
 })
 export class CasincronasComponent implements OnInit {
-  activarModal = false;
+
+
   seleccionado = false;
   indexSelecionado;
 
@@ -82,7 +83,14 @@ export class CasincronasComponent implements OnInit {
 
 
   ActivarModalRemitir() {
-    this.activarModal = true;
+
+
+  }
+  ActivarModalEscalar() {
+
+
+  }
+  ActivarModalAtender() {
 
 
   }
