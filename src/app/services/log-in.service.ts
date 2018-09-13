@@ -11,6 +11,7 @@ import { usuario } from '../interface/interfaces';
 })
 export class LogInService {
   usuario: usuario = {
+    id: "1",
     acceso: false,
     tipo: "",
     nombreUsuario: "",
@@ -41,8 +42,8 @@ export class LogInService {
     this.usuario.nombreUsuario = usur;
     this.usuario.contrasenia = contrasenia;
     this.usuario.load = true;
-    this.usuario.tipo = contrasenia;
-    this.router.navigate([this.usuario.nombreUsuario, this.usuario.tipo]);
+    this.usuario.tipo = usur;
+    this.router.navigate([this.usuario.nombreUsuario, this.usuario.id]);
     localStorage.setItem("1", JSON.stringify(this.usuario));
 
   }

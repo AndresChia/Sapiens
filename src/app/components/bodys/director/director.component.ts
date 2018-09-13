@@ -7,10 +7,16 @@ import { LogInService } from '../../../services/log-in.service';
   styleUrls: ['./director.component.css']
 })
 export class DirectorComponent implements OnInit {
+  opcion = false;
 
   constructor(private _LogInService: LogInService) {
   }
   ngOnInit() {
+  }
+
+  activar() {
+
+    this.opcion = true;
   }
 
 }

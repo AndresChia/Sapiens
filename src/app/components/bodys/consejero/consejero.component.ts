@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 })
 export class ConsejeroComponent implements OnInit {
 
+
+  opcion = false;
   url: string;
 
   constructor(private router: Router, public _LogInService: LogInService) {
@@ -21,7 +23,10 @@ export class ConsejeroComponent implements OnInit {
 
   }
 
+  activar() {
 
+    this.opcion = true;
+  }
 
 
 }

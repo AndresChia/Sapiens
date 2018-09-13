@@ -1,12 +1,15 @@
 <div class="row">
   <div class="col-sm-4">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['buscar']">Buscar</a>
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['buscar']">Buscar</a>
   </div>
   <div class="col-sm-4">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['asincrono']">Asincronas</a>
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['asincrono']">Asincronas</a>
   </div>
   <div class="col-sm-4">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['periodico']">
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['periodico']">
       Periodicas</a>
   </div>
 </div>
@@ -14,4 +17,4 @@
 <hr>
 
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf=opcion></router-outlet>

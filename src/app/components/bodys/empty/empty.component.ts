@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
 import { LogInService } from '../../../services/log-in.service';
+import { Router, Route } from '@angular/router';
 
 @Component({
   selector: 'app-empty',
@@ -9,8 +10,31 @@ import { LogInService } from '../../../services/log-in.service';
 })
 export class EmptyComponent implements OnInit {
 
-  constructor(private _LogInService: LogInService) {
+  constructor(private _LogInService: LogInService, private router: Router) {
 
+    if (_LogInService.usuario.acceso) {
+      if (_LogInService.usuario.tipo === "consejero") {
+        router.navigate(["consejero", _LogInService.usuario.contrasenia]);
+      }
+      if (_LogInService.usuario.tipo === "estudiante") {
+        router.navigate(["estudiante", _LogInService.usuario.contrasenia]);
+
+      }
+      if (_LogInService.usuario.tipo === "profesor") {
+        router.navigate(["profesor", _LogInService.usuario.contrasenia]);
+
+      }
+      if (_LogInService.usuario.tipo === "admin") {
+        router.navigate(["admin"]);
+
+      }
+      if (_LogInService.usuario.tipo === "director") {
+        router.navigate(["director", _LogInService.usuario.contrasenia]);
+
+      }
+
+
+    }
   }
 
   ngOnInit() {

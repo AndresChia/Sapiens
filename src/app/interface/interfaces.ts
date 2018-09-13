@@ -33,6 +33,7 @@ export interface alerta {
     fecha?: string;
 }
 export interface usuario {
+    id?: string;
     acceso: boolean;
     tipo: string;
     nombreUsuario: string;

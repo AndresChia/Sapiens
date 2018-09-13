@@ -16,38 +16,36 @@ import { CasincronasComponent } from './components/bodys/consejero/casincronas/c
 import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
 import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
 import { IaComponent } from './components/bodys/director/ia/ia.component';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const ROUTES: Routes = [
     {
-        path: 'consejero/:id', component: ConsejeroComponent,
+        path: 'consejero/:id', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
         children: [
             { path: 'buscar', component: BuscarComponent },
             { path: 'buscar/:id', component: BalertarComponent },
             { path: 'asincrono', component: CasincronasComponent },
             { path: 'periodico', component: CperiodicasComponent },
-            { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
         ]
 
     },
     {
         path: 'director/:id',
-        component: DirectorComponent,
+        component: DirectorComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
         children: [
             { path: 'demanda', component: DemandaComponent },
             { path: 'asincrono', component: AsincronasComponent },
             { path: 'periodico', component: PeriodicasComponent },
             { path: 'ia', component: IaComponent },
-            { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
         ]
     },
 
-
-    { path: 'estudiante/:id', component: EstudianteComponent },
-    { path: 'profesor/:id', component: ProfesorComponent },
+    { path: 'estudiante/:id', component: EstudianteComponent, canActivate: [AuthGuardGuard] },
+    { path: 'profesor/:id', component: ProfesorComponent, canActivate: [AuthGuardGuard] },
     { path: 'admin', component: AdminComponent },
-    { path: 'consultaDemanda', component: ConsultaDemandaComponent },
+    { path: 'consultaDemanda', component: ConsultaDemandaComponent, canActivate: [AuthGuardGuard] },
     { path: 'Home', component: EmptyComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'Home' }
 

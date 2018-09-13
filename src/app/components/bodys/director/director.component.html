@@ -1,20 +1,24 @@
 <div class="row">
   <div class="col-sm-3">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['demanda']">Demanda</a>
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['demanda']">Demanda</a>
   </div>
   <div class="col-sm-3">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['asincrono']">Asincronas</a>
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['asincrono']">Asincronas</a>
   </div>
   <div class="col-sm-3">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['periodico']">
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['periodico']">
       Periodicas</a>
   </div>
   <div class="col-sm-3">
-    <a class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active" [routerLink]="['ia']">
+    <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
+      [routerLink]="['ia']">
       IA</a>
   </div>
 </div>
 
 <hr>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf=opcion></router-outlet>
