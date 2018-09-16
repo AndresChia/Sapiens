@@ -1,0 +1,114 @@
+.contenedorMenu {
+
+  background-color: #232932;
+  height: 100%;
+  width: 252px;
+  position: fixed;
+  float: left;
+  top: 0px;
+  left: 0%;
+
+}
+
+.bodyOpcion {
+  position: absolute;
+  float: right;
+  background-color: #F2F3F5;
+  height: 100%;
+  width: 80.8%;
+  top: 87px;
+  left: 252px;
+
+
+  margin-left: 5px;
+  padding-left: 1px;
+  padding-top: 1px;
+  padding-bottom: 0px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+
+}
+
+.imagen {
+
+  margin-right: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 19px;
+  padding-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 139px;
+  margin-left: 57px;
+
+}
+
+img {
+  border-radius: 50%;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+
+}
+
+.datos {
+
+  text-align: center;
+}
+
+hr {
+  border: 1;
+  clear: both;
+  display: block;
+  width: 80%;
+  background-color: thistle;
+  height: 1px;
+}
+
+.boton,
+.botonSalir {
+
+  background: #232932;
+  border-right: none;
+  border-left: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-color: #232932;
+  width: 100%;
+  color: #F2F3F5;
+  border-bottom: #232932;
+  border-top: 1px;
+  border-bottom: 1px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  text-decoration: none;
+}
+
+.boton:hover {
+
+  background: #213758;
+
+}
+
+
+.btn.focus {
+  background: crimson;
+}
+
+
+
+.opciones {
+
+  text-align: center;
+}
+
+.salir {
+
+  background-position: bottom;
+}
+
+.botonSalir:hover {
+
+  background: crimson;
+  top: 500px;
+}

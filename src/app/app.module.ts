@@ -37,6 +37,11 @@ import { CasincronasComponent } from './components/bodys/consejero/casincronas/c
 import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
 import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
 import { IaComponent } from './components/bodys/director/ia/ia.component';
+import { CrudadminComponent } from './components/admin/crudadmin/crudadmin.component';
+import { CrearComponent } from './components/admin/crudadmin/crear/crear.component';
+import { EliminarComponent } from './components/admin/crudadmin/eliminar/eliminar.component';
+import { EditarComponent } from './components/admin/crudadmin/editar/editar.component';
+import { ConsultarComponent } from './components/admin/crudadmin/consultar/consultar.component';
 
 //servicios
 import { LogInService } from "./services/log-in.service";
@@ -48,6 +53,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
+
 
 
 
@@ -74,7 +80,12 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     CasincronasComponent,
     CperiodicasComponent,
     BalertarComponent,
-    IaComponent
+    IaComponent,
+    CrudadminComponent,
+    CrearComponent,
+    EliminarComponent,
+    EditarComponent,
+    ConsultarComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

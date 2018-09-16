@@ -17,7 +17,11 @@ import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/c
 import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
 import { IaComponent } from './components/bodys/director/ia/ia.component';
 import { AuthGuardGuard } from './auth-guard.guard';
-
+import { CrudadminComponent } from './components/admin/crudadmin/crudadmin.component';
+import { CrearComponent } from './components/admin/crudadmin/crear/crear.component';
+import { EliminarComponent } from './components/admin/crudadmin/eliminar/eliminar.component';
+import { EditarComponent } from './components/admin/crudadmin/editar/editar.component';
+import { ConsultarComponent } from './components/admin/crudadmin/consultar/consultar.component';
 const ROUTES: Routes = [
     {
         path: 'consejero/:id', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
@@ -44,7 +48,19 @@ const ROUTES: Routes = [
 
     { path: 'estudiante/:id', component: EstudianteComponent, canActivate: [AuthGuardGuard] },
     { path: 'profesor/:id', component: ProfesorComponent, canActivate: [AuthGuardGuard] },
-    { path: 'admin', component: AdminComponent },
+    { path: 'admin', component: AdminComponent, canActivate: [AuthGuardGuard] },
+    {
+        path: 'admin/:id', component: CrudadminComponent, canActivate: [AuthGuardGuard], children: [
+            { path: 'crear', component: CrearComponent },
+            { path: 'eliminar', component: EliminarComponent },
+            { path: 'editar', component: EditarComponent },
+            { path: 'consultar', component: ConsultarComponent },
+            { path: '**', component: PageNotFoundComponent },
+        ]
+    },
+
+
+
     { path: 'consultaDemanda', component: ConsultaDemandaComponent, canActivate: [AuthGuardGuard] },
     { path: 'Home', component: EmptyComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'Home' }

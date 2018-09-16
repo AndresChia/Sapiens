@@ -14,6 +14,8 @@ export class AuthGuardGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
+    console.log(this._LogInService.usuario.acceso);
+
     if (this._LogInService.usuario.acceso) {
       if (this._LogInService.usuario.tipo === "consejero") {
         if (state.url.split('/')[1] !== "consejero") {
@@ -37,7 +39,35 @@ export class AuthGuardGuard implements CanActivate {
           this.router.navigate(["director", this._LogInService.usuario.id]);
         }
       }
+
+      if (this._LogInService.usuario.tipo === "admin") {
+        console.log(state.url.split('/').length);
+
+        if (state.url.split('/')[1] !== "admin") {
+          this.router.navigate(["/admin"]);
+          return true;
+        }
+        if (state.url.split('/').length === 2) {
+          this.router.navigate(["/admin", this._LogInService.usuario.id]);
+        }
+
+
+      }
+
+
     } else {
+
+      if (state.url.split('/')[1] === "admin") {
+        console.log(state.url.split('/').length);
+        if (state.url.split('/').length > 2) {
+          this.router.navigate(["/admin"]);
+          return false;
+        }
+        return true;
+
+      }
+
+
 
       this.router.navigate(['Home']);
       return false;
@@ -47,9 +77,12 @@ export class AuthGuardGuard implements CanActivate {
   }
   //FIXME: falta
   canActivateChild() {
+
+    console.log("hola2");
+
     if (this._LogInService.usuario.acceso) {
       if (this._LogInService.usuario.tipo === "consejero") {
-        //console.log(state.url);
+
       }
       if (this._LogInService.usuario.tipo === "estudiante") {
 
@@ -58,7 +91,7 @@ export class AuthGuardGuard implements CanActivate {
 
       }
       if (this._LogInService.usuario.tipo === "admin") {
-
+        console.log("adminnn");
       }
       if (this._LogInService.usuario.tipo === "director") {
 

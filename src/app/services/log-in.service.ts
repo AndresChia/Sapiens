@@ -53,6 +53,12 @@ export class LogInService {
     this.router.navigate(["Home"]);
     localStorage.clear();
   }
+  cerrarSesionAdmin() {
+    this.usuario.acceso = false;
+    this.router.navigate(["/admin"]);
+    localStorage.clear();
+
+  }
 
   isAuthenticated() {
     return this.usuario.acceso;
@@ -61,6 +67,8 @@ export class LogInService {
   cargaRol(rol: string) {
     this.usuario.tipo = rol;
     this.usuario.load = false;
+    localStorage.setItem("1", JSON.stringify(this.usuario));
+
   }
 
   sesionActiva() {

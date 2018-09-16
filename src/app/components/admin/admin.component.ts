@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogInService } from '../../services/log-in.service';
 import { usuario } from '../../interface/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +10,7 @@ import { usuario } from '../../interface/interfaces';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private _LogInService: LogInService) {
+  constructor(public _LogInService: LogInService, private router: Router) {
     _LogInService.usuario.tipo = "admin";
   }
 
@@ -18,9 +19,10 @@ export class AdminComponent implements OnInit {
 
   iniciarSesion(usuari: string, contrasenia: string) {
 
-    console.log(usuari);
-    console.log(contrasenia);
-    //this._LogInService.iniciarSesion();
+
+    this._LogInService.iniciarSesion(contrasenia, usuari);
+    this._LogInService.cargaRol("admin");
+    this.router.navigate(["admin", this._LogInService.usuario.id]);
 
   }
 
