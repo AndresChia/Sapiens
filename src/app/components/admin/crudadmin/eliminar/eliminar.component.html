@@ -1,3 +1,50 @@
-<p>
-  eliminar works!
-</p>
+<div [formGroup]="forma" class="form-group m-5">
+
+  <div class="busqueda">
+    <div class="row">
+      <div class="col-6">
+        <label for="">Nombre</label>
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      </div>
+      <div class="col-6">
+        <label for="">correo</label>
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary pull-right m-1">Buscar</button>
+
+  </div>
+  <br>
+  <br>
+  <hr>
+
+  <div class="eliminar">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="checkContent">
+            <input type="checkbox">
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-danger pull-right m-1">Eliminar</button>
+
+
+  </div>
+
+</div>

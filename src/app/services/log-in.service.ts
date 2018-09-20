@@ -19,7 +19,7 @@ export class LogInService {
     load: false,
   }
 
-
+  opcion = false;
 
   url = "http://localhost:1337/";
 
@@ -38,6 +38,7 @@ export class LogInService {
   }
   // #FIXME: falta cambiar el tipo lo debe generar la peticion
   iniciarSesion(contrasenia: string, usur: string) {
+    this.opcion = false;
     this.usuario.acceso = true;
     this.usuario.nombreUsuario = usur;
     this.usuario.contrasenia = contrasenia;
@@ -49,6 +50,7 @@ export class LogInService {
   }
 
   cerrarSesion() {
+    this.opcion = false;
     this.usuario.acceso = false;
     this.router.navigate(["Home"]);
     localStorage.clear();
@@ -77,6 +79,13 @@ export class LogInService {
       this.usuario = JSON.parse(localStorage.getItem("1"));
     }
   }
+
+  activarConsejero() {
+
+    //    this.consejeroComponent.opcion = true;
+    this.opcion = true;
+  }
+
 
 
 }

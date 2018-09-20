@@ -2,3 +2,56 @@
   background-color: #ffcc00;
   height: 7px;
 }
+
+.navtopdiv2 {
+  background-color: #ffcc00;
+  height: 7px;
+  -webkit-box-shadow: 10px 10px 53px 5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 53px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 53px 5px rgba(0, 0, 0, 0.75);
+}
+
+.botones {
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+
+.col-sm {
+
+  padding-left: 0px;
+  padding-right: 0px;
+
+}
+
+.botonOpcion {
+  background: transparent;
+  border-color: transparent;
+  color: rgb(143, 163, 180);
+
+}
+
+.botonOpcion:hover {
+  background: #000167;
+  border-color: transparent;
+  color: aliceblue;
+  border-radius: none;
+  cursor: pointer;
+
+}
+
+.botonOpcion:focus {
+
+  outline: 0px dotted;
+
+}
+
+.seleccionado {
+  outline: 0px dotted;
+  color: aliceblue;
+
+}
+
+div.col-4 {
+
+  height: 175px !important;
+}

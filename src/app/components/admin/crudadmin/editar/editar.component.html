@@ -1,3 +1,141 @@
-<p>
-  editar works!
-</p>
+<div [formGroup]="forma" class="form-group m-5">
+
+  <div class="busqueda">
+    <div class="row">
+      <div class="col-6">
+        <label for="">Nombre</label>
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      </div>
+      <div class="col-6">
+        <label for="">correo</label>
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary pull-right m-1">Buscar</button>
+
+  </div>
+  <br>
+  <br>
+  <hr>
+
+  <div class="eliminar">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="checkContent">
+            <input type="checkbox">
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-success pull-right m-1">Editar</button>
+
+    <br>
+    <br>
+
+    <hr>
+
+  </div>
+
+</div>
+
+
+
+<div [formGroup]="forma" class="edicion form-group m-5">
+
+  <h1>Datos personales</h1>
+
+  <div class="row">
+
+    <div class="col-6">
+      <label for="Nombres">Nombres</label>
+      <input type="text" name="Nombres" id="Nombres" class="form-control" placeholder="">
+
+      <label for="Genero">Genero</label>
+      <select class="form-control" name="Genero" id="Genero">
+        <option selected>Genero</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <label for="Tipoidentificación">Tipo identificación</label>
+      <select class="form-control" name="Tipoidentificación" id="Tipoidentificación">
+        <option selected>Identificacion</option>
+        <option value="CC">cédula de ciudadanía (CC)</option>
+        <option value="TI">tarjeta de identidad (TI)</option>
+        <option value="CE">cédula de extranjería (CE)</option>
+        <option value="PO">Pasaporte (PO)</option>
+      </select>
+      <label for="Identificacion">Identificación</label>
+      <input type="text" name="Identificacion" id="Identificacion" class="form-control" placeholder="">
+    </div>
+
+    <div class="col-6">
+      <label for="">Apellidos</label>
+      <input type="text" name="Apellidos" id="Apellidos" class="form-control" placeholder="">
+
+      <label for="">Telefono</label>
+      <input type="text" name="Telefono" id="Telefono" class="form-control" placeholder="">
+
+
+      <label for="">Dirección</label>
+      <input type="text" name="Dirección" id="Dirección" class="form-control" placeholder="">
+
+      <label for="">Correo</label>
+      <input type="email" name="Correo" id="Correo" class="form-control" placeholder="">
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <h1>Datos Rol</h1>
+
+
+  <br>
+  <div class="estudiante">
+
+    <div class="row">
+      <div class="col-6">
+        <label for="">Codigo estudiante</label>
+        <input type="text" name="" id="" class="form-control" placeholder="">
+
+      </div>
+      <div class="col-6">
+        <label for="">Tipo de admisión</label>
+        <input type="text" name="" id="" class="form-control" placeholder="">
+
+      </div>
+
+    </div>
+
+
+  </div>
+  <div class="profesor">
+
+  </div>
+  <div class="director">
+
+  </div>
+  <div class="consejero">
+
+  </div>
+
+  <button type="button" class="btn btn-success pull-right m-1">Guardar</button>
+
+</div>

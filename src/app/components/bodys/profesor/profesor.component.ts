@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { estudiante, clase } from "../../../interface/interfaces";
 import { LogInService } from '../../../services/log-in.service';
@@ -13,7 +13,9 @@ import { LogInService } from '../../../services/log-in.service';
 })
 export class ProfesorComponent implements OnInit {
   forma: FormGroup;
-
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   actualAlerta = '0';
   actualEstudiante: number;
   alertas: string[] = ["Inasistencias de estudiante", "Problema con estudiante"];
@@ -58,7 +60,7 @@ export class ProfesorComponent implements OnInit {
   activarModal = false;
 
 
-  constructor(private _LogInService: LogInService, public snackBar: MatSnackBar) {
+  constructor(private _LogInService: LogInService, public snackBar: MatSnackBar, private _formBuilder: FormBuilder) {
 
     this.forma = new FormGroup({
       opcion: new FormControl()
@@ -68,6 +70,17 @@ export class ProfesorComponent implements OnInit {
 
   }
   ngOnInit() {
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ''
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ''
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      secondCtrl: ''
+    });
+
   }
 
   seleccionarClase(i: number) {
@@ -80,6 +93,7 @@ export class ProfesorComponent implements OnInit {
   }
   seleccionarCheck(i: number) {
     this.estudiantes[i].check = !this.estudiantes[i].check;
+
   }
 
   //FIXME: crear alerta

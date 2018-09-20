@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router, RouterState } from '@angular/router';
 import { BuscarComponent } from '../buscar.component';
+import { LogInService } from '../../../../../services/log-in.service';
 
 @Component({
   selector: 'app-balertar',
@@ -18,7 +19,7 @@ export class BalertarComponent implements OnInit {
   activarModal = false;
 
   constructor(private consejeroComponent: ConsejeroComponent, public snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router, public _LogInService: LogInService) {
 
     this.btn = "1";
 
@@ -43,7 +44,7 @@ export class BalertarComponent implements OnInit {
 
   regresar() {
     //this.consejeroComponent.regresar();
-    this.router.navigate(["/" + this.consejeroComponent.url + "/buscar"]);
+    this.router.navigate(["/consejero", this._LogInService.usuario.id, "buscar"]);
   }
 
 

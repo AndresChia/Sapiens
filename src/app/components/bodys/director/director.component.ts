@@ -9,7 +9,7 @@ import { LogInService } from '../../../services/log-in.service';
 export class DirectorComponent implements OnInit {
   opcion = false;
 
-  constructor(private _LogInService: LogInService) {
+  constructor(public _LogInService: LogInService) {
   }
   ngOnInit() {
   }

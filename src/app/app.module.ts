@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 //routes
@@ -90,7 +91,7 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,
     HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule
+    MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatStepperModule
   ],
   providers: [LogInService, ConsultardemandaService],
   bootstrap: [AppComponent]

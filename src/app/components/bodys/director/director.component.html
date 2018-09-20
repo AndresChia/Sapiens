@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-sm-3">
     <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
       [routerLink]="['demanda']">Demanda</a>
@@ -17,8 +17,6 @@
       [routerLink]="['ia']">
       IA</a>
   </div>
-</div>
-
-<hr>
-
-<router-outlet *ngIf=opcion></router-outlet>
+</div> -->
+<br>
+<router-outlet *ngIf="_LogInService.opcion"></router-outlet>

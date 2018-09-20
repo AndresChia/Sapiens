@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-sm-4">
     <a (click)="activar()" class="btn btn-primary btn-lg  btn-block" role="button" routerLinkActive="active"
       [routerLink]="['buscar']">Buscar</a>
@@ -14,7 +14,8 @@
   </div>
 </div>
 
-<hr>
+<hr> -->
 
+<br>
 
-<router-outlet *ngIf=opcion></router-outlet>
+<router-outlet *ngIf="_LogInService.opcion"></router-outlet>

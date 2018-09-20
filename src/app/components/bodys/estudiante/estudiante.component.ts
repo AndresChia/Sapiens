@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LogInService } from "../../../services/log-in.service";
 
 import { Router } from '@angular/router';
@@ -14,9 +14,14 @@ import { consejero } from "../../../interface/interfaces";
   styleUrls: ['./estudiante.component.css']
 })
 export class EstudianteComponent implements OnInit {
+  controlBtn1 = true;
+  controlBtn2 = true;
+
+  alertaSelect = new FormControl();
 
   forma: FormGroup;
-
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   alertas: string[] = [
     "Inconvenientes personales con profesores", "Inconvenientes por la metodología de enseñanza ",
     "Bajo desempeño", "Orientación para la vida profesional", "Inconvenientes por los métodos de evaluación",
@@ -49,12 +54,18 @@ export class EstudianteComponent implements OnInit {
     }
   ];
 
-  modal: consejero;
+  modal: consejero = {
+    nombre: "",
+    cargo: "",
+    areasInteres: "",
+    correo: "",
+    horario: []
+  };
   activarModal = false;
 
   //funciones
   constructor(private appComponent: AppComponent, private router: Router, public snackBar: MatSnackBar,
-    private _LogInService: LogInService) {
+    private _LogInService: LogInService, private _formBuilder: FormBuilder) {
 
     this.forma = new FormGroup({
       opcion: new FormControl()
@@ -63,14 +74,26 @@ export class EstudianteComponent implements OnInit {
 
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.firstFormGroup = this._formBuilder.group({
+      alertaSelect: ''
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ''
+    });
+
+
+  }
 
 
 
 
   mostrarModal(i: number) {
-    this.activarModal = true;
+    //this.activarModal = true;
     this.modal = this.consejeros[i];
+    window.scrollTo(0, 0);
+
   }
 
   //FIXME: Falta crear la alerta
@@ -83,6 +106,22 @@ export class EstudianteComponent implements OnInit {
 
 
   }
+
+  elegirAlerta(aler: string) {
+
+    console.log(aler);
+    //console.log(this.forma.get("opcion"));
+
+    if (aler !== "Seleccion una opción") {
+
+      this.controlBtn1 = false;
+      return;
+    }
+    this.controlBtn1 = true;
+
+  }
+
+
 
 }
 
