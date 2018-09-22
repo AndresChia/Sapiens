@@ -16,6 +16,8 @@
 
 <hr> -->
 
-<br>
+<div *ngIf="!_LogInService.opcion" class="cuerpo">
+
+</div>
 
 <router-outlet *ngIf="_LogInService.opcion"></router-outlet>

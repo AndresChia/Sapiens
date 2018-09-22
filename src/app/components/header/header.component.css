@@ -55,3 +55,15 @@ div.col-4 {
 
   height: 175px !important;
 }
+
+.salirBtn:hover {
+
+  background-color: rgba(170, 29, 60, 0.918);
+}
+
+.salirBtn {
+
+  width: 105px;
+  height: 39px;
+  padding-top: 4px;
+}

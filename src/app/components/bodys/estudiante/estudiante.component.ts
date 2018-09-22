@@ -8,12 +8,17 @@ import { MatSnackBar } from '@angular/material';
 
 import { consejero } from "../../../interface/interfaces";
 
+import { MatStepperModule } from '@angular/material/stepper';
+
+
 @Component({
   selector: 'app-estudiante',
   templateUrl: './estudiante.component.html',
   styleUrls: ['./estudiante.component.css']
 })
 export class EstudianteComponent implements OnInit {
+
+  consejeroSelecionado = 0;
   controlBtn1 = true;
   controlBtn2 = true;
 
@@ -72,15 +77,16 @@ export class EstudianteComponent implements OnInit {
     });
 
 
+
   }
 
   ngOnInit() {
 
     this.firstFormGroup = this._formBuilder.group({
-      alertaSelect: ''
+      alertaSelect: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ''
+      consejeroSelect: ['', Validators.required]
     });
 
 
@@ -89,12 +95,7 @@ export class EstudianteComponent implements OnInit {
 
 
 
-  mostrarModal(i: number) {
-    //this.activarModal = true;
-    this.modal = this.consejeros[i];
-    window.scrollTo(0, 0);
 
-  }
 
   //FIXME: Falta crear la alerta
   agendar() {
@@ -115,12 +116,31 @@ export class EstudianteComponent implements OnInit {
     if (aler !== "Seleccion una opción") {
 
       this.controlBtn1 = false;
+      this.firstFormGroup.get("alertaSelect").setValue("correcto");
       return;
     }
     this.controlBtn1 = true;
+    this.firstFormGroup.get("alertaSelect").setValue(null);
 
   }
 
+  SelecionarConsejero(i: number) {
+
+    console.log(i);
+    this.consejeroSelecionado = i;
+
+    this.controlBtn2 = false;
+    this.modal = this.consejeros[i - 1];
+    this.secondFormGroup.get("consejeroSelect").setValue("correcto");
+
+  }
+
+  subirPantalla() {
+
+    window.scrollTo(0, 0);
+
+
+  }
 
 
 }

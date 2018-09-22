@@ -22,6 +22,7 @@ import { CrearComponent } from './components/admin/crudadmin/crear/crear.compone
 import { EliminarComponent } from './components/admin/crudadmin/eliminar/eliminar.component';
 import { EditarComponent } from './components/admin/crudadmin/editar/editar.component';
 import { ConsultarComponent } from './components/admin/crudadmin/consultar/consultar.component';
+import { HomeComponent } from './components/home/home.component';
 const ROUTES: Routes = [
     {
         path: 'consejero/:id', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
@@ -62,7 +63,7 @@ const ROUTES: Routes = [
 
 
     { path: 'consultaDemanda', component: ConsultaDemandaComponent, canActivate: [AuthGuardGuard] },
-    { path: 'Home', component: EmptyComponent },
+    { path: 'Home', component: HomeComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'Home' }
 
 ];

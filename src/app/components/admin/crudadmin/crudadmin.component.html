@@ -11,24 +11,36 @@
   </div>
 
   <div class="opciones">
-    <a (click)="opcion()" type="button" class="btn bt1 boton" data-toggle="button" [routerLink]="[ 'crear' ]">Crear
-      usuario</a>
-    <a (click)="opcion()" type="button" class="btn bt2 boton" data-toggle="button" [routerLink]="[ 'eliminar' ]">Eliminar
-      usuario</a>
-    <a (click)="opcion()" type="button" class="btn bt3 boton" data-toggle="button" [routerLink]="[ 'editar' ]">Editar
-      usuario</a>
-    <a (click)="opcion()" type="button" class="btn bt4 boton" data-toggle="button" [routerLink]="[ 'consultar' ]">Consultar
-      usuario</a>
+    <button [ngClass]="{
+      'seleccionado':numeradorOpcion===1}" (click)="opcion(1)" type="button" class="btn bt1 boton"
+      data-toggle="button" [routerLink]="[ 'crear' ]">Crear
+      usuario</button>
+    <button [ngClass]="{
+      'seleccionado':numeradorOpcion===2}" (click)="opcion(2)" type="button" class="btn bt2 boton"
+      data-toggle="button" [routerLink]="[ 'eliminar' ]">Eliminar
+      usuario</button>
+    <button [ngClass]="{
+      'seleccionado':numeradorOpcion===3}" (click)="opcion(3)" type="button" class="btn bt3 boton"
+      data-toggle="button" [routerLink]="[ 'editar' ]">Editar
+      usuario</button>
+    <button [ngClass]="{
+      'seleccionado':numeradorOpcion===4}" (click)="opcion(4)" type="button" class="btn bt4 boton"
+      data-toggle="button" [routerLink]="[ 'consultar' ]">Consultar
+      usuario</button>
   </div>
 
   <div class="salir">
-    <a (click)="salir()" type="button" class="btn botonSalir" data-toggle="button" [routerLink]="[ '/admin' ]">Salir</a>
+    <button (click)="salir()" type="button" class="btn botonSalir" data-toggle="button" [routerLink]="[ '/admin' ]">Salir</button>
   </div>
 
 
-
+  <div class="container-fluid navtopdiv2 " style="box-shadow: black">
+  </div>
 
 </div>
+
+
+
 <div *ngIf="desactivar" class="bodyOpcion">
 
   <router-outlet class="content m-5"></router-outlet>

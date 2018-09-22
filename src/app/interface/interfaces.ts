@@ -9,6 +9,7 @@ export interface clase {
     nombre: string;
     numeroEstudiantes: string;
     numero: string;
+    check?: boolean;
 }
 export interface consejero {
     nombre: string;

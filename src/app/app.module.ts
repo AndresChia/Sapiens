@@ -12,6 +12,8 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconRegistry } from '@angular/material';
 
 
 //routes
@@ -54,6 +56,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -86,7 +89,8 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     CrearComponent,
     EliminarComponent,
     EditarComponent,
-    ConsultarComponent
+    ConsultarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

@@ -1,0 +1,37 @@
+<div class="home">
+
+  <div class="wrap-login100">
+    <form class="login100-form " style="padding-top: 107px;">
+      <span class="login100-form-title">
+        Inicio de sesión
+      </span>
+
+      <div class=" rs1-wrap-input100">
+        <input #usuario id="first-name" class="input100" type="text" name="username" placeholder="Usuario">
+      </div>
+      <div class=" rs2-wrap-input100">
+        <input #contrasenia class="input100" type="password" name="pass" placeholder="Contraseña">
+      </div>
+
+      <div class="container-login100-form-btn">
+        <button (click)="login(usuario.value ,contrasenia.value )" class="login100-form-btn">
+          Iniciar sesión
+        </button>
+        <span class="txt1">
+          Olvido:&nbsp;
+        </span>
+
+        <a href="#" class="txt2">
+          Usuario / Contraseña?
+        </a>
+
+      </div>
+
+
+    </form>
+
+    <div class="login100-more" style="background-image: url('../../../assets/sapiensLogo.jpg');"></div>
+  </div>
+
+
+</div>

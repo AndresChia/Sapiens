@@ -44,8 +44,10 @@ export class LogInService {
     this.usuario.contrasenia = contrasenia;
     this.usuario.load = true;
     this.usuario.tipo = usur;
-    this.router.navigate([this.usuario.nombreUsuario, this.usuario.id]);
     localStorage.setItem("1", JSON.stringify(this.usuario));
+    console.log(this.usuario.nombreUsuario, this.usuario.id);
+    this.router.navigate([this.usuario.nombreUsuario, this.usuario.id]);
+
 
   }
 

@@ -1,21 +1,23 @@
 <mat-horizontal-stepper linear #stepper>
   <ng-template matStepperIcon="edit">
+    <i class="material-icons " style="filter: invert(1) hue-rotate(180deg) contrast(2);">
+      <img src="../../../../assets/baseline-done-24px.svg" alt="">
+    </i>
   </ng-template>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Motivo de atencíon</ng-template>
 
-
       <form [formGroup]="forma" class="form-group ">
-
         <div class="form-group motivoDeAtencion m-5">
           <label for="Alertas">Seleccione el motivo de atencíon:</label>
-          <select formControlName="opcion" [(ngModel)]="actualAlerta" class="form-control" id="Alertas">
-            <option value='0'>Seleccione una opción</option>
+          <select #alerta (click)="elegirAlerta(alerta.value)" formControlName="opcion" [(ngModel)]="actualAlerta"
+            class="form-control" id="Alertas" required>
+            <option>Seleccione una opción</option>
             <option *ngFor="let alerta of alertas,let indi=index">{{alerta}}</option>
           </select>
         </div>
-        <button mat-button matStepperNext>Siguiente</button>
+        <button mat-button matStepperNext [disabled]="controlBtn1">Siguiente</button>
 
       </form>
 
@@ -38,7 +40,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr (click)="seleccionarClase(i)" *ngFor="let clase of clases, let i= index" style="cursor: pointer">
+
+            <tr [ngClass]="{
+              'table-active': (i+1) === claseSelecionada
+              }" (click)="seleccionClase(i+1)"
+              *ngFor="let clase of clases, let i= index" style="cursor: pointer">
               <td>{{clase.nombre}}</td>
               <td class="text-center">{{clase.numero}}</td>
               <td class="text-center">{{clase.numeroEstudiantes}}</td>
@@ -50,7 +56,7 @@
 
       </div>
       <button mat-button matStepperPrevious>Regresar</button>
-      <button mat-button matStepperNext>Siguiente</button>
+      <button mat-button matStepperNext [disabled]="controlBtn2">Siguiente</button>
 
     </form>
   </mat-step>
@@ -65,18 +71,17 @@
           <thead class=" bg-warning">
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Seleccionar</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Semestre</th>
             </tr>
           </thead>
           <tbody>
-            <tr (click)="seleccionarCheck(i)" *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
+            <tr [ngClass]="{
+              'table-active': estudiante.check === true
+              }" (click)="seleccionarCheck(i)"
+              *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
               <td>{{i+1}}</td>
-              <td class="checkContent">
-                <input id="check" type="checkbox" [(ngModel)]="estudiante.check" [ngModelOptions]="{standalone: true}">
-              </td>
               <td>{{estudiante.nombre}}</td>
               <td>{{estudiante.apellido}}</td>
               <td>{{estudiante.semestre}}</td>
@@ -86,7 +91,7 @@
 
       </div>
       <button mat-button matStepperPrevious>Regresar</button>
-      <button mat-button matStepperNext>Siguiente</button>
+      <button mat-button matStepperNext [disabled]="controlBtn3">Siguiente</button>
 
     </form>
   </mat-step>
@@ -100,7 +105,7 @@
       </p>
       <h6>Estudiantes</h6>
       <ul>
-        <li *ngFor="let estudiante of estudiantes |filtroEstudiantesChecked">{{estudiante.nombre}}
+        <li *ngFor="let estudiante of estudiantes |filtroEstudiantesChecked, let i = index">{{estudiante.nombre}}
           {{estudiante.apellido}} </li>
 
       </ul>

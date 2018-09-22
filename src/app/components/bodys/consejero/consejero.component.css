@@ -6,3 +6,9 @@ hr {
   background-color: thistle;
   height: 1px;
 }
+
+.cuerpo {
+
+  width: 100%;
+  height: 400px;
+}

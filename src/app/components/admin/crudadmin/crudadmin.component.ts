@@ -9,14 +9,16 @@ import { LogInService } from '../../../services/log-in.service';
 })
 export class CrudadminComponent implements OnInit {
   desactivar = false;
+  numeradorOpcion = 0;
 
   constructor(private router: Router, private _LogInService: LogInService) { }
 
   ngOnInit() {
   }
 
-  opcion() {
+  opcion(opc: number) {
     this.desactivar = true;
+    this.numeradorOpcion = opc;
   }
   salir() {
     this._LogInService.cerrarSesionAdmin();

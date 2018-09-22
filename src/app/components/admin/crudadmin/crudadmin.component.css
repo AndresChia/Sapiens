@@ -14,17 +14,16 @@
   position: absolute;
   float: right;
   background-color: #F2F3F5;
-  width: 80.8%;
-  top: 87px;
-  left: 252px;
-
-
+  width: 78.4%;
+  top: 0px;
   margin-left: 5px;
   padding-left: 1px;
   padding-top: 1px;
   padding-bottom: 0px;
   margin-top: 5px;
   margin-bottom: 0px;
+  left: 285px;
+  right: 100%;
 
 }
 
@@ -91,10 +90,30 @@ hr {
 
 
 .btn.focus {
-  background: crimson;
+  background: rgb(43, 37, 100);
 }
 
+.seleccionado {
+  background: rgb(43, 37, 100);
+}
 
+.navtopdiv2 {
+  background-color: #ffcc00;
+
+  -webkit-box-shadow: 10px 10px 53px 5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 53px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 53px 5px rgba(0, 0, 0, 0.75);
+
+  position: absolute;
+  left: 252px;
+  top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 5px;
+  height: 100%;
+
+
+}
 
 .opciones {
 

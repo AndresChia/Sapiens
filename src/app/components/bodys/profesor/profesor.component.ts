@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { estudiante, clase } from "../../../interface/interfaces";
 import { LogInService } from '../../../services/log-in.service';
@@ -12,6 +12,13 @@ import { LogInService } from '../../../services/log-in.service';
   styleUrls: ['./profesor.component.css']
 })
 export class ProfesorComponent implements OnInit {
+
+  claseSelecionada = 0;
+  controlBtn1 = true;
+  controlBtn2 = true;
+  controlBtn3 = true;
+
+
   forma: FormGroup;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -52,7 +59,14 @@ export class ProfesorComponent implements OnInit {
       nombre: "calculo",
       numeroEstudiantes: "23",
       numero: "2355",
+      check: false,
 
+
+    }, {
+      nombre: "calculo",
+      numeroEstudiantes: "19",
+      numero: "2356",
+      check: false,
 
     }
   ];
@@ -72,27 +86,27 @@ export class ProfesorComponent implements OnInit {
   ngOnInit() {
 
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ''
+      alertaSelect: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ''
+      claseSelect: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      secondCtrl: ''
+      estudianteSelect: ['', Validators.required]
     });
 
   }
 
-  seleccionarClase(i: number) {
-    this.mostrarEstudiantes = true;
 
-  }
   seleccionarEstudiante(i: number) {
 
     this.activarModal = true;
   }
   seleccionarCheck(i: number) {
     this.estudiantes[i].check = !this.estudiantes[i].check;
+
+    this.controlBtn3 = false;
+    this.thirdFormGroup.get("estudianteSelect").setValue("correcto");
 
   }
 
@@ -112,5 +126,28 @@ export class ProfesorComponent implements OnInit {
 
   }
 
+  seleccionClase(i: number) {
+    // this.mostrarEstudiantes = true;
+    this.claseSelecionada = i;
+    this.controlBtn2 = false;
+    this.secondFormGroup.get("claseSelect").setValue("correcto");
+  }
+
+
+  elegirAlerta(aler: string) {
+
+    console.log(aler);
+    //console.log(this.forma.get("opcion"));
+
+    if (aler !== "Seleccione una opción") {
+
+      this.controlBtn1 = false;
+      this.firstFormGroup.get("alertaSelect").setValue("correcto");
+      return;
+    }
+    this.controlBtn1 = true;
+    this.firstFormGroup.get("alertaSelect").setValue(null);
+
+  }
 
 }

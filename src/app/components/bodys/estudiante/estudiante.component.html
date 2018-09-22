@@ -1,25 +1,32 @@
 <mat-horizontal-stepper linear #stepper>
   <ng-template matStepperIcon="edit">
-    <!-- <mat-icon>O</mat-icon> -->
+    <i class="material-icons " style="filter: invert(1) hue-rotate(180deg) contrast(2);">
+      <img src="../../../../assets/baseline-done-24px.svg" alt="">
+    </i>
   </ng-template>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Motivo de atención</ng-template>
       <div class="cuerpo1step">
 
-        <form [formGroup]="forma" class="form-group ">
-          <label for="alertar">Seleccione el motivo de la alerta:</label>
-          <select (click)="elegirAlerta(alerta.value)" #alerta formControlName="opcion" name="opcion" class="form-control"
-            id="alertar" required>
-            <option>Seleccion una opción</option>
-            <option *ngFor=" let
-            alerta of alertas">{{alerta}}</option>
-            <option>Otro</option>
-          </select>
-        </form>
-        <div *ngIf="alerta.value =='Otro'" class="otro">
-          <input class="form-control" type="text" name="otro" id="otro" placeholder="Motivo otro">
+        <div class="form-group motivoDeAtencion m-5">
+          <form [formGroup]="forma" class="form-group ">
+            <label for="alertar">Seleccione el motivo de la alerta:</label>
+            <select (click)="elegirAlerta(alerta.value)" #alerta formControlName="opcion" name="opcion" class="form-control"
+              id="alertar" required>
+              <option>Seleccion una opción</option>
+              <option *ngFor=" let
+                    alerta of alertas">{{alerta}}</option>
+              <option>Otro</option>
+            </select>
+          </form>
+          <div *ngIf="alerta.value =='Otro'" class="otro">
+            <input class="form-control" type="text" name="otro" id="otro" placeholder="Motivo otro">
+            <br>
+          </div>
+
         </div>
+
 
 
         <div class="botonSiguiente">
@@ -33,69 +40,83 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Elección de consejero</ng-template>
       <div class="cuerpo2step">
+        <br>
         <div class="row container animated fadeIn centrar">
-          <div *ngFor="let consejero of consejeros, let i= index" class="card-group col-sm-6 ">
-            <div class="card m-1">
-              <img class="card-img-top " src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
-                      "
-                alt="Card image cap ">
-              <div class="card-body ">
+          <div [ngClass]="{
+                'activo': (i+1) === consejeroSelecionado
+                }" *ngFor="let consejero of consejeros, let i= index"
+            class="card m-3">
 
+            <a (click)="SelecionarConsejero(i+1)">
 
-                <h5 class="card-title "> {{consejero.nombre}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{consejero.cargo}}</h6>
-
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Area de interes: {{consejero.areasInteres}}</li>
-                  <li class="list-group-item">Correo: {{consejero.correo}}</li>
-                </ul>
-                <h5 class="card-text ">Horarios</h5>
-                <div *ngFor="let horario of consejero.horario" class="card-group col-12 ">
-                  {{horario}}
-                </div>
-                <h1></h1>
-                <p class="card-text ">
-                  <button (click)="mostrarModal(i)" matStepperNext type="button" class="btn btn-primary btn-lg btn-block">Agendar</button>
-                </p>
+              <div class="imgConsejero m-3">
+                <img class="imgCon " style="width: inherit;" src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
+                                "
+                  alt="Card image cap ">
               </div>
-            </div>
+              <div class="cardbody m-5">
+                <div class="row">
+                  <div class="col-6">
+                    <h5> {{consejero.nombre}}</h5>
+                    <h6 class="text-muted">{{consejero.cargo}}</h6>
+                    <ul>
+                      <li>Area de interes: {{consejero.areasInteres}}</li>
+                      <li>Correo: {{consejero.correo}}</li>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                    <h5>Horarios</h5>
+                    <ul>
+                      <li *ngFor="let horario of consejero.horario">
+                        {{horario}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+
           </div>
+
+
         </div>
 
       </div>
       <br><br>
-      <!-- <div class="botones">
+      <div class="botones">
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Siguiente</button>
-      </div> -->
-
+        <button (click)="subirPantalla()" mat-button matStepperNext [disabled]="controlBtn2">Siguiente</button>
+      </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Confirmación</ng-template>
     <div class="cuerpo3step">
 
+      <div class="confirmar m-5">
+        <div class="row">
+          <div class="col-6">
+            <div class="datosConsejeros text-center">
+              <h1>
+                {{modal.nombre}}
+              </h1>
+              <ul *ngFor="let hor of modal.horario">
+                <li> {{hor}} </li>
+              </ul>
 
-      <div class="row">
-        <div class="col-6">
-          <div class="datosConsejeros text-center">
-            <h1>
-              {{modal.nombre}}
-            </h1>
-            <ul *ngFor="let hor of modal.horario">
-              <li> {{hor}} </li>
-            </ul>
+            </div>
+
+            <button (click)="agendar()" type="button" class="btn btn-primary btn-block">Agendar</button>
 
           </div>
-
-          <button (click)="agendar()" type="button" class="btn btn-primary btn-block">Agendar</button>
-
-        </div>
-        <div class="col-6">
-          <img class="card-img-top pull-right" src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
+          <div class="col-6">
+            <img class="card-img-top pull-right" src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
             "
-            alt="Card image cap " style="width: 50%;">
+              alt="Card image cap " style="width: 50%;">
+          </div>
         </div>
+
       </div>
 
 
