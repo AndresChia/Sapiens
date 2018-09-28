@@ -9,13 +9,23 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  valido = false;
+
   constructor(public _LogInService: LogInService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  login(usuario: string, contraseña: string) {
-    this._LogInService.iniciarSesion(contraseña, usuario);
+  login(usuario: string, contrasenia: string) {
+    console.log(usuario, contrasenia)
+    if (usuario !== "" && contrasenia !== "") {
+      this._LogInService.iniciarSesion(contrasenia, usuario);
+      this.valido = false;
+      return;
+    }
+    this.valido = true;
   }
+
+
 
 }

@@ -45,8 +45,8 @@ export class LogInService {
     this.usuario.load = true;
     this.usuario.tipo = usur;
     localStorage.setItem("1", JSON.stringify(this.usuario));
-    console.log(this.usuario.nombreUsuario, this.usuario.id);
-    this.router.navigate([this.usuario.tipo]);
+    //console.log(this.usuario.nombreUsuario, this.usuario.id);
+    this.router.navigate(["/" + this.usuario.tipo]);
   }
 
   cerrarSesion() {
@@ -74,7 +74,7 @@ export class LogInService {
   }
 
   sesionActiva() {
-    console.log("servicio iniciado");
+    // console.log("servicio iniciado");
     if (localStorage.getItem("1") != null) {
       this.usuario = JSON.parse(localStorage.getItem("1"));
     }

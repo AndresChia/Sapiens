@@ -7,8 +7,6 @@ import { ProfesorComponent } from "./components/bodys/profesor/profesor.componen
 import { PageNotFoundComponent } from "./components/bodys/page-not-found/page-not-found.component";
 import { EmptyComponent } from './components/bodys/empty/empty.component';
 import { DemandaComponent } from './components/bodys/director/demanda/demanda.component';
-import { AsincronasComponent } from './components/bodys/director/asincronas/asincronas.component';
-import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
 import { AdminComponent } from "./components/admin/admin.component";
 import { ConsultaDemandaComponent } from "./components/bodys/director/demanda/consulta-demanda/consulta-demanda.component";
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
@@ -20,36 +18,35 @@ import { EliminarComponent } from './components/admin/crudadmin/eliminar/elimina
 import { EditarComponent } from './components/admin/crudadmin/editar/editar.component';
 import { ConsultarComponent } from './components/admin/crudadmin/consultar/consultar.component';
 import { HomeComponent } from './components/home/home.component';
+import { empty } from 'rxjs';
 const ROUTES: Routes = [
     {
         path: 'consejero', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
         children: [
             { path: 'buscar', component: BuscarComponent },
-            { path: '', component: EmptyComponent },
+            { path: "", component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
         ]
 
     },
     {
-        path: 'director/:id',
+        path: 'director',
         component: DirectorComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
         children: [
+            { path: 'consultaDemanda', component: ConsultaDemandaComponent },
             { path: 'demanda', component: DemandaComponent },
-            { path: 'asincrono', component: AsincronasComponent },
-            { path: 'periodico', component: PeriodicasComponent },
             { path: 'ia', component: IaComponent },
-            { path: 'demanda/consultaDemanda', component: ConsultaDemandaComponent },
             { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
 
         ]
     },
 
-    { path: 'estudiante/:id', component: EstudianteComponent, canActivate: [AuthGuardGuard] },
-    { path: 'profesor/:id', component: ProfesorComponent, canActivate: [AuthGuardGuard] },
+    { path: 'estudiante', component: EstudianteComponent, canActivate: [AuthGuardGuard] },
+    { path: 'profesor', component: ProfesorComponent, canActivate: [AuthGuardGuard] },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuardGuard] },
     {
-        path: 'admin/:id', component: CrudadminComponent, canActivate: [AuthGuardGuard], children: [
+        path: 'admin', component: CrudadminComponent, canActivate: [AuthGuardGuard], children: [
             { path: 'crear', component: CrearComponent },
             { path: 'eliminar', component: EliminarComponent },
             { path: 'editar', component: EditarComponent },
@@ -59,6 +56,7 @@ const ROUTES: Routes = [
         ]
     },
     { path: 'Home', component: HomeComponent, canActivate: [AuthGuardGuard] },
+    { path: '', component: EmptyComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'Home' }
 
 ];

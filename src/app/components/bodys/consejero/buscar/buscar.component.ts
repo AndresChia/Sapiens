@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material';
 export class BuscarComponent implements OnInit {
 
   mostrar = false;
-
+  remitirValor = true;
   checkFecha = false;
   url: string;
 
@@ -28,7 +28,7 @@ export class BuscarComponent implements OnInit {
 
     nombre: "",
     correo: "",
-    opcion: ""
+    opcion: "0"
 
   };
 
@@ -75,13 +75,15 @@ export class BuscarComponent implements OnInit {
   }
 
   //FIXME:
-  buscar() {
+  buscar(nombre: string, correo: string) {
 
     console.log("Falta buscar las alertas y ponerlas en la tabla");
+    if (this.forma.get("nombre").value !== "" || this.forma.get("correo").value !== "") {
+      this.busquedaBool = true;
+      this.mostrar = false;
+    }
 
-    this.busquedaBool = true;
 
-    this.mostrar = false;
   }
 
 
@@ -97,6 +99,8 @@ export class BuscarComponent implements OnInit {
   scrollToElementInicio() {
     window.scrollTo(0, 0);
     this.mostrar = false;
+    this.busquedaBool = false;
+    this.forma.setValue({ nombre: "", correo: "", opcion: "0" })
 
   }
 
@@ -104,18 +108,20 @@ export class BuscarComponent implements OnInit {
 
   ActivarModalRemitir() {
 
+    this.forma.setValue({ opcion: "0" })
 
   }
   ActivarModalEscalar() {
+    this.forma.setValue({ opcion: "0" })
 
 
   }
   ActivarModalAtender() {
-
+    this.forma.setValue({ opcion: "0" })
 
   }
 
-  remitir() {
+  remitir(opc: number) {
     window.scrollTo(0, 0);
     this.mostrar = false;
 
@@ -134,6 +140,12 @@ export class BuscarComponent implements OnInit {
 
   }
   atender() {
+
+
+
+
+
+
     window.scrollTo(0, 0);
     this.mostrar = false;
 
@@ -147,7 +159,16 @@ export class BuscarComponent implements OnInit {
     this.checkFecha = (!this.checkFecha);
 
   }
+  selecionAlerta() {
 
+    if (this.forma.get('opcion').value !== "0") {
+      this.remitirValor = false;
+    } else {
+      this.remitirValor = true;
+
+    }
+
+  }
 
 }
 

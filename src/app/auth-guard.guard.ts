@@ -18,7 +18,7 @@ export class AuthGuardGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     if (this._LogInService.usuario.acceso) {
-      console.log(state.url.split('/') + " parent");
+      //console.log(state.url.split('/') + " parent");
 
       if (this._LogInService.usuario.tipo === "consejero") {
         if (state.url.split('/')[1] === "consejero") {
@@ -27,7 +27,34 @@ export class AuthGuardGuard implements CanActivate {
         return false;
       }
 
+      if (this._LogInService.usuario.tipo === "profesor") {
+        if (state.url.split('/')[1] === "profesor") {
+          return true;
+        }
+        return false;
+      }
 
+      if (this._LogInService.usuario.tipo === "estudiante") {
+        if (state.url.split('/')[1] === "estudiante") {
+          return true;
+        }
+        return false;
+      }
+
+
+      if (this._LogInService.usuario.tipo === "director") {
+        if (state.url.split('/')[1] === "director") {
+          return true;
+        }
+        return false;
+      }
+
+      if (this._LogInService.usuario.tipo === "admin") {
+        if (state.url.split('/')[1] === "admin") {
+          return true;
+        }
+        return false;
+      }
 
 
     } else {
@@ -46,7 +73,7 @@ export class AuthGuardGuard implements CanActivate {
   canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
 
-    console.log(state.url.split('/') + " child");
+    //console.log(state.url.split('/') + " child");
 
 
     return true;

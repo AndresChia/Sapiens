@@ -31,8 +31,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DemandaComponent } from './components/bodys/director/demanda/demanda.component';
-import { AsincronasComponent } from './components/bodys/director/asincronas/asincronas.component';
-import { PeriodicasComponent } from './components/bodys/director/periodicas/periodicas.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ConsultaDemandaComponent } from './components/bodys/director/demanda/consulta-demanda/consulta-demanda.component';
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
@@ -73,8 +71,6 @@ import { HomeComponent } from './components/home/home.component';
     CarouselComponent,
     LoadingComponent,
     DemandaComponent,
-    AsincronasComponent,
-    PeriodicasComponent,
     FiltroEstudiantesCheckedPipe,
     AdminComponent,
     ConsultaDemandaComponent,

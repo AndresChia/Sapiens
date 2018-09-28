@@ -139,7 +139,7 @@ export class ProfesorComponent implements OnInit {
     console.log(aler);
     //console.log(this.forma.get("opcion"));
 
-    if (aler !== "Seleccione una opción") {
+    if (aler !== "0") {
 
       this.controlBtn1 = false;
       this.firstFormGroup.get("alertaSelect").setValue("correcto");

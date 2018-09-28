@@ -66,6 +66,8 @@ export class DemandaComponent implements OnInit {
     console.log("falta crear donde ver la consulta y cargarla");
 
     this._ConsultardemandaService.cargar(JSON.stringify(this.busqueda));
+
+
   }
 
 }

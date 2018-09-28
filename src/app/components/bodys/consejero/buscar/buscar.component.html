@@ -3,13 +3,14 @@
     <form class="m-4" [(formGroup)]="forma" (ngSubmit)="buscar()">
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+        <input value="" type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
         <label for="correoTexto">Correo</label>
-        <input type="email" class="form-control" placeholder="Correo" formControlName="correo">
+        <input value="" type="email" class="form-control" placeholder="Correo" formControlName="correo">
       </div>
       <button (click)="buscar()" type="submit" name="aceptar" id="aceptar" class="btn btn-primary" role="button">Buscar</button>
     </form>
   </div>
+
   <div *ngIf=busquedaBool class="col-sm-8 ">
     <table id="tabla" class="table table-hover">
       <thead class=" bg-warning">
@@ -217,7 +218,7 @@
         <div class=" m-3 form-group ">
           <form [formGroup]="forma" class="form-group ">
             <label for="alerta">Seleccione la alerta</label>
-            <select #alerta formControlName="opcion" class="form-control" id="alerta">
+            <select (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control" id="alerta">
               <option value="0">Seleccione una opción</option>
               <option *ngFor="let alerta of alertas">{{alerta}}</option>
             </select>
@@ -236,20 +237,19 @@
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <button (click)="remitir()" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Remitir</button>
+                <h5 class="card-title">Centro de asesoría psicológica y salud</h5>
+                <button (click)="remitir(1)" type="button" class="btn btn-primary btn-block" data-dismiss="modal"
+                  [disabled]="remitirValor">Remitir</button>
               </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <button (click)="remitir()" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Remitir</button>
+                <h5 class="card-title">Aulas de aprendizaje</h5>
+                <br>
+                <button (click)="remitir(2)" type="button" class="btn btn-primary btn-block" data-dismiss="modal"
+                  [disabled]="remitirValor">Remitir</button>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@
       <div class="modal-body">
         <form [formGroup]="forma" class="form-group ">
           <label for="alerta">Seleccione la alerta</label>
-          <select #alerta formControlName="opcion" class="form-control" id="alerta">
+          <select (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control" id="alerta">
             <option value="0">Seleccione una opción</option>
             <option *ngFor="let alerta of alertas">{{alerta}}</option>
           </select>
@@ -287,7 +287,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button (click)="escalar()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+        <button (click)="escalar()" type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="remitirValor">Confirmar</button>
       </div>
     </div>
   </div>

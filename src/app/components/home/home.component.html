@@ -1,20 +1,32 @@
 <div class="home">
 
   <div class="wrap-login100">
-    <form class="login100-form " style="padding-top: 107px;">
+    <form class="login100-form form-group" style="padding-top: 107px;">
       <span class="login100-form-title">
         Inicio de sesión
       </span>
 
+
       <div class=" rs1-wrap-input100">
-        <input #usuario id="first-name" class="input100" type="text" name="username" placeholder="Usuario">
+        <div class="contenedor">
+          <input #usuario value="" id="first-name" class="input100 form-control" type="text" name="username"
+            placeholder="Usuario" required autofocus>
+          <hr *ngIf="valido">
+        </div>
+
       </div>
       <div class=" rs2-wrap-input100">
-        <input #contrasenia class="input100" type="password" name="pass" placeholder="Contraseña">
+        <div class="contenedor">
+          <input #contrasenia value="" class="input100 form-control" type="password" name="pass" placeholder="Contraseña"
+            required>
+          <hr *ngIf="valido">
+        </div>
       </div>
 
+
+
       <div class="container-login100-form-btn">
-        <button (click)="login(usuario.value ,contrasenia.value )" class="login100-form-btn">
+        <button type="button" (click)="login(usuario.value ,contrasenia.value )" class="login100-form-btn">
           Iniciar sesión
         </button>
         <span class="txt1">

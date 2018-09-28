@@ -13,7 +13,7 @@
           <label for="Alertas">Seleccione el motivo de atencíon:</label>
           <select #alerta (click)="elegirAlerta(alerta.value)" formControlName="opcion" [(ngModel)]="actualAlerta"
             class="form-control" id="Alertas" required>
-            <option>Seleccione una opción</option>
+            <option value="0">Seleccione una opción</option>
             <option *ngFor="let alerta of alertas,let indi=index">{{alerta}}</option>
           </select>
         </div>
