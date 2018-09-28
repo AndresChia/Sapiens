@@ -53,15 +53,10 @@
               <div class="col-sm">
                 <button [ngClass]="{
                   'seleccionado':numeradorOpcion===2}" (click)="opcion(2)" type="button"
-                  class="botonOpcion btn-block">Asincronas</button>
+                  class="botonOpcion btn-block">Historial</button>
                 <hr *ngIf="numeradorOpcion===2">
               </div>
-              <div class="col-sm">
-                <button [ngClass]="{
-                  'seleccionado':numeradorOpcion===3}" (click)="opcion(3)" type="button"
-                  class="botonOpcion btn-block">Periodicas</button>
-                <hr *ngIf="numeradorOpcion===3">
-              </div>
+
             </div>
           </div>
         </div>
@@ -77,13 +72,13 @@
               <div class="col-sm">
                 <button [ngClass]="{
                       'seleccionado':numeradorOpcion===5}" (click)="opcion(5)"
-                  type="button" class="botonOpcion btn-block">Asincronas</button>
+                  type="button" class="botonOpcion btn-block">Alertas</button>
                 <hr *ngIf="numeradorOpcion===5">
               </div>
               <div class="col-sm">
                 <button [ngClass]="{
                       'seleccionado':numeradorOpcion===6}" (click)="opcion(6)"
-                  type="button" class="botonOpcion btn-block">Periodicas</button>
+                  type="button" class="botonOpcion btn-block">Historial</button>
                 <hr *ngIf="numeradorOpcion===6">
               </div>
               <div class="col-sm">

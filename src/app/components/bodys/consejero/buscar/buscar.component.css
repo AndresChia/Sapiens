@@ -1,0 +1,51 @@
+hr {
+  border: 1;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: thistle;
+  height: 1px;
+}
+
+.BotonScroll {
+
+  position: fixed;
+  left: 0;
+  top: 50%;
+  display: inline-grid;
+
+}
+
+
+.botton {
+
+  width: 40px;
+  height: 40px;
+  padding: 6px 0px;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+
+.mostrar {
+
+  display: block;
+}
+
+.ocultar {
+
+
+  display: none !important;
+}
+
+.mostrarBtn {
+
+  display: inline-grid;
+}
+
+.ocultarBtn {
+
+
+  display: none !important;
+}

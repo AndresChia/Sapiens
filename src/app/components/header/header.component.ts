@@ -42,19 +42,15 @@ export class HeaderComponent implements OnInit {
     if (this._LogInService.usuario.tipo === "consejero") {
       if (index === 1) {
         this._LogInService.activarConsejero();
-        this.router.navigate(["/consejero", "1", "buscar"]);
+        this.router.navigate(["/consejero", "buscar"]);
       }
 
       if (index === 2) {
         this._LogInService.activarConsejero();
-        this.router.navigate(["/consejero", "1", "asincrono"]);
+        this.router.navigate(["/consejero", "historial"]);
 
       }
-      if (index === 3) {
-        this._LogInService.activarConsejero();
-        this.router.navigate(["/consejero", "1", "periodico"]);
 
-      }
 
     }
     if (this._LogInService.usuario.tipo === "director") {

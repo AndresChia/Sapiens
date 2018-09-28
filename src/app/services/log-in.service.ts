@@ -46,9 +46,7 @@ export class LogInService {
     this.usuario.tipo = usur;
     localStorage.setItem("1", JSON.stringify(this.usuario));
     console.log(this.usuario.nombreUsuario, this.usuario.id);
-    this.router.navigate([this.usuario.nombreUsuario, this.usuario.id]);
-
-
+    this.router.navigate([this.usuario.tipo]);
   }
 
   cerrarSesion() {

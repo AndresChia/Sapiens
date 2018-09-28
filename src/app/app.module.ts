@@ -36,9 +36,7 @@ import { PeriodicasComponent } from './components/bodys/director/periodicas/peri
 import { AdminComponent } from './components/admin/admin.component';
 import { ConsultaDemandaComponent } from './components/bodys/director/demanda/consulta-demanda/consulta-demanda.component';
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
-import { CasincronasComponent } from './components/bodys/consejero/casincronas/casincronas.component';
-import { CperiodicasComponent } from './components/bodys/consejero/cperiodicas/cperiodicas.component';
-import { BalertarComponent } from './components/bodys/consejero/buscar/balertar/balertar.component';
+
 import { IaComponent } from './components/bodys/director/ia/ia.component';
 import { CrudadminComponent } from './components/admin/crudadmin/crudadmin.component';
 import { CrearComponent } from './components/admin/crudadmin/crear/crear.component';
@@ -81,9 +79,6 @@ import { HomeComponent } from './components/home/home.component';
     AdminComponent,
     ConsultaDemandaComponent,
     BuscarComponent,
-    CasincronasComponent,
-    CperiodicasComponent,
-    BalertarComponent,
     IaComponent,
     CrudadminComponent,
     CrearComponent,

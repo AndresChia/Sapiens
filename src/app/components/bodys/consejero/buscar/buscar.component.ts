@@ -4,6 +4,7 @@ import { Validators, FormGroup, FormControl } from "@angular/forms";
 import { ConsejeroComponent } from "../consejero.component";
 import { LogInService } from '../../../../services/log-in.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-buscar',
@@ -12,9 +13,12 @@ import { Router } from '@angular/router';
 })
 export class BuscarComponent implements OnInit {
 
+  mostrar = false;
+
+  checkFecha = false;
   url: string;
 
-
+  historialAlerta;
   busquedaBool = false;
 
 
@@ -23,9 +27,20 @@ export class BuscarComponent implements OnInit {
   busqueda: any = {
 
     nombre: "",
-    correo: ""
+    correo: "",
+    opcion: ""
 
   };
+
+
+  alertas: string[] = [
+    "Inconvenientes personales con profesores", "Inconvenientes por la metodología de enseñanza ",
+    "Bajo desempeño", "Orientación para la vida profesional", "Inconvenientes por los métodos de evaluación",
+    "Desbalance en la carga academíca", "Dificultades de aprendizaje", "Estrés académico", "Retiro temporal",
+    "Retiro Definitivo", "Retiro de Asignaturas", "Dificultades en habilidades de comunicación",
+    "Dificultades para el trabajo en equipo", "Conocimientos de física en el examen de entrada",
+    "Habilidades matematicas básicas en examen de entrada", "Comprensión lectora y escritura en examen de entrada",
+    "No Asistencia a clases"];
 
   estudiantes: estudiante[] = [
     {
@@ -37,10 +52,13 @@ export class BuscarComponent implements OnInit {
     }
   ];
 
-  constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router) {
+  constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router,
+    public snackBar: MatSnackBar) {
     this.forma = new FormGroup({
       'nombre': new FormControl(''),
-      'correo': new FormControl('')
+      'correo': new FormControl(''),
+      'opcion': new FormControl('')
+
     });
     this.forma.setValue(this.busqueda);
 
@@ -52,7 +70,8 @@ export class BuscarComponent implements OnInit {
 
   seleccionar(actual: number) {
     //this.consejeroComponent.alertar();
-    this.router.navigate([this.router.url, this.estudiantes[actual].id]);
+    //this.router.navigate([this.router.url, this.estudiantes[actual].id]);
+    this.mostrar = true;
   }
 
   //FIXME:
@@ -62,6 +81,70 @@ export class BuscarComponent implements OnInit {
 
     this.busquedaBool = true;
 
+    this.mostrar = false;
+  }
+
+
+  scrollToElement($element): void {
+
+
+
+    console.log($element);
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  }
+
+
+  scrollToElementInicio() {
+    window.scrollTo(0, 0);
+    this.mostrar = false;
+
+  }
+
+
+
+  ActivarModalRemitir() {
+
+
+  }
+  ActivarModalEscalar() {
+
+
+  }
+  ActivarModalAtender() {
+
+
+  }
+
+  remitir() {
+    window.scrollTo(0, 0);
+    this.mostrar = false;
+
+    this.snackBar.open("Remición creada", "Cerrar", {
+      duration: 2000,
+    });
+
+  }
+  escalar() {
+    window.scrollTo(0, 0);
+    this.mostrar = false;
+
+    this.snackBar.open("Escalamiento creado", "Cerrar", {
+      duration: 2000,
+    });
+
+  }
+  atender() {
+    window.scrollTo(0, 0);
+    this.mostrar = false;
+
+    this.snackBar.open("Atencion realizada", "Cerrar", {
+      duration: 2000,
+    });
+
+  }
+
+  check() {
+    this.checkFecha = (!this.checkFecha);
 
   }
 

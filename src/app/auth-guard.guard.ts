@@ -12,97 +12,43 @@ export class AuthGuardGuard implements CanActivate {
 
   }
 
+
+
+
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    console.log(this._LogInService.usuario.acceso);
-
     if (this._LogInService.usuario.acceso) {
+      console.log(state.url.split('/') + " parent");
+
       if (this._LogInService.usuario.tipo === "consejero") {
-        if (state.url.split('/')[1] !== "consejero") {
-          this.router.navigate(["consejero", this._LogInService.usuario.id]);
-        }
-
-      }
-      if (this._LogInService.usuario.tipo === "estudiante") {
-        if (state.url.split('/')[1] !== "estudiante") {
-          this.router.navigate(["estudiante", this._LogInService.usuario.id]);
-        }
-      }
-      if (this._LogInService.usuario.tipo === "profesor") {
-        if (state.url.split('/')[1] !== "profesor") {
-          this.router.navigate(["profesor", this._LogInService.usuario.id]);
-        }
-      }
-
-      if (this._LogInService.usuario.tipo === "director") {
-        if (state.url.split('/')[1] !== "director") {
-          this.router.navigate(["director", this._LogInService.usuario.id]);
-        }
-      }
-
-      if (this._LogInService.usuario.tipo === "admin") {
-        console.log(state.url.split('/').length);
-
-        if (state.url.split('/')[1] !== "admin") {
-          this.router.navigate(["/admin"]);
+        if (state.url.split('/')[1] === "consejero") {
           return true;
         }
-        if (state.url.split('/').length === 2) {
-          this.router.navigate(["/admin", this._LogInService.usuario.id]);
-        }
-
-
+        return false;
       }
+
+
 
 
     } else {
-
-      if (state.url.split('/')[1] === "admin") {
-        console.log(state.url.split('/').length);
-        if (state.url.split('/').length > 2) {
-          this.router.navigate(["/admin"]);
-          return false;
-        }
+      if (state.url.split('/')[1] === "Home") {
         return true;
-
       }
-
-
-
-      this.router.navigate(['Home']);
+      if (state.url.split('/')[1] === "admin") {
+        return true;
+      }
       return false;
-
     }
-    return true;
+
+    return false;
   }
   //FIXME: falta
-  canActivateChild() {
+  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    console.log("hola2");
 
-    if (this._LogInService.usuario.acceso) {
-      if (this._LogInService.usuario.tipo === "consejero") {
+    console.log(state.url.split('/') + " child");
 
-      }
-      if (this._LogInService.usuario.tipo === "estudiante") {
 
-      }
-      if (this._LogInService.usuario.tipo === "profesor") {
-
-      }
-      if (this._LogInService.usuario.tipo === "admin") {
-        console.log("adminnn");
-      }
-      if (this._LogInService.usuario.tipo === "director") {
-
-      }
-    } else {
-
-      this.router.navigate(['Home']);
-      return false;
-
-    }
     return true;
   }
-
 }

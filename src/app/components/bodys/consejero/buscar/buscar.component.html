@@ -1,24 +1,15 @@
-<div class="row">
-
+<div #buscarEstudiante class="row">
   <div class="col-sm-4">
-
     <form class="m-4" [(formGroup)]="forma" (ngSubmit)="buscar()">
       <div class="form-group">
-
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
-
         <label for="correoTexto">Correo</label>
         <input type="email" class="form-control" placeholder="Correo" formControlName="correo">
-
       </div>
-      <button type="submit" name="aceptar" id="aceptar" class="btn btn-primary" role="button">Buscar</button>
+      <button (click)="buscar()" type="submit" name="aceptar" id="aceptar" class="btn btn-primary" role="button">Buscar</button>
     </form>
-
   </div>
-
-
-
   <div *ngIf=busquedaBool class="col-sm-8 ">
     <table id="tabla" class="table table-hover">
       <thead class=" bg-warning">
@@ -41,7 +32,312 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<div [ngClass]="{'mostrar': mostrar===true,
+'ocultar': mostrar===false}" class="datosEstudiante m-5">
+  <br>
+  <hr>
+  <div #demograficos id="demograficos" class="datosdemograficos">
+    <h1 class="text-center">Datos Demograficos</h1>
+    <hr>
+    <div class="datospersonales">
+      <h4>Datos personales</h4>
+      <div class="row">
+        <div class="col">
+          <label for="id">Id</label>
+          <input id="id" type="text" class="form-control" placeholder="id" disabled="true">
+          <label for="nacimiento">Nacimiento</label>
+          <input id="nacimiento" type="date" class="form-control" placeholder="nacimiento" disabled="true">
+          <label for="origen">País Origen</label>
+          <input id="origen" type="text" class="form-control" placeholder="origen" disabled="true">
+        </div>
+        <div class="col">
+          <label for="Genero">Genero</label>
+          <input id="Genero" type="text" class="form-control" placeholder="Genero" disabled="true">
+          <label for="estado">Estado Civil</label>
+          <input id="estado" type="text" class="form-control" placeholder="estado" disabled="true">
+          <label for="ciudad">Ciudad de origen</label>
+          <input id="ciudad" type="text" class="form-control" placeholder="ciudad" disabled="true">
+        </div>
+      </div>
+    </div>
+    <div class="Origenetnico">
+      <h4>Origen Étnico</h4>
+      <div class="row">
+        <div class="col">
+          <label for="grupo">Grupo Étnico</label>
+          <input class="form-control" type="text" id="grupo" placeholder="grupo" disabled="true">
+        </div>
+        <div class="col">
+          <label for="descripcion">Descripción</label>
+          <input class="form-control" type="text" id="descripcion" placeholder="descripcion" disabled="true">
+        </div>
+        <div class="col">
+          <label for="principal">Principal</label>
+          <input class="form-control" type="text" id="principal" placeholder="principal" disabled="true">
+        </div>
+      </div>
+    </div>
+    <div class="discapacidad">
+      <h4>Discapacidad</h4>
+      <div class="row">
+        <div class="col">
+          <label for="discapacidad">Tipo de discapacidad</label>
+          <input class="form-control" type="text" id="discapacidad" placeholder="discapacidad" disabled="true">
+        </div>
+        <div class="col">
+          <label for="descripcionDiscapacidad">Descripción</label>
+          <input class="form-control" type="text" id="descripcionDiscapacidad" placeholder="descripcionDiscapacidad"
+            disabled="true">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div #academicos class="datosAcademicos">
+    <h1 class="text-center">Datos academicos</h1>
+    <hr>
+    <div class="notas">
+      <table id="tabla" class="table table-hover">
+        <thead class=" bg-warning">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Semestre</th>
+            <th scope="col">Creditos aprobados</th>
+            <th scope="col">Creditos retirados</th>
+            <th scope="col">Promedio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr (click)="seleccionar(i)" *ngFor=" let i= index" style="cursor: pointer">
+            <th scope="row">{{i+1}}</th>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Otto</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <br>
+  <hr>
+  <div #histoAlertas class="historialAlertas">
+    <h1 class="text-center"> Historial de alertas</h1>
+    <hr>
+    <div class="alertas">
+      <table id="tabla" class="table table-hover">
+        <thead class=" bg-warning">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Semestre</th>
+            <th scope="col">Alerta</th>
+            <th scope="col">Creador</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let historial of historialAlerta, let i= index" style="cursor: pointer">
+            <th scope="row">{{i+1}}</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Otto</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+  <hr #anotaciones>
+  <br>
+  <br>
+  <div class="anotacionesAdicion form-group m-2">
+    <label for="anotacion">Anotaciones:</label>
+    <textarea class="form-control" name="anotacion" id="anotacion" rows="6"></textarea>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <br>
+  <button (click)="ActivarModalAtender()" name="atender" id="atender" class="btn btn-success m-1 pull-right"
+    data-toggle="modal" data-target="#myModal-Atender">Atender</button>
+  <button (click)="ActivarModalEscalar()" name="escalar" id="escalar" class="btn btn-primary m-1 pull-right"
+    data-toggle="modal" data-target="#myModal-Escalar">Escalar</button>
+  <button (click)="ActivarModalRemitir()" name="remitir" id="remitir" class="btn btn-primary m-1 pull-right"
+    data-toggle="modal" data-target="#myModal-Remitir">Remitir</button>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>
+
+
+<div [ngClass]="{'mostrarBtn': mostrar===true,
+'ocultarBtn': mostrar===false}" class="BotonScroll ">
+
+  <button class="botton btn-outline-danger fa fa-arrow-up" (click)="scrollToElementInicio()" name="buttondemograficos"
+    href="#buscarEstudiante" role="button">
+  </button>
+
+  <button class="botton btn-outline-primary fa fa-address-card" (click)="scrollToElement(demograficos)" name="buttondemograficos"
+    href="#demograficos" role="button">
+  </button>
+
+  <button class="botton btn-outline-primary fas fa-chalkboard-teacher" (click)="scrollToElement(academicos)" name="buttondemograficos"
+    href="#academicos" role="button">
+  </button>
+  <button class="botton btn-outline-primary fa fa-exclamation-triangle" (click)="scrollToElement(histoAlertas)" name="buttondemograficos"
+    href="#histoAlertas" role="button">
+  </button>
+  <button class="botton btn-outline-primary fas fa-file-signature" (click)="scrollToElement(anotaciones)" name="buttondemograficos"
+    href="#anotaciones" role="button">
+  </button>
+
+</div>
+
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div id="myModal-Remitir" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remitir alerta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class=" m-3 form-group ">
+          <form [formGroup]="forma" class="form-group ">
+            <label for="alerta">Seleccione la alerta</label>
+            <select #alerta formControlName="opcion" class="form-control" id="alerta">
+              <option value="0">Seleccione una opción</option>
+              <option *ngFor="let alerta of alertas">{{alerta}}</option>
+            </select>
+          </form>
 
 
 
+          <label for="exampleFormControlSelect2">Nivel de atención</label>
+          <select class="form-control" id="exampleFormControlSelect2">
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <button (click)="remitir()" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Remitir</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <button (click)="remitir()" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Remitir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-Escalar" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="forma" class="form-group ">
+          <label for="alerta">Seleccione la alerta</label>
+          <select #alerta formControlName="opcion" class="form-control" id="alerta">
+            <option value="0">Seleccione una opción</option>
+            <option *ngFor="let alerta of alertas">{{alerta}}</option>
+          </select>
+        </form>
+
+        ¿Está seguro de escalar la alerta?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)="escalar()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-Atender">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atención de alerta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="forma" class="form-group ">
+          <label for="alerta">Seleccione la alerta</label>
+          <select #alerta formControlName="opcion" class="form-control" id="alerta">
+            <option value="0">Seleccione una opción</option>
+            <option *ngFor="let alerta of alertas">{{alerta}}</option>
+          </select>
+        </form>
+
+        <div class="form-group">
+          <label for="conclucion">Conclusión de la alerta</label>
+          <textarea class="form-control" name="conclucion" id="conclucion" rows="3"></textarea>
+        </div>
+
+        <label class="form-check-label m-4">
+          <input (click)="check()" #seguimi class="form-check-input" type="checkbox" name="seguimi" id="seguimi" value="checkedValue">
+          Programar
+          seguimiento
+        </label>
+
+        <div *ngIf="checkFecha" class="fechaSeguimiento">
+          <label for="">Fecha:</label>
+          <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)="atender()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
 </div>
