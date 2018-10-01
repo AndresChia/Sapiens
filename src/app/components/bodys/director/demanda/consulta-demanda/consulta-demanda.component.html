@@ -21,10 +21,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr (click)="seleccionarCheck(i)" *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
-        <td class="checkContent">
-          <input type="checkbox" [(ngModel)]="estudiante.check">
-        </td>
+      <tr [ngClass]="{
+        'table-active': estudiante.check === true
+        }" (click)="seleccionarCheck(i)"
+        *ngFor="let estudiante of estudiantes, let i= index" style="cursor: pointer">
+        <td>{{i+1}}</td>
         <td>{{estudiante.nombre}}&nbsp;{{estudiante.apellido}}</td>
         <td>{{estudiante.semestre}}</td>
 
@@ -33,9 +34,40 @@
   </table>
 
   <button (click)="cerrar()" class="m-2 btn btn-primary fa-pull-right" role="button">Cerrar</button>
-  <button (click)="cerrar()" class="m-2 btn btn-danger fa-pull-right" role="button">Citar</button>
-
+  <button (click)="citar()" class="m-2 btn btn-danger fa-pull-right" role="button" data-toggle="modal" data-target="#myModal-Atender">Citar</button>
 
 
 </div>
 <hr>
+
+<div class="modal fade" id="myModal-Atender">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Creación de alerta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="fechaSeguimiento">
+          <label for="">Fecha:</label>
+          <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+
+        </div>
+
+        <div class="form-group">
+          <label for="conclucion">Información adicional de la alerta</label>
+          <textarea class="form-control" name="conclucion" id="conclucion" rows="3"></textarea>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)="atender()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>

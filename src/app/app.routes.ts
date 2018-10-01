@@ -7,6 +7,10 @@ import { ProfesorComponent } from "./components/bodys/profesor/profesor.componen
 import { PageNotFoundComponent } from "./components/bodys/page-not-found/page-not-found.component";
 import { EmptyComponent } from './components/bodys/empty/empty.component';
 import { DemandaComponent } from './components/bodys/director/demanda/demanda.component';
+import { HistorialComponent } from './components/bodys/director/historial/historial.component';
+import { AlertasComponent } from './components/bodys/director/alertas/alertas.component';
+import { HistorialCComponent } from './components/bodys/consejero/historial/historial.component';
+
 import { AdminComponent } from "./components/admin/admin.component";
 import { ConsultaDemandaComponent } from "./components/bodys/director/demanda/consulta-demanda/consulta-demanda.component";
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
@@ -24,6 +28,7 @@ const ROUTES: Routes = [
         path: 'consejero', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
         children: [
             { path: 'buscar', component: BuscarComponent },
+            { path: 'historial', component: HistorialCComponent },
             { path: "", component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
         ]
@@ -35,6 +40,8 @@ const ROUTES: Routes = [
         children: [
             { path: 'consultaDemanda', component: ConsultaDemandaComponent },
             { path: 'demanda', component: DemandaComponent },
+            { path: 'historial', component: HistorialComponent },
+            { path: 'alertas', component: AlertasComponent },
             { path: 'ia', component: IaComponent },
             { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
@@ -56,7 +63,6 @@ const ROUTES: Routes = [
         ]
     },
     { path: 'Home', component: HomeComponent, canActivate: [AuthGuardGuard] },
-    { path: '', component: EmptyComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'Home' }
 
 ];

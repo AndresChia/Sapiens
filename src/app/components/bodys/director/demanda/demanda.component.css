@@ -4,3 +4,16 @@ body .modal-admin {
   /* must be half of the width, minus scrollbar on the left (30px) */
   margin-left: -375px;
 }
+
+.disabledBtn {
+
+  pointer-events: none;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  opacity: 0.65;
+}
+
+.enabledBtn {
+  pointer-events: all;
+}

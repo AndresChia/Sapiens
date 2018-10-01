@@ -15,8 +15,9 @@ import { ConsultardemandaService } from "../../../../services/consultardemanda.s
 })
 export class DemandaComponent implements OnInit {
 
+  forma: FormGroup;
 
-
+  consultarBool = true;
   actual: datoBusqueda = {
     nombreAsignatura: "",
     parametro: "aprobo",
@@ -34,8 +35,15 @@ export class DemandaComponent implements OnInit {
 
 
   constructor(private _ConsultardemandaService: ConsultardemandaService) {
+    this.forma = new FormGroup({
+      anioAcademico: new FormControl(),
+      periodoAcademico: new FormControl()
+    });
 
-
+    this.forma.setValue({
+      anioAcademico: "2018",
+      periodoAcademico: "3"
+    });
   }
 
   ngOnInit() {
@@ -51,6 +59,7 @@ export class DemandaComponent implements OnInit {
 
   agregarModal() {
 
+
     this.activarModal = true;
 
   }
@@ -59,6 +68,7 @@ export class DemandaComponent implements OnInit {
   agregarAsignatura() {
     const a = JSON.stringify(this.actual);
     this.busqueda.push(JSON.parse(a));
+    this.consultarBool = false;
   }
 
   //FIXME: falta crear la consulta y mostrarla en otra tabla

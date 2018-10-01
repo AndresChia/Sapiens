@@ -1,25 +1,21 @@
-<div class="row m-3 ">
-  <div class="col-sm-6">
-
-    <div class="form-group">
+<div [formGroup]="forma" class="form-group">
+  <div class="row m-3 ">
+    <div class="col-sm-6">
       <label for="anio">Año academico</label>
-      <input type="text" class="form-control" name="anio" id="anio" aria-describedby="helpId" placeholder="">
+      <input formControlName="anioAcademico" type="text" class="form-control" name="anio" id="anio" aria-describedby="helpId"
+        required>
     </div>
-
-  </div>
-  <div class="col-sm-6">
-
-    <div class="form-group">
+    <div class="col-sm-6">
       <label for="periodo">Periodo academico</label>
-      <input type="text" class="form-control" name="periodo" id="periodo" aria-describedby="as" placeholder="">
+      <input formControlName="periodoAcademico" type="text" class="form-control" name="periodo" id="periodo"
+        aria-describedby="as" required>
     </div>
   </div>
-
 </div>
 
 <div class="container">
 
-  <table id="tabla" class="table table-hover m-3  ">
+  <table *ngIf="!consultarBool" id="tabla" class="table table-hover m-3  ">
     <thead class=" bg-warning">
       <tr>
         <th scope="col">#</th>
@@ -40,8 +36,9 @@
 
     <button name="agregar" id="agregar" class="btn btn-primary m-1 pull-right" (click)="agregarModal()" role="button"
       data-toggle="modal" data-target="#myModal">Agregar</button>
-    <a (click)="crearConsulta()" href="#/director/consultaDemanda" target="_blank" name="consultar" id="consultar"
-      class="btn btn-primary m-1 pull-right" role="button">Consultar</a>
+    <a [ngClass]="{'disabledBtn': consultarBool === true,'enabledBtn': consultarBool === false}" (click)="crearConsulta()"
+      href="#/director/consultaDemanda" target="_blank" name="consultar" id="consultar" class="btn btn-primary m-1 pull-right "
+      role="button">Consultar</a>
 
   </div>
 
@@ -74,13 +71,36 @@
 
             <div class="form-group">
               <input [(ngModel)]="actual.nombreAsignatura" type="text" class="form-control" name="asignatura" id="asignatura"
-                aria-describedby="helpId" placeholder="Asignatura" required>
-              <small id="helpId" class="form-text text-muted">Help text</small>
+                aria-describedby="helpId" placeholder="Asignatura" list="listas" required>
+
             </div>
-
-
-
-
+            <datalist id="listas">
+              <option value="azul">
+              <option value="rojo">
+              <option value="amarillo">
+              <option value="negro">
+              <option value="verde">
+              <option value="azul">
+              <option value="rojo">
+              <option value="amarillo">
+              <option value="negro">
+              <option value="verde">
+              <option value="azul">
+              <option value="rojo">
+              <option value="amarillo">
+              <option value="negro">
+              <option value="verde">
+              <option value="azul">
+              <option value="rojo">
+              <option value="amarillo">
+              <option value="negro">
+              <option value="verde">
+              <option value="azul">
+              <option value="rojo">
+              <option value="amarillo">
+              <option value="negro">
+              <option value="verde">
+            </datalist>
 
 
           </div>

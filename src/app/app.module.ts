@@ -41,6 +41,11 @@ import { CrearComponent } from './components/admin/crudadmin/crear/crear.compone
 import { EliminarComponent } from './components/admin/crudadmin/eliminar/eliminar.component';
 import { EditarComponent } from './components/admin/crudadmin/editar/editar.component';
 import { ConsultarComponent } from './components/admin/crudadmin/consultar/consultar.component';
+import { HomeComponent } from './components/home/home.component';
+import { HistorialCComponent } from './components/bodys/consejero/historial/historial.component';
+import { AlertasComponent } from './components/bodys/director/alertas/alertas.component';
+import { HistorialComponent } from './components/bodys/director/historial/historial.component';
+
 
 //servicios
 import { LogInService } from "./services/log-in.service";
@@ -52,7 +57,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
-import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -81,7 +85,10 @@ import { HomeComponent } from './components/home/home.component';
     EliminarComponent,
     EditarComponent,
     ConsultarComponent,
-    HomeComponent
+    HomeComponent,
+    HistorialComponent,
+    AlertasComponent,
+    HistorialCComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

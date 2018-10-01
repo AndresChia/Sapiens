@@ -1,0 +1,172 @@
+<div class="row">
+
+  <div class="col-6">
+
+    <table id="tabla" class="table table-hover m-4">
+      <thead class=" bg-warning">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Incidencias</th>
+          <th scope="col">Criticidad</th>
+          <th scope="col">Origen</th>
+          <th scope="col">Tipo</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr [ngClass]="{
+            'table-warning': alerta.criticidad === 'Media',
+            'table-success': alerta.criticidad === 'Baja',
+            'table-danger': alerta.criticidad === 'Alta'
+            }"
+          (click)="seleccionar(i)" *ngFor="let alerta of alertas, let i= index" style="cursor: pointer">
+          <th scope="row">{{i+1}}</th>
+          <td>{{alerta.nombreAlerta}}</td>
+          <td>{{alerta.incidencias}}</td>
+          <td>{{alerta.criticidad}}</td>
+          <td>Estudiante</td>
+          <td>Asincrona</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6">
+
+
+
+
+    <div *ngIf=seleccionado class="opcionesEstudiantes">
+
+      <table id="tablaEstudiantes" class="table table-hover m-4">
+        <thead class=" bg-warning">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">apellido</th>
+            <th scope="col">semestre</th>
+            <th scope="col">Responsable</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr [ngClass]="{
+            'table-active': estudiante.check === true
+            }" (click)="seleccionarCheck(i)"
+            *ngFor="let estudiante of estudianteActual, let i= index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.apellido}}</td>
+            <td>{{estudiante.semestre}}</td>
+            <td>Nombre profesor</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <button (click)="ActivarModalAtender()" name="atender" id="atender" class="btn btn-success m-1 pull-right"
+        data-toggle="modal" data-target="#myModal-Atender">Atender</button>
+      <button (click)="ActivarModalEscalar()" name="escalar" id="Remitir" class="btn btn-primary m-1 pull-right"
+        data-toggle="modal" data-target="#myModal-Remitir">Remitir</button>
+
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div id="myModal-Remitir" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remitir alerta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class=" m-3 form-group ">
+
+          <label for="exampleFormControlSelect2">Nivel de atención</label>
+          <select class="form-control" id="exampleFormControlSelect2">
+            <option>Alta</option>
+            <option>Media</option>
+            <option>Baja</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Centro de asesoría psicológica y salud</h5>
+                <button (click)="remitir(1)" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Remitir</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Aulas de aprendizaje</h5>
+                <br>
+                <button (click)="remitir(2)" type="button" class="btn btn-primary btn-block" data-dismiss="modal">Remitir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-Atender">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atención de alerta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="form-group">
+          <label for="conclucion">Conclusión de la alerta</label>
+          <textarea class="form-control" name="conclucion" id="conclucion" rows="3"></textarea>
+        </div>
+
+        <label class="form-check-label m-4">
+          <input (click)="check()" #seguimi class="form-check-input" type="checkbox" name="seguimi" id="seguimi" value="checkedValue">
+          Programar
+          seguimiento
+        </label>
+
+        <div *ngIf="checkFecha" class="fechaSeguimiento">
+          <label for="">Fecha:</label>
+          <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button (click)="atender()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>

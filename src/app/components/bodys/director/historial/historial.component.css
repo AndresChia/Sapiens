@@ -1,0 +1,15 @@
+hr {
+  border: 1;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: thistle;
+  height: 1px;
+}
+
+.centrar {
+
+  padding-left: 40%;
+  display: -webkit-box;
+  list-style: none;
+}
