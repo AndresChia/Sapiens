@@ -219,7 +219,7 @@
           <form [formGroup]="forma" class="form-group ">
             <label for="alerta">Seleccione la alerta</label>
             <select (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control" id="alerta">
-              <option value="0">Seleccione una opción</option>
+              <option selected="selected" value="0">Seleccione una opción</option>
               <option *ngFor="let alerta of alertas">{{alerta}}</option>
             </select>
           </form>
@@ -278,7 +278,7 @@
         <form [formGroup]="forma" class="form-group ">
           <label for="alerta">Seleccione la alerta</label>
           <select (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control" id="alerta">
-            <option value="0">Seleccione una opción</option>
+            <option selected="selected" value="0">Seleccione una opción</option>
             <option *ngFor="let alerta of alertas">{{alerta}}</option>
           </select>
         </form>
@@ -310,8 +310,8 @@
 
         <form [formGroup]="forma" class="form-group ">
           <label for="alerta">Seleccione la alerta</label>
-          <select #alerta formControlName="opcion" class="form-control" id="alerta">
-            <option value="0">Seleccione una opción</option>
+          <select #alerta (click)="selecionAlerta()" formControlName="opcion" class="form-control" id="alerta">
+            <option selected="selected" value="0">Seleccione una opción</option>
             <option *ngFor="let alerta of alertas">{{alerta}}</option>
           </select>
         </form>
@@ -336,7 +336,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button (click)="atender()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+        <button [disabled]="remitirValor" (click)="atender()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
       </div>
     </div>
   </div>

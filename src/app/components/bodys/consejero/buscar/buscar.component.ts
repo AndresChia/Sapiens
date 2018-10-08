@@ -107,18 +107,16 @@ export class BuscarComponent implements OnInit {
 
 
   ActivarModalRemitir() {
-
-    this.forma.setValue({ opcion: "0" })
-
+    this.remitirValor = true;
+    this.forma.setValue(this.busqueda);
   }
   ActivarModalEscalar() {
-    this.forma.setValue({ opcion: "0" })
-
-
+    this.remitirValor = true;
+    this.forma.setValue(this.busqueda);
   }
   ActivarModalAtender() {
-    this.forma.setValue({ opcion: "0" })
-
+    this.remitirValor = true;
+    this.forma.setValue(this.busqueda);
   }
 
   remitir(opc: number) {

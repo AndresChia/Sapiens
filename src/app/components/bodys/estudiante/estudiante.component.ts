@@ -99,6 +99,10 @@ export class EstudianteComponent implements OnInit {
 
   //FIXME: Falta crear la alerta
   agendar() {
+
+    console.log(this.modal, localStorage.getItem("1"));
+
+
     console.log("Falta crear alerta");
     this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {

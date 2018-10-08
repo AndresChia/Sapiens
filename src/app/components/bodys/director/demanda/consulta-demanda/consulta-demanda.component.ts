@@ -12,7 +12,7 @@ import { LogInService } from '../../../../../services/log-in.service';
 export class ConsultaDemandaComponent implements OnInit {
 
     busqueda: datoBusqueda[] = [];
-
+    modal = false;
     estudiantes: estudiante[] = [
         {
             nombre: "carlos",
@@ -46,7 +46,19 @@ export class ConsultaDemandaComponent implements OnInit {
 
 
     citar() {
+        let constan = 0;
+        this.estudiantes.forEach(element => {
+            if (element.check) {
+                constan++;
+            }
 
+        });
+
+        if (constan === 0) {
+            this.modal = false;
+        } else {
+            this.modal = true;
+        }
 
     }
 

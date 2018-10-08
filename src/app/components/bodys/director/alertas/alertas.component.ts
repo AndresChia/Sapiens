@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AlertasComponent implements OnInit {
     checkFecha = false;
-
+    modal = true;
     estudianteActual: estudiante[];
     seleccionado = false;
     indexSelecionado: number;
@@ -55,11 +55,38 @@ export class AlertasComponent implements OnInit {
 
 
     ActivarModalEscalar() {
+        let cont = 0;
+        this.estudianteActual.forEach(element => {
+
+            if (element.check) {
+                cont++;
+            }
+
+        });
+
+        if (cont === 0) {
+            this.modal = false;
+        } else {
+            this.modal = true;
+        }
 
 
     }
     ActivarModalAtender() {
+        let cont = 0;
+        this.estudianteActual.forEach(element => {
 
+            if (element.check) {
+                cont++;
+            }
+
+        });
+
+        if (cont === 0) {
+            this.modal = false;
+        } else {
+            this.modal = true;
+        }
 
     }
 

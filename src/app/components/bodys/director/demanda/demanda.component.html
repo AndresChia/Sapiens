@@ -21,6 +21,7 @@
         <th scope="col">#</th>
         <th scope="col">Asignatura</th>
         <th scope="col">Parametro</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
@@ -28,9 +29,11 @@
         <th scope="row">{{i+1}}</th>
         <td>{{busq.nombreAsignatura}}</td>
         <td>{{busq.parametro}}</td>
+        <td><a (click)="eliminarElemento(i)" class="btn btn-block fa fa-trash"></a></td>
       </tr>
     </tbody>
   </table>
+
 
   <div style="height: 45px" class="container m-1">
 

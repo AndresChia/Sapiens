@@ -83,7 +83,7 @@
 <!-- Trigger the modal with a button -->
 
 <!-- Modal -->
-<div id="myModal-Remitir" class="modal fade" role="dialog">
+<div *ngIf="modal" id="myModal-Remitir" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -133,7 +133,7 @@
 <!-- Trigger the modal with a button -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal-Atender">
+<div *ngIf="modal" class="modal fade" id="myModal-Atender">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

@@ -119,6 +119,16 @@ export class ProfesorComponent implements OnInit {
     }
     this.forma.setValue(a);
 
+    let estudiantesChescks: estudiante[] = [];
+    this.estudiantes.forEach(element => {
+      if (element.check) {
+        estudiantesChescks.push(element);
+      }
+    });
+
+    console.log(this.firstFormGroup.get("alertaSelect").value, estudiantesChescks, localStorage.getItem("1"));
+
+
 
     this.snackBar.open("Alerta creada", "Cerrar", {
       duration: 2000,
@@ -142,7 +152,7 @@ export class ProfesorComponent implements OnInit {
     if (aler !== "0") {
 
       this.controlBtn1 = false;
-      this.firstFormGroup.get("alertaSelect").setValue("correcto");
+      this.firstFormGroup.get("alertaSelect").setValue(aler);
       return;
     }
     this.controlBtn1 = true;
