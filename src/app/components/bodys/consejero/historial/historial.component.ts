@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialCComponent implements OnInit {
 
-  constructor() { }
+  numeroDePags: number[];
+  pagActual = 1;
+  constructor() {
+
+    this.numeroDePags = Array(2).fill(1, 2).map((x, i) => i);
+  }
 
   ngOnInit() {
+  }
+
+  cambioPag(index: number) {
+
+
   }
 
 }

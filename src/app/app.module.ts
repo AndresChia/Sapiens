@@ -50,7 +50,7 @@ import { HistorialComponent } from './components/bodys/director/historial/histor
 //servicios
 import { LogInService } from "./services/log-in.service";
 import { ConsultardemandaService } from "./services/consultardemanda.service";
-
+import { EstudianteRestService } from "./services/serviciosRest/estudiante-rest.service";
 
 //fonts
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -95,7 +95,7 @@ import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked
     HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatStepperModule
   ],
-  providers: [LogInService, ConsultardemandaService],
+  providers: [LogInService, ConsultardemandaService, EstudianteRestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

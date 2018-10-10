@@ -12,6 +12,7 @@ export interface clase {
     check?: boolean;
 }
 export interface consejero {
+    id?: string;
     nombre: string;
     cargo: string;
     areasInteres: string;

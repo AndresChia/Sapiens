@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LogInService } from "../../../services/log-in.service";
+import { EstudianteRestService } from "../../../services/serviciosRest/estudiante-rest.service";
 
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
-import { consejero } from "../../../interface/interfaces";
+import { consejero } from '../../../interface/interfaces';
 
 import { MatStepperModule } from '@angular/material/stepper';
 
@@ -33,31 +34,7 @@ export class EstudianteComponent implements OnInit {
     "Desbalance en la carga academíca", "Dificultades de aprendizaje", "Estrés académico"
   ];
   inicio = false;
-  consejeros: consejero[] = [
-    {
-      nombre: "Roberta",
-      cargo: "Profesor Asociado",
-      areasInteres: " Logística",
-      correo: "mcarrill@javeriana.edu.co",
-      horario: [
-        "Martes 4: 00 p.m. - 6: 00 p.m.",
-        "Miércoles 2: 00 p.m. - 4: 00 p.m.",
-        "Jueves  3: 00 p.m. - 4: 00 p.m.",
-        "lunes  5: 00 p.m. - 6: 00 p.m."
-      ]
-    },
-    {
-      nombre: "Carla",
-      cargo: "Profesor Asociado",
-      areasInteres: " Logística",
-      correo: "mcarrill@javeriana.edu.co",
-      horario: [
-        "Martes 4: 00 p.m. - 6: 00 p.m.",
-        "Miércoles 2: 00 p.m. - 4: 00 p.m.",
-        "Jueves  3: 00 p.m. - 4: 00 p.m."
-      ]
-    }
-  ];
+  consejeros: consejero[] = [];
 
   modal: consejero = {
     nombre: "",
@@ -70,11 +47,34 @@ export class EstudianteComponent implements OnInit {
 
   //funciones
   constructor(private appComponent: AppComponent, private router: Router, public snackBar: MatSnackBar,
-    private _LogInService: LogInService, private _formBuilder: FormBuilder) {
+    private _LogInService: LogInService, private _formBuilder: FormBuilder, private _EstudianteRestService: EstudianteRestService) {
 
     this.forma = new FormGroup({
       opcion: new FormControl()
     });
+
+    this._EstudianteRestService.obtenerConsejeros(1).subscribe(res => {
+
+      res.results.forEach(element => {
+        let consejeroAux: consejero = {
+          nombre: "",
+          cargo: "",
+          areasInteres: "",
+          correo: "",
+          horario: [],
+          id: "",
+        };
+        consejeroAux.correo = element.correo;
+        consejeroAux.horario = ["FALTA"];
+        consejeroAux.areasInteres = "FALTA";
+        consejeroAux.cargo = "FALTA";
+        consejeroAux.id = element.id;
+        consejeroAux.nombre = element.nombres;
+        this.consejeros.push(consejeroAux);
+      });
+      console.log(res.results[0]);
+    });
+
 
 
 
@@ -90,6 +90,7 @@ export class EstudianteComponent implements OnInit {
     });
 
 
+
   }
 
 
@@ -101,8 +102,6 @@ export class EstudianteComponent implements OnInit {
   agendar() {
 
     console.log(this.modal, localStorage.getItem("1"));
-
-
     console.log("Falta crear alerta");
     this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {

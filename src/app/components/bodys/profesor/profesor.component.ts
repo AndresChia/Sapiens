@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material';
 import { estudiante, clase } from "../../../interface/interfaces";
 import { LogInService } from '../../../services/log-in.service';
+import { ProfesorRestService } from '../../../services/serviciosRest/profesor-rest.service';
 
 
 @Component({
@@ -28,56 +29,33 @@ export class ProfesorComponent implements OnInit {
   alertas: string[] = ["Inasistencias de estudiante", "Problema con estudiante"];
   mostrarEstudiantes = false;
   mostrarTablas = false;
-  estudiantes: estudiante[] = [
-    {
-      nombre: "carlos",
-      apellido: "salda",
-      carrera: "sistemas",
-      semestre: 1,
-      check: false,
-
-    },
-    {
-      nombre: "pedro",
-      apellido: "salda",
-      carrera: "sistemas",
-      semestre: 2,
-      check: false,
-
-    },
-    {
-      nombre: "juan",
-      apellido: "salda",
-      carrera: "sistemas",
-      semestre: 1,
-      check: false,
-
-    }
-  ];
-  clases: clase[] = [
-    {
-      nombre: "calculo",
-      numeroEstudiantes: "23",
-      numero: "2355",
-      check: false,
-
-
-    }, {
-      nombre: "calculo",
-      numeroEstudiantes: "19",
-      numero: "2356",
-      check: false,
-
-    }
-  ];
+  estudiantes: estudiante[] = [];
+  clases: clase[] = [];
 
   activarModal = false;
 
 
-  constructor(private _LogInService: LogInService, public snackBar: MatSnackBar, private _formBuilder: FormBuilder) {
+  constructor(private _LogInService: LogInService, public snackBar: MatSnackBar, private _formBuilder: FormBuilder,
+    private _ProfesorRestService: ProfesorRestService) {
 
     this.forma = new FormGroup({
       opcion: new FormControl()
+    });
+
+    this._ProfesorRestService.obtenerClases(1).subscribe(res => {
+      let clasePro: clase = {
+        nombre: "",
+        numeroEstudiantes: "",
+        numero: "",
+        check: false,
+      };
+      res.results.forEach(element => {
+        clasePro.numero = element.codigo_clase;
+        clasePro.nombre = element.nombre_asignatura;
+        clasePro.numeroEstudiantes = element.numero_estudiantes;
+        this.clases.push(clasePro);
+      });
+      console.log(res.results[0]);
     });
 
 
@@ -137,6 +115,26 @@ export class ProfesorComponent implements OnInit {
   }
 
   seleccionClase(i: number) {
+
+    this._ProfesorRestService.obtenerEstudiantesDeClase(i).subscribe(res => {
+
+      res.results.forEach(element => {
+        let estudianteClase: estudiante = {
+          nombre: "",
+          apellido: "",
+          carrera: "",
+          semestre: undefined,
+          check: false,
+        };
+        estudianteClase.nombre = element.nombres;
+        estudianteClase.apellido = element.apellido;
+        estudianteClase.carrera = "FALTA";
+        estudianteClase.semestre = -1;
+        this.estudiantes.push(estudianteClase);
+      });
+      console.log(res.results[0]);
+    });
+
     // this.mostrarEstudiantes = true;
     this.claseSelecionada = i;
     this.controlBtn2 = false;

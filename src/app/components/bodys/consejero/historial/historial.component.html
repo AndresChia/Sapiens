@@ -77,10 +77,9 @@
 
 <nav aria-label="Page navigation example" style="display: flex;">
   <ul class="pagination, centrar">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    <li class="page-item"><a (click)="cambioPag(-1)" class="page-link" href="#">Previous</a></li>
+    <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a (click)="cambioPag(-1,i+1)" class="page-link"
+        href="#">{{i+1}}</a></li>
+    <li class="page-item"><a (click)="cambioPag(-2)" class="page-link" href="#">Next</a></li>
   </ul>
 </nav>
