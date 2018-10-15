@@ -4,21 +4,21 @@
   <div class="row">
     <div class="col-4">
       <label for="">Nombre estudiante</label>
-      <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      <input #nombre type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
       <label for="">Id del estudiante</label>
-      <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      <input #id type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
     </div>
     <div class="col-4">
 
 
       <label for="">Nombre Alerta</label>
-      <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      <input #alerta type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
 
       <label for="exampleFormControlSelect1">Origen de la alerta</label>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <select #origen class="form-control" id="exampleFormControlSelect1">
         <option>Seleccione una opción</option>
         <option>Sistema</option>
         <option>Profesor</option>
@@ -30,10 +30,10 @@
     </div>
     <div class="col-4">
       <label for="">Fecha de creacion de la alerta</label>
-      <input type="date" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      <input #fecha type="month" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
       <label for="exampleFormControlSelect1">Estado de alerta</label>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <select #estado class="form-control" id="exampleFormControlSelect1">
         <option>Seleccione una opción</option>
         <option>Remitida</option>
         <option>Atendida</option>
@@ -43,44 +43,47 @@
     </div>
   </div>
 
-  <button type="button" class="pull-right btn btn-primary m-4">Filtrar</button>
+  <button (click)="filtrar(nombre.value,id.value,alerta.value,origen.value,fecha.value,estado.value)" type="button"
+    class="pull-right btn btn-primary m-4">Filtrar</button>
 
 </div>
 
 
 <hr>
-<table class="table">
-  <thead class="bg-warning">
-    <tr>
-      <th>Nombre de estudiante</th>
-      <th>Id del estudiante</th>
-      <th>Nombre de alerta</th>
-      <th>Origen</th>
-      <th>Estado</th>
-      <th>Encargado Actual</th>
-      <th>Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row"></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td scope="row"></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
 
-<nav aria-label="Page navigation example" style="display: flex;">
-  <ul class="pagination, centrar">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+<div class="contenidoFiltro">
+  <table class="table">
+    <thead class="bg-warning">
+      <tr>
+        <th>Nombre de estudiante</th>
+        <th>Id del estudiante</th>
+        <th>Nombre de alerta</th>
+        <th>Origen</th>
+        <th>Estado</th>
+        <th>Encargado Actual</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row"></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td scope="row"></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example" style="display: flex;">
+    <ul class="pagination, centrar">
+      <li class="page-item"><a (click)="cambioPag(-1)" class="page-link" href="#">Previous</a></li>
+      <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a (click)="cambioPag(-1,i+1)" class="page-link"
+          href="#">{{i+1}}</a></li>
+      <li class="page-item"><a (click)="cambioPag(-2)" class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>

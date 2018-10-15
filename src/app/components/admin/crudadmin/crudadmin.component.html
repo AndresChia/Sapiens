@@ -11,7 +11,7 @@
   </div>
 
   <div class="opciones">
-    <button [ngClass]="{
+    <!-- <button [ngClass]="{
       'seleccionado':numeradorOpcion===1}" (click)="opcion(1)" type="button" class="btn bt1 boton"
       data-toggle="button" [routerLink]="[ 'crear' ]">Crear
       usuario</button>
@@ -26,7 +26,11 @@
     <button [ngClass]="{
       'seleccionado':numeradorOpcion===4}" (click)="opcion(4)" type="button" class="btn bt4 boton"
       data-toggle="button" [routerLink]="[ 'consultar' ]">Consultar
-      usuario</button>
+      usuario</button> -->
+    <button [ngClass]="{
+        'seleccionado':numeradorOpcion===5}" (click)="opcion(5)" type="button" class="btn bt4 boton"
+      data-toggle="button" [routerLink]="[ 'asociar' ]">Asociar rol usuario</button>
+
   </div>
 
   <div class="salir">

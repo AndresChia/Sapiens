@@ -53,8 +53,8 @@ export class EstudianteComponent implements OnInit {
       opcion: new FormControl()
     });
 
+    this.consejeros = [];
     this._EstudianteRestService.obtenerConsejeros(1).subscribe(res => {
-
       res.results.forEach(element => {
         let consejeroAux: consejero = {
           nombre: "",

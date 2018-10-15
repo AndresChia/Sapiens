@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historial.component.css']
 })
 export class HistorialCComponent implements OnInit {
-
+  filtro = false;
   numeroDePags: number[];
   pagActual = 1;
   constructor() {
@@ -19,6 +19,15 @@ export class HistorialCComponent implements OnInit {
 
   cambioPag(index: number) {
 
+
+  }
+
+
+  filtrar(nombre, id, alerta, origen, fecha, estado) {
+    if (nombre !== "" || id !== "" || alerta !== "" || origen !== "Seleccione una opción" || fecha !== ""
+      || estado !== "Seleccione una opción") {
+      this.filtro = true;
+    }
 
   }
 

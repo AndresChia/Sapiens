@@ -1,0 +1,71 @@
+<h2>Buscar</h2>
+<div class="form-group m-3">
+  <div class="row">
+    <div class="col-6">
+      <label for="">Nombre</label>
+      <input #nombre type="text" class="form-control" name="Nombre" id="" aria-describedby="helpId" placeholder="">
+
+      <label for="">Correo</label>
+      <input #correo type="text" class="form-control" name="Correo" id="" aria-describedby="helpId" placeholder="">
+    </div>
+
+    <div class="col-6">
+      <label for="">id</label>
+      <input #id type="text" class="form-control" name="id" id="" aria-describedby="helpId" placeholder="">
+      <br>
+      <button (click)="buscar(nombre.value,correo.value,id.value)" type="button" class="btn btn-primary pull-right m-2">Buscar</button>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div *ngIf="busqueda" class="contenidoBody">
+
+  <table class="table m-4">
+    <thead class="bg-warning">
+      <tr>
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol actual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [ngClass]="{
+        'table-active': persona.check === true
+        }" (click)="seleccionarCheck(i)" *ngFor="let persona of personas; let i=index"
+        style="cursor: pointer">
+        <td>{{persona.id}}</td>
+        <td>{{persona.nombre}}</td>
+        <td>{{persona.correo}}</td>
+        <td>{{persona.rol}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selecionado" class="selecion">
+    <div class="row ajuste">
+      <div class="col-6">
+        <h3 class="text-center">Actual</h3>
+        <div class="form-group m-3">
+          <input [(ngModel)]="actualRol" type="text" class="form-control" name="" id="" aria-describedby="helpId"
+            (placeholder)="actualRol" disabled>
+        </div>
+      </div>
+      <div class="col-6">
+        <h3 class="text-center">Cambio</h3>
+        <div class="form-group m-3">
+          <select class="form-control" name="" id="">
+            <option *ngFor="let rol of roles">{{rol}}</option>
+          </select>
+        </div>
+
+        <button (click)="cambiarRol()" type="button" class="btn btn-primary pull-right m-2">Confirmar</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>

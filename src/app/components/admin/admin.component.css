@@ -1,3 +1,15 @@
+.administrador {
+  width: 300px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1px 1px 1px 1px;
+  background: floralwhite;
+  color: cornflowerblue;
+  width: auto;
+}
+
+
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 

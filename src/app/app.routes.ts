@@ -10,7 +10,7 @@ import { DemandaComponent } from './components/bodys/director/demanda/demanda.co
 import { HistorialComponent } from './components/bodys/director/historial/historial.component';
 import { AlertasComponent } from './components/bodys/director/alertas/alertas.component';
 import { HistorialCComponent } from './components/bodys/consejero/historial/historial.component';
-
+import { AsociarrolComponent } from "./components/admin/crudadmin/asociar/asociarrol/asociarrol.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { ConsultaDemandaComponent } from "./components/bodys/director/demanda/consulta-demanda/consulta-demanda.component";
 import { BuscarComponent } from './components/bodys/consejero/buscar/buscar.component';
@@ -58,6 +58,7 @@ const ROUTES: Routes = [
             { path: 'eliminar', component: EliminarComponent },
             { path: 'editar', component: EditarComponent },
             { path: 'consultar', component: ConsultarComponent },
+            { path: 'asociar', component: AsociarrolComponent },
             { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
         ]

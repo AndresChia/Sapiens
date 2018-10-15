@@ -42,3 +42,18 @@ export interface usuario {
     contrasenia: string;
     load: boolean;
 }
+export interface persona {
+
+    id: number;
+    nombre: string;
+    apellido: string;
+    identificacion: string;
+    tipoIdentificacion: string;
+    genero: string;
+    direccion: string;
+    correo: string;
+    telefono: string;
+    rol: string;
+    check?: boolean;
+
+}
