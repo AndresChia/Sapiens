@@ -14,6 +14,9 @@ import { ProfesorRestService } from '../../../services/serviciosRest/profesor-re
 })
 export class ProfesorComponent implements OnInit {
 
+  asc = true;
+  tablaActual = undefined;
+  indiceActual = -1;
   claseSelecionada = 0;
   controlBtn1 = true;
   controlBtn2 = true;
@@ -33,6 +36,7 @@ export class ProfesorComponent implements OnInit {
   clases: clase[] = [];
 
   activarModal = false;
+  colOrdenAnteri = 0;
 
 
   constructor(private _LogInService: LogInService, public snackBar: MatSnackBar, private _formBuilder: FormBuilder,
@@ -55,7 +59,7 @@ export class ProfesorComponent implements OnInit {
         clasePro.numeroEstudiantes = element.numero_estudiantes;
         this.clases.push(clasePro);
       });
-      console.log(res.results[0]);
+      // console.log(res.results[0]);
     });
 
 
@@ -90,7 +94,7 @@ export class ProfesorComponent implements OnInit {
 
   //FIXME: crear alerta
   alertar() {
-    console.log("falta crear la alerta");
+    // console.log("falta crear la alerta");
 
     let a: object = {
       opcion: 0
@@ -104,7 +108,7 @@ export class ProfesorComponent implements OnInit {
       }
     });
 
-    console.log(this.firstFormGroup.get("alertaSelect").value, estudiantesChescks, localStorage.getItem("1"));
+    // console.log(this.firstFormGroup.get("alertaSelect").value, estudiantesChescks, localStorage.getItem("1"));
 
 
 
@@ -132,7 +136,7 @@ export class ProfesorComponent implements OnInit {
         estudianteClase.semestre = -1;
         this.estudiantes.push(estudianteClase);
       });
-      console.log(res.results[0]);
+      // console.log(res.results[0]);
     });
 
     // this.mostrarEstudiantes = true;
@@ -144,7 +148,7 @@ export class ProfesorComponent implements OnInit {
 
   elegirAlerta(aler: string) {
 
-    console.log(aler);
+    // console.log(aler);
     //console.log(this.forma.get("opcion"));
 
     if (aler !== "0") {
@@ -158,4 +162,54 @@ export class ProfesorComponent implements OnInit {
 
   }
 
+  ordenar(n: number, id: string) {
+    this.tablaActual = id;
+    this.indiceActual = n;
+
+    if (n !== this.indiceActual) {
+      this.asc = true;
+    } else {
+      this.asc = !this.asc;
+    }
+    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById(id);
+    switching = true;
+    if (this.asc) {
+      dir = "asc";
+    } else {
+      dir = "desc";
+    }
+    while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+        if (dir === "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir === "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount++;
+      } else {
+        if (switchcount === 0 && dir === "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+
+
+  }
 }

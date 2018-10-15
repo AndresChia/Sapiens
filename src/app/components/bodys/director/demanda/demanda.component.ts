@@ -73,7 +73,7 @@ export class DemandaComponent implements OnInit {
 
     //FIXME: falta crear la consulta y mostrarla en otra tabla
     crearConsulta() {
-        console.log("falta crear donde ver la consulta y cargarla");
+        // console.log("falta crear donde ver la consulta y cargarla");
 
         this._ConsultardemandaService.cargar(JSON.stringify(this.busqueda));
 

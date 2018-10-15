@@ -77,7 +77,7 @@ export class BuscarComponent implements OnInit {
   //FIXME:
   buscar(nombre: string, correo: string) {
 
-    console.log("Falta buscar las alertas y ponerlas en la tabla");
+    // console.log("Falta buscar las alertas y ponerlas en la tabla");
     if (this.forma.get("nombre").value !== "" || this.forma.get("correo").value !== "") {
       this.busquedaBool = true;
       this.mostrar = false;
@@ -91,7 +91,7 @@ export class BuscarComponent implements OnInit {
 
 
 
-    console.log($element);
+    // console.log($element);
     $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   }
 

@@ -39,6 +39,7 @@ export class AsociarrolComponent implements OnInit {
 
   }
   seleccionarCheck(index: number) {
+    this.roles = [];
 
     for (let i = 0; i < this.personas.length; i++) {
       if (i !== index) {

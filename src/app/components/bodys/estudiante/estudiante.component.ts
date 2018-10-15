@@ -72,7 +72,7 @@ export class EstudianteComponent implements OnInit {
         consejeroAux.nombre = element.nombres;
         this.consejeros.push(consejeroAux);
       });
-      console.log(res.results[0]);
+      // console.log(res.results[0]);
     });
 
 
@@ -101,8 +101,8 @@ export class EstudianteComponent implements OnInit {
   //FIXME: Falta crear la alerta
   agendar() {
 
-    console.log(this.modal, localStorage.getItem("1"));
-    console.log("Falta crear alerta");
+    // console.log(this.modal, localStorage.getItem("1"));
+    // console.log("Falta crear alerta");
     this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {
       duration: 2000,
@@ -113,7 +113,7 @@ export class EstudianteComponent implements OnInit {
 
   elegirAlerta(aler: string) {
 
-    console.log(aler);
+    // console.log(aler);
     //console.log(this.forma.get("opcion"));
 
     if (aler !== "Seleccion una opción") {
@@ -129,7 +129,7 @@ export class EstudianteComponent implements OnInit {
 
   SelecionarConsejero(i: number) {
 
-    console.log(i);
+    // console.log(i);
     this.consejeroSelecionado = i;
 
     this.controlBtn2 = false;

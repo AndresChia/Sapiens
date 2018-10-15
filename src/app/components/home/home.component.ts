@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
   login(usuario: string, contrasenia: string) {
-    console.log(usuario, contrasenia)
+    // console.log(usuario, contrasenia)
     if (usuario !== "" && contrasenia !== "") {
       this._LogInService.iniciarSesion(contrasenia, usuario);
       this.valido = false;

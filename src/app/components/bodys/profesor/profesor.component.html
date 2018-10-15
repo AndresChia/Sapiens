@@ -34,9 +34,18 @@
         <table id="tablaClases" class="table table-hover">
           <thead class=" bg-warning">
             <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Numero</th>
-              <th scope="col">Numero de estudiantes</th>
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaClases' && indiceActual === 0 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaClases' && indiceActual === 0 && asc===false,
+                              'fa': indiceActual === 0 }"
+                style="cursor: pointer" (click)="ordenar(0,'tablaClases')" scope="col">Nombre </th>
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaClases' && indiceActual === 1 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaClases' && indiceActual === 1 && asc===false,
+                              'fa': indiceActual === 1 }"
+                style="cursor: pointer" (click)="ordenar(1,'tablaClases')" scope="col">Numero</th>
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaClases' && indiceActual === 2 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaClases' && indiceActual === 2 && asc===false,
+                              'fa': indiceActual === 2 }"
+                style="cursor: pointer" (click)="ordenar(2,'tablaClases')" scope="col">Numero de estudiantes</th>
             </tr>
           </thead>
           <tbody>
@@ -70,10 +79,23 @@
         <table id="tablaEstudiantes" class="table table-hover">
           <thead class=" bg-warning">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Semestre</th>
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaEstudiantes' && indiceActual === 0 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaEstudiantes' && indiceActual === 0 && asc===false,
+                              'fa': indiceActual === 0 }"
+                style="cursor: pointer" aria-hidden="true" (click)="ordenar(0,'tablaEstudiantes')" scope="col">#</th>
+
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaEstudiantes' && indiceActual === 1 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaEstudiantes' && indiceActual === 1 && asc===false,
+                              'fa': indiceActual === 1 }"
+                style="cursor: pointer" aria-hidden="true" (click)="ordenar(1,'tablaEstudiantes')" scope="col">Nombre</th>
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaEstudiantes' && indiceActual === 2 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaEstudiantes' && indiceActual === 2 && asc===false,
+                              'fa': indiceActual === 2 }"
+                style="cursor: pointer" (click)="ordenar(2,'tablaEstudiantes')" scope="col">Apellido</th>
+              <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaEstudiantes' && indiceActual === 3 && asc===true,
+                              'fa-sort-desc': tablaActual === 'tablaEstudiantes' && indiceActual === 3 && asc===false,
+                              'fa': indiceActual === 3 }"
+                style="cursor: pointer" (click)="ordenar(3,'tablaEstudiantes')" scope="col">Semestre</th>
             </tr>
           </thead>
           <tbody>
