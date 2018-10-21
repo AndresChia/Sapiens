@@ -58,6 +58,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 //pipes
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
 import { AsociarrolComponent } from './components/admin/crudadmin/asociar/asociarrol/asociarrol.component';
+import { InformacionComponent } from './components/bodys/director/alertas/informacion/informacion.component';
 
 
 
@@ -90,7 +91,8 @@ import { AsociarrolComponent } from './components/admin/crudadmin/asociar/asocia
     HistorialComponent,
     AlertasComponent,
     HistorialCComponent,
-    AsociarrolComponent
+    AsociarrolComponent,
+    InformacionComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

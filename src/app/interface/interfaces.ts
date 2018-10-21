@@ -57,3 +57,26 @@ export interface persona {
     check?: boolean;
 
 }
+export interface anotacion {
+    responsable: string;
+    anotacion: string;
+    alerta: string;
+    fecha: string;
+
+}
+
+export interface datosAcademicos {
+    semestre: string;
+    creditosAprobados: string;
+    creditosRetirados: string;
+    promedio: string;
+
+}
+
+export interface alertaSemestre {
+    fecha: string;
+    semestre: string;
+    alerta: string;
+    creador: string;
+
+}

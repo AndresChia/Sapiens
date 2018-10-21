@@ -1,36 +1,3 @@
-<!-- <div class="menuHome" *ngIf="!_LogInService.usuario.acceso && (_LogInService.usuario.tipo!='admin')">
-  <div class="menuHome row ">
-    <div class="col-sm-6">
-      <a href="#">
-        <img src="./assets/javerianaLogo.png" class="rounded " alt="lohojaveriana">
-      </a>
-    </div>
-    <div class="col-sm-6 text-right">
-      <a href="#">
-        <img src="./assets/sapiensLogo.jpg" class=" rounded " alt="logosapiensa" style="width:235px;height:80px;">
-      </a>
-    </div>
-    <div class="container-fluid navtopdiv">
-    </div>
-  </div>
-  <div class="d-flex flex-row-reverse bd-highlight " style=" background-color: #000167;">
-    <div class="logIn">
-      <form class="form-inline m-2">
-        <div class="form-group mb-2">
-          <label for="correo" class="sr-only">Email</label>
-          <input #correo type="text" class="form-control" id="correo" placeholder="Correo">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="contrasena" class="sr-only">Password</label>
-          <input #clave type="password" class="form-control" id="contrasena" placeholder="Contraseña">
-        </div>
-        <button (click)="login(clave.value,correo.value)" type="button" class="btn btn-primary mb-2 ">Ingresar</button>
-      </form>
-    </div>
-  </div>
-  <app-carousel></app-carousel>
-</div> -->
-
 <div class="sesionActiva" *ngIf="_LogInService.usuario.acceso && _LogInService.usuario.tipo != 'admin' ">
   <div class="inicio text-white " style=" background-color: #000167;height: 81px;">
     <div class="row" style="

@@ -22,7 +22,8 @@ import { EliminarComponent } from './components/admin/crudadmin/eliminar/elimina
 import { EditarComponent } from './components/admin/crudadmin/editar/editar.component';
 import { ConsultarComponent } from './components/admin/crudadmin/consultar/consultar.component';
 import { HomeComponent } from './components/home/home.component';
-import { empty } from 'rxjs';
+import { InformacionComponent } from './components/bodys/director/alertas/informacion/informacion.component';
+import { from } from 'rxjs';
 const ROUTES: Routes = [
     {
         path: 'consejero', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
@@ -43,6 +44,7 @@ const ROUTES: Routes = [
             { path: 'historial', component: HistorialComponent },
             { path: 'alertas', component: AlertasComponent },
             { path: 'ia', component: IaComponent },
+            { path: 'informacion', component: InformacionComponent },
             { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
 

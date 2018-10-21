@@ -47,6 +47,7 @@
             <th scope="col">apellido</th>
             <th scope="col">semestre</th>
             <th scope="col">Responsable</th>
+            <th scope="col">Información</th>
 
           </tr>
         </thead>
@@ -60,6 +61,7 @@
             <td>{{estudiante.apellido}}</td>
             <td>{{estudiante.semestre}}</td>
             <td>Nombre profesor</td>
+            <td class="text-center"><a target="_blank" class="fa fa-search" [routerLink]="[ '/director','informacion' ]"></a></td>
 
           </tr>
         </tbody>

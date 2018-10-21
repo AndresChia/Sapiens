@@ -13,6 +13,26 @@ hr {
 
 }
 
+
+.BotonScrollAnterior {
+
+  position: fixed;
+  left: 0;
+  top: 50%;
+  display: inline-grid;
+
+}
+
+.BotonScrollSiguiente {
+
+  position: fixed;
+  right: 0;
+  top: 50%;
+  display: inline-grid;
+
+}
+
+
 .card {
   width: 100%;
   height: 250px;

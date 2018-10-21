@@ -1,10 +1,22 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<div *ngIf=" _LogInService.usuario.tipo!=='director'" class="espacio">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<div *ngIf="_LogInService.usuario.tipo==='director'" class="director">
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-center">Bienvenido {{_LogInService.usuario.nombreUsuario}}</h1>
+    </div>
+  </div>
+
+</div>

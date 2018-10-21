@@ -22,7 +22,7 @@ export class EstudianteComponent implements OnInit {
   consejeroSelecionado = 0;
   controlBtn1 = true;
   controlBtn2 = true;
-
+  mostrar = true;
   alertaSelect = new FormControl();
 
   forma: FormGroup;
@@ -145,6 +145,14 @@ export class EstudianteComponent implements OnInit {
 
   }
 
+  scrollToElementSiguiente() {
+
+  }
+
+  scrollToElementAnterior() {
+
+
+  }
 
 }
 

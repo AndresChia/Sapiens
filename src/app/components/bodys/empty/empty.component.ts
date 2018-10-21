@@ -10,11 +10,11 @@ import { Router, Route } from '@angular/router';
 })
 export class EmptyComponent implements OnInit {
 
-  constructor(private _LogInService: LogInService, private router: Router) {
+  constructor(public _LogInService: LogInService, private router: Router) {
 
     if (_LogInService.usuario.acceso) {
       if (_LogInService.usuario.tipo === "consejero") {
-        router.navigate(["consejero"]);
+        router.navigate(["consejero", "buscar"]);
       }
       if (_LogInService.usuario.tipo === "estudiante") {
         router.navigate(["estudiante"]);
