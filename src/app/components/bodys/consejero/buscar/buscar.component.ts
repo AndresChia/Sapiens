@@ -5,6 +5,7 @@ import { ConsejeroComponent } from "../consejero.component";
 import { LogInService } from '../../../../services/log-in.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { alertaSemestre, anotacion, datosAcademicos } from 'src/app/interface/interfaces';
 
 @Component({
   selector: 'app-buscar',
@@ -17,8 +18,6 @@ export class BuscarComponent implements OnInit {
   remitirValor = true;
   checkFecha = false;
   url: string;
-
-  historialAlerta;
   busquedaBool = false;
 
 
@@ -51,6 +50,33 @@ export class BuscarComponent implements OnInit {
       semestre: 1
     }
   ];
+
+
+  historialAlerta: alertaSemestre[] = [{
+    fecha: "10/10/2018",
+    semestre: "1",
+    alerta: "cear",
+    creador: "carlos",
+  }
+
+  ];
+  anotaciones: anotacion[] = [{
+
+    responsable: "carlos",
+    anotacion: "string",
+    alerta: "adadah adioooiads ",
+    fecha: "10/10/2018",
+
+  }];
+  datosAcademicos: datosAcademicos[] = [{
+    creditosAprobados: "20",
+    creditosRetirados: "0",
+    promedio: "3.5",
+    semestre: "1",
+  }];
+
+
+
 
   constructor(private _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router,
     public snackBar: MatSnackBar) {

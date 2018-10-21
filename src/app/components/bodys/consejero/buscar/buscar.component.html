@@ -112,12 +112,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr (click)="seleccionar(i)" *ngFor=" let i= index" style="cursor: pointer">
+          <tr (click)="seleccionar(i)" *ngFor="let datoAcademico of datosAcademicos ;let i= index" style="cursor: pointer">
             <th scope="row">{{i+1}}</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>Otto</td>
+            <td>{{datoAcademico.semestre}}</td>
+            <td>{{datoAcademico.creditosAprobados}}</td>
+            <td>{{datoAcademico.creditosRetirados}}</td>
+            <td>{{datoAcademico.promedio}}</td>
           </tr>
         </tbody>
       </table>
@@ -143,10 +143,10 @@
         <tbody>
           <tr *ngFor="let historial of historialAlerta, let i= index" style="cursor: pointer">
             <th scope="row">{{i+1}}</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Otto</td>
+            <td>{{historial.fecha}}</td>
+            <td>{{historial.semestre}}</td>
+            <td>{{historial.alerta}}</td>
+            <td>{{historial.creador}}</td>
           </tr>
         </tbody>
       </table>
