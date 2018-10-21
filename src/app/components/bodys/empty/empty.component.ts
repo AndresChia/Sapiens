@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AppComponent } from "../../../app.component";
 import { LogInService } from '../../../services/log-in.service';
 import { Router, Route } from '@angular/router';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-empty',
@@ -9,6 +10,7 @@ import { Router, Route } from '@angular/router';
   styleUrls: ['./empty.component.css']
 })
 export class EmptyComponent implements OnInit {
+
 
   constructor(public _LogInService: LogInService, private router: Router) {
 

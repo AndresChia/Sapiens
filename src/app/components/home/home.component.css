@@ -30,10 +30,15 @@
 /*//////////////////////////////////////////////////////////////////
   [ RESTYLE TAG ]*/
 
-* {
+/* * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+} */
+
+.modal {
+  margin-top: 10%;
+
 }
 
 body,
@@ -141,7 +146,7 @@ textarea:-ms-input-placeholder {
 button {
   outline: none !important;
   border: none;
-  background: transparent;
+  /* background: transparent; */
 }
 
 button:hover {

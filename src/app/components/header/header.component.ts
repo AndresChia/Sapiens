@@ -17,18 +17,52 @@ export class HeaderComponent implements OnInit {
 
   constructor(public _LogInService: LogInService, private router: Router) {
     _LogInService.sesionActiva();
+    let URLactual = (window.location.hash).split("/");
+
+    if (this._LogInService.usuario.tipo === "consejero") {
+      if (URLactual[2] === "buscar") {
+        //buscar
+        this.numeradorOpcion = 1;
+      }
+
+      if (URLactual[2] === "historial") {
+        //historial
+        this.numeradorOpcion = 2;
+
+      }
+
+    }
+    if (this._LogInService.usuario.tipo === "director") {
+      if (URLactual[2] === "demanda") {
+        //demanda
+        this.numeradorOpcion = 4;
+      }
+
+      if (URLactual[2] === "alertas") {
+        //alertas
+        this.numeradorOpcion = 5;
+      }
+      if (URLactual[2] === "historial") {
+        //historial
+        this.numeradorOpcion = 6;
+
+
+      }
+      if (URLactual[2] === "ia") {
+        //ia
+        this.numeradorOpcion = 7;
+
+      }
+
+    }
+
+
+
   }
 
   ngOnInit() {
   }
 
-  //FIXME:  cambiar correo por si es tipo estudiantes, consejero etc
-  login(clave: string, correo: string) {
-    this.numeradorOpcion = 0;
-    this._LogInService.iniciarSesion(clave, correo);
-    this.activo = true;
-
-  }
   salir() {
     this.numeradorOpcion = 0;
     this._LogInService.cerrarSesion();
@@ -76,8 +110,6 @@ export class HeaderComponent implements OnInit {
 
     }
   }
-
-
 
 
 }

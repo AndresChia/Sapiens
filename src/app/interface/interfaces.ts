@@ -41,6 +41,7 @@ export interface usuario {
     nombreUsuario: string;
     contrasenia: string;
     load: boolean;
+    check?: boolean;
 }
 export interface persona {
 

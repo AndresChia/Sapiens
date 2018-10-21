@@ -26,7 +26,8 @@
 
 
       <div class="container-login100-form-btn">
-        <button type="button" (click)="login(usuario.value ,contrasenia.value )" class="login100-form-btn">
+        <button type="button" data-toggle="modal" data-target="#exampleModal" (click)="login(usuario.value ,contrasenia.value )"
+          class="login100-form-btn">
           Iniciar sesión
         </button>
         <span class="txt1">
@@ -46,4 +47,38 @@
   </div>
 
 
+</div>
+
+<!-- Modal -->
+<div *ngIf="modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Selección de rol</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div *ngFor="let rol of roles,let i=index" class="card m-3">
+          <a style="cursor: pointer" (click)="seleccionar(i)">
+            <div class="card-body">
+              <div class="form-check">
+                <input [(ngModel)]="rol.check" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">{{rol.tipo}}</label>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button (click)="loginDobleRol(usuario.value ,contrasenia.value)" type="button" class="btn btn-primary"
+          data-dismiss="modal">Confirmar</button>
+      </div>
+    </div>
+  </div>
 </div>

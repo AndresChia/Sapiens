@@ -86,6 +86,15 @@ export class LogInService {
     this.opcion = true;
   }
 
-
-
+  iniciarSesionDobleRol(contrasenia: string, usur: string, tipo: string) {
+    this.opcion = false;
+    this.usuario.acceso = true;
+    this.usuario.nombreUsuario = usur;
+    this.usuario.contrasenia = contrasenia;
+    this.usuario.load = true;
+    this.usuario.tipo = tipo;
+    localStorage.setItem("1", JSON.stringify(this.usuario));
+    //console.log(this.usuario.nombreUsuario, this.usuario.id);
+    this.router.navigate(["/" + this.usuario.tipo]);
+  }
 }
