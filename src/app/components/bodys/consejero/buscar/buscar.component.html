@@ -152,17 +152,8 @@
       </table>
     </div>
   </div>
-  <br>
-  <hr #anotaciones>
-  <br>
-  <br>
-  <div class="anotacionesAdicion form-group m-2">
-    <label for="anotacion">Anotaciones:</label>
-    <textarea class="form-control" name="anotacion" id="anotacion" rows="6"></textarea>
-  </div>
-  <br>
+  <br #anotaciones>
   <hr>
-  <br>
   <br>
   <button (click)="ActivarModalAtender()" name="atender" id="atender" class="btn btn-success m-1 pull-right"
     data-toggle="modal" data-target="#myModal-Atender">Atender</button>
@@ -170,32 +161,30 @@
     data-toggle="modal" data-target="#myModal-Escalar">Escalar</button>
   <button (click)="ActivarModalRemitir()" name="remitir" id="remitir" class="btn btn-primary m-1 pull-right"
     data-toggle="modal" data-target="#myModal-Remitir">Remitir</button>
-  <br>
-  <br>
-  <br>
-  <br>
 
+  <br>
+  <br>
 </div>
 
 
 <div [ngClass]="{'mostrarBtn': mostrar===true,
 'ocultarBtn': mostrar===false}" class="BotonScroll ">
 
-  <button class="botton btn-outline-danger fa fa-arrow-up" (click)="scrollToElementInicio()" name="buttondemograficos"
-    href="#buscarEstudiante" role="button">
+  <button class="botton btn-danger fa fa-arrow-up" (click)="scrollToElementInicio()" name="buttondemograficos" href="#buscarEstudiante"
+    role="button">
   </button>
 
-  <button class="botton btn-outline-primary fa fa-address-card" (click)="scrollToElement(demograficos)" name="buttondemograficos"
+  <button class="botton btn-primary fa fa-address-card" (click)="scrollToElement(demograficos)" name="buttondemograficos"
     href="#demograficos" role="button">
   </button>
 
-  <button class="botton btn-outline-primary fas fa-chalkboard-teacher" (click)="scrollToElement(academicos)" name="buttondemograficos"
+  <button class="botton btn-primary fas fa-chalkboard-teacher" (click)="scrollToElement(academicos)" name="buttondemograficos"
     href="#academicos" role="button">
   </button>
-  <button class="botton btn-outline-primary fa fa-exclamation-triangle" (click)="scrollToElement(histoAlertas)" name="buttondemograficos"
+  <button class="botton btn-primary fa fa-exclamation-triangle" (click)="scrollToElement(histoAlertas)" name="buttondemograficos"
     href="#histoAlertas" role="button">
   </button>
-  <button class="botton btn-outline-primary fas fa-file-signature" (click)="scrollToElement(anotaciones)" name="buttondemograficos"
+  <button class="botton btn-primary fas fa-file-signature" (click)="scrollToElement(anotaciones)" name="buttondemograficos"
     href="#anotaciones" role="button">
   </button>
 
@@ -232,6 +221,13 @@
             <option>Media</option>
             <option>Baja</option>
           </select>
+
+          <div class="anotacionesAdicion form-group">
+            <label for="anotacion">Anotaciones:</label>
+            <textarea class="form-control" name="anotacion" id="anotacion" rows="3"></textarea>
+          </div>
+
+
         </div>
         <div class="row">
           <div class="col-sm-6">
@@ -283,7 +279,14 @@
           </select>
         </form>
 
-        ¿Está seguro de escalar la alerta?
+        <div class="anotacionesAdicion form-group">
+          <label for="anotacion">Anotaciones:</label>
+          <textarea class="form-control" name="anotacion" id="anotacion" rows="3"></textarea>
+        </div>
+
+
+        <h5 class="text-center"> ¿Está seguro de escalar la alerta?</h5>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -320,6 +323,9 @@
           <label for="conclucion">Conclusión de la alerta</label>
           <textarea class="form-control" name="conclucion" id="conclucion" rows="3"></textarea>
         </div>
+
+
+
 
         <label class="form-check-label m-4">
           <input (click)="check()" #seguimi class="form-check-input" type="checkbox" name="seguimi" id="seguimi" value="checkedValue">

@@ -135,7 +135,9 @@ export class EstudianteComponent implements OnInit {
     this.controlBtn2 = false;
     this.modal = this.consejeros[i - 1];
     this.secondFormGroup.get("consejeroSelect").setValue("correcto");
+    let x = document.getElementsByTagName("body");
 
+    window.scrollTo(0, x[0].clientHeight);
   }
 
   subirPantalla() {
