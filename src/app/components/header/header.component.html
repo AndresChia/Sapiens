@@ -1,82 +1,81 @@
 <div class="sesionActiva" *ngIf="_LogInService.usuario.acceso && _LogInService.usuario.tipo != 'admin' ">
   <div class="inicio text-white " style=" background-color: #000167;height: 81px;">
-    <div class="row" style="
-    height: 88px;
-    width: 1364px;
-  ">
-      <div class="col-4">
-        <img src="../../../assets/sapiensLogo.png" alt="" style="height: 47%;">
-      </div>
-      <div class="col-4">
-        <div *ngIf="_LogInService.usuario.tipo==='consejero'" class="consejero botones">
-          <div class="container">
-            <div class="row justify-content-md-center">
-              <div class="col-sm">
-                <button [ngClass]="{
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <img src="../../../assets/sapiensLogo.png" alt="" style="height: 100%;">
+        </div>
+        <div class="col">
+          <div *ngIf="_LogInService.usuario.tipo==='consejero'" class="consejero botones">
+            <div class="container">
+              <div class="row justify-content-md-center">
+                <div class="col-sm">
+                  <button [ngClass]="{
                   'seleccionado':numeradorOpcion===1}" (click)="opcion(1)" type="button"
-                  class="botonOpcion btn-block">Buscar</button>
-                <hr *ngIf="numeradorOpcion===1">
-              </div>
-              <div class="col-sm">
-                <button [ngClass]="{
+                    class="botonOpcion btn-block">Buscar</button>
+                  <hr *ngIf="numeradorOpcion===1">
+                </div>
+                <div class="col-sm">
+                  <button [ngClass]="{
                   'seleccionado':numeradorOpcion===2}" (click)="opcion(2)" type="button"
-                  class="botonOpcion btn-block">Historial</button>
-                <hr *ngIf="numeradorOpcion===2">
-              </div>
+                    class="botonOpcion btn-block">Historial</button>
+                  <hr *ngIf="numeradorOpcion===2">
+                </div>
 
+              </div>
             </div>
           </div>
-        </div>
-        <div *ngIf="_LogInService.usuario.tipo==='director'" class="director botones">
-          <div class="container">
-            <div class="row justify-content-md-center">
-              <div class="col-sm">
-                <button [ngClass]="{
+          <div *ngIf="_LogInService.usuario.tipo==='director'" class="director botones">
+            <div class="container">
+              <div class="row justify-content-md-center">
+                <div class="col-sm">
+                  <button [ngClass]="{
                       'seleccionado':numeradorOpcion===4}" (click)="opcion(4)"
-                  type="button" class="botonOpcion btn-block">Demanda</button>
-                <hr *ngIf="numeradorOpcion===4">
-              </div>
-              <div class="col-sm">
-                <button [ngClass]="{
+                    type="button" class="botonOpcion btn-block">Demanda</button>
+                  <hr *ngIf="numeradorOpcion===4">
+                </div>
+                <div class="col-sm">
+                  <button [ngClass]="{
                       'seleccionado':numeradorOpcion===5}" (click)="opcion(5)"
-                  type="button" class="botonOpcion btn-block">Alertas</button>
-                <hr *ngIf="numeradorOpcion===5">
-              </div>
-              <div class="col-sm">
-                <button [ngClass]="{
+                    type="button" class="botonOpcion btn-block">Alertas</button>
+                  <hr *ngIf="numeradorOpcion===5">
+                </div>
+                <div class="col-sm">
+                  <button [ngClass]="{
                       'seleccionado':numeradorOpcion===6}" (click)="opcion(6)"
-                  type="button" class="botonOpcion btn-block">Historial</button>
-                <hr *ngIf="numeradorOpcion===6">
-              </div>
-              <div class="col-sm">
-                <button [ngClass]="{
+                    type="button" class="botonOpcion btn-block">Historial</button>
+                  <hr *ngIf="numeradorOpcion===6">
+                </div>
+                <div class="col-sm">
+                  <button [ngClass]="{
                         'seleccionado':numeradorOpcion===7}" (click)="opcion(7)"
-                  type="button" class="botonOpcion btn-block">Predicción</button>
-                <hr *ngIf="numeradorOpcion===7">
+                    type="button" class="botonOpcion btn-block">Predicción</button>
+                  <hr *ngIf="numeradorOpcion===7">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-4 ">
-        <div class="datos " style="padding-top: 15px">
+        <div class="col">
+          <div class="datos " style="padding-top: 15px">
 
-          <div class="row pull-right">
-            <div class="col-auto m-1" style="padding-top: 4px">
-              <h6>Nombre del usuario</h6>
+            <div class="row pull-right">
+              <div class="col-auto m-1" style="padding-top: 4px">
+                <h6>Nombre del usuario</h6>
+              </div>
+              <div class="col-auto salirBtn">
+                <a style="cursor: pointer;" (click)="salir()">
+                  <img src="../../../assets/salir.png">
+                </a>
+              </div>
             </div>
-            <div class="col-auto salirBtn">
-              <a style="cursor: pointer;" (click)="salir()">
-                <img src="../../../assets/salir.png">
-              </a>
-            </div>
+
+
+
+
+
+
           </div>
-
-
-
-
-
-
         </div>
       </div>
     </div>
