@@ -14,6 +14,12 @@ import { ProfesorRestService } from '../../../services/serviciosRest/profesor-re
 })
 export class ProfesorComponent implements OnInit {
 
+  mensaje = {
+    cuerpo: "",
+    titulo: ""
+  }
+
+
   asc = true;
   tablaActual = undefined;
   indiceActual = -1;
@@ -34,7 +40,7 @@ export class ProfesorComponent implements OnInit {
   mostrarTablas = false;
   estudiantes: estudiante[] = [];
   clases: clase[] = [];
-
+  alertaPopUp = false;
   activarModal = false;
   colOrdenAnteri = 0;
 
@@ -60,9 +66,15 @@ export class ProfesorComponent implements OnInit {
         this.clases.push(clasePro);
       });
       // console.log(res.results[0]);
+    }, error => {
+      // this._LogInService.cerrarSesion()
+      this.alertaPopUp = true;
+      // tslint:disable-next-line:max-line-length
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 3000);
     });
 
-    let a;
 
   }
   ngOnInit() {
@@ -137,8 +149,14 @@ export class ProfesorComponent implements OnInit {
         this.estudiantes.push(estudianteClase);
       });
       // console.log(res.results[0]);
+    }, error => {
+      // this._LogInService.cerrarSesion()
+      this.alertaPopUp = true;
+      // tslint:disable-next-line:max-line-length
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function (_LogInService: LogInService) { this._LogInService.cerrarSesion() }, 3000);
     });
-
     // this.mostrarEstudiantes = true;
     this.claseSelecionada = i;
     this.controlBtn2 = false;

@@ -7,7 +7,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,15 +33,12 @@ export class EstudianteRestService {
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('ERROR DEL CLIENTE :', errorResponse.error.message);
-      // tslint:disable-next-line:max-line-length
-      window.alert('ERROR DEL CLIENTE :\nEn este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.');
     } else {
       console.error('ERROR DEL SERVIDOR :', errorResponse);
-      // tslint:disable-next-line:max-line-length
-      window.alert('ERROR DEL SERVIDOR :\nEn este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.');
     }
     // return an observable with a meaningful error message to the end user
-    return throwError('EN ESTE MOMENTO TENEMOS PROBLEMAS CON EL SERVICIO. SERA NOTIFICADO CUANDO FUNCIONE. POR FAVOR INTENTE DE NUEVO.')
+    // tslint:disable-next-line:max-line-length
+    return Observable.throw('EN ESTE MOMENTO TENEMOS PROBLEMAS CON EL SERVICIO. SERA NOTIFICADO CUANDO FUNCIONE. POR FAVOR INTENTE DE NUEVO.')
   }
 
 }

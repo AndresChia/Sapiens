@@ -1,3 +1,28 @@
 .checkContent {
   text-align: center;
 }
+
+.popUp {
+  position: absolute;
+  top: 50%;
+  width: 90%;
+  text-align: center;
+
+}
+
+.fondoNegro {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+
+}
+
+.alert-danger {
+  top: 50%;
+  color: #ffffff;
+  background-color: #9e212c;
+  border-color: #f95667;
+}

@@ -54,6 +54,7 @@ export class LogInService {
     this.usuario.acceso = false;
     this.router.navigate(["Home"]);
     localStorage.clear();
+
   }
   cerrarSesionAdmin() {
     this.usuario.acceso = false;

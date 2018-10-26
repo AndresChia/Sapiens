@@ -19,11 +19,17 @@ import { MatStepperModule } from '@angular/material/stepper';
 })
 export class EstudianteComponent implements OnInit {
 
+  mensaje = {
+    cuerpo: "",
+    titulo: ""
+  }
+
   consejeroSelecionado = 0;
   controlBtn1 = true;
   controlBtn2 = true;
   mostrar = true;
   alertaSelect = new FormControl();
+  alertaPopUp = false;
 
   forma: FormGroup;
   firstFormGroup: FormGroup;
@@ -54,6 +60,7 @@ export class EstudianteComponent implements OnInit {
     });
 
     this.consejeros = [];
+
     this._EstudianteRestService.obtenerConsejeros(1).subscribe(res => {
       res.results.forEach(element => {
         let consejeroAux: consejero = {
@@ -73,8 +80,14 @@ export class EstudianteComponent implements OnInit {
         this.consejeros.push(consejeroAux);
       });
       // console.log(res.results[0]);
+    }, error => {
+      // this._LogInService.cerrarSesion()
+      this.alertaPopUp = true;
+      // tslint:disable-next-line:max-line-length
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 3000);
     });
-
 
 
 

@@ -141,3 +141,11 @@
   </mat-step>
 
 </mat-horizontal-stepper>
+
+
+<div class="fondoNegro" *ngIf="alertaPopUp">
+
+</div>
+<div *ngIf="alertaPopUp" class="alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
+</div>
