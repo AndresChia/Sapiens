@@ -33,6 +33,7 @@
     "ng5-auto-complete": "0.0.8",
     "popper.js": "^1.14.4",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

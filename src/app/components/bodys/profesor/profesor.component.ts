@@ -46,7 +46,7 @@ export class ProfesorComponent implements OnInit {
       opcion: new FormControl()
     });
 
-    this._ProfesorRestService.obtenerClases(1).subscribe(res => {
+    let x = this._ProfesorRestService.obtenerClases(1).subscribe(res => {
       let clasePro: clase = {
         nombre: "",
         numeroEstudiantes: "",
@@ -62,7 +62,7 @@ export class ProfesorComponent implements OnInit {
       // console.log(res.results[0]);
     });
 
-
+    let a;
 
   }
   ngOnInit() {
