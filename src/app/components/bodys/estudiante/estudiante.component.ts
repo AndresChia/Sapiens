@@ -86,7 +86,7 @@ export class EstudianteComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
       this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { _LogInService.cerrarSesion() }, 3000);
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
 
 
