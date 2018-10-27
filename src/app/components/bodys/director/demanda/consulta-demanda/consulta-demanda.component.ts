@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DemandaComponent } from "../demanda.component";
-import { ConsultardemandaService } from "../../../../../services/consultardemanda.service";
+import { LocalStorageManager } from "../../../../../services/LocalStorage-Manager.service";
 import { datoBusqueda, estudiante } from '../../../../../interface/interfaces';
 import { LogInService } from '../../../../../services/log-in.service';
 
@@ -20,13 +20,14 @@ export class ConsultaDemandaComponent implements OnInit {
             carrera: "Ingenieria de sistemas",
             semestre: 5,
             check: false,
+            id: "1",
+            facultad: "ingenieria"
         }
 
     ]
-    constructor(private _ConsultardemandaService: ConsultardemandaService, private _LogInService: LogInService) {
-        let a = localStorage.getItem("0");
+    constructor(private _ConsultardemandaService: LocalStorageManager, public _LogInService: LogInService) {
+        let a: string = _ConsultardemandaService.getData("0");
         this.busqueda = JSON.parse(a);
-
     }
 
     ngOnInit() {

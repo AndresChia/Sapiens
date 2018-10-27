@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit {
 
     this._LogInService.iniciarSesion(contrasenia, usuari);
     this._LogInService.cargaRol("admin");
-    this.router.navigate(["admin", this._LogInService.usuario.id]);
+    this.router.navigate(["admin", "acceso"]);
 
   }
 

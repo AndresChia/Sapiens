@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { estudiante, persona } from 'src/app/interface/interfaces';
+import { persona } from 'src/app/interface/interfaces';
 
 @Component({
   selector: 'app-asociarrol',

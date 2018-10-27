@@ -49,7 +49,7 @@ import { HistorialComponent } from './components/bodys/director/historial/histor
 
 //servicios
 import { LogInService } from "./services/log-in.service";
-import { ConsultardemandaService } from "./services/consultardemanda.service";
+import { LocalStorageManager } from "./services/LocalStorage-Manager.service";
 import { EstudianteRestService } from "./services/serviciosRest/estudiante-rest.service";
 
 //fonts
@@ -59,6 +59,10 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FiltroEstudiantesCheckedPipe } from './pipes/filtro-estudiantes-checked.pipe';
 import { AsociarrolComponent } from './components/admin/crudadmin/asociar/asociarrol/asociarrol.component';
 import { InformacionComponent } from './components/bodys/director/alertas/informacion/informacion.component';
+import { AdminService } from './services/serviciosRest/admin.service';
+import { DirectorService } from './services/serviciosRest/director.service';
+import { ConsejeroService } from './services/serviciosRest/consejero.service';
+import { ProfesorRestService } from './services/serviciosRest/profesor-rest.service';
 
 
 
@@ -99,7 +103,8 @@ import { InformacionComponent } from './components/bodys/director/alertas/inform
     HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatStepperModule
   ],
-  providers: [LogInService, ConsultardemandaService, EstudianteRestService],
-  bootstrap: [AppComponent]
+  providers: [LogInService, LocalStorageManager, EstudianteRestService, AdminService, DirectorService, ConsejeroService, ProfesorRestService],
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }

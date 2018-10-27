@@ -21,19 +21,24 @@ export class AlertasComponent implements OnInit {
                     apellido: "salfa",
                     carrera: "Ingenieria de sistemas",
                     semestre: 5,
+                    id: "1",
+                    facultad: "ingenieria"
                 },
                 {
                     nombre: "david",
                     apellido: "somers",
                     carrera: "Ingenieria de sistemas",
                     semestre: 1,
+                    id: "1",
+                    facultad: "ingenieria"
                 }
 
             ],
             nombreAlerta: "Problema con profesor",
             remitente: "string",
             criticidad: "Alta",
-            incidencias: 1
+            incidencias: 1,
+            id: "1",
         }
 
     ]

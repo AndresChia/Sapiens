@@ -5,12 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './historial.component.html',
   styleUrls: ['./historial.component.css']
 })
+
 export class HistorialCComponent implements OnInit {
   filtro = false;
   numeroDePags: number[];
   pagActual = 1;
-  constructor() {
 
+  constructor() {
     this.numeroDePags = Array(2).fill(1, 2).map((x, i) => i);
   }
 
@@ -18,8 +19,6 @@ export class HistorialCComponent implements OnInit {
   }
 
   cambioPag(index: number) {
-
-
   }
 
 
@@ -28,7 +27,6 @@ export class HistorialCComponent implements OnInit {
       || estado !== "Seleccione una opción") {
       this.filtro = true;
     }
-
   }
 
 }

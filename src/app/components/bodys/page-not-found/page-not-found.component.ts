@@ -9,7 +9,7 @@ import { LogInService } from '../../../services/log-in.service';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(private _LogInService: LogInService) {
+  constructor(public _LogInService: LogInService) {
   }
 
   ngOnInit() {

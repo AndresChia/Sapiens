@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
 
   roles: usuario[] = [
     {
-      id: "1",
       acceso: true,
       tipo: "profesor",
       nombreUsuario: "Andres",
@@ -24,7 +23,6 @@ export class HomeComponent implements OnInit {
       load: true,
       check: false,
     }, {
-      id: "1",
       acceso: true,
       tipo: "consejero",
       nombreUsuario: "Andres",

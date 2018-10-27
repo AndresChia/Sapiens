@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from "../../../app.component";
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LogInService } from "../../../services/log-in.service";
 import { EstudianteRestService } from "../../../services/serviciosRest/estudiante-rest.service";
-
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-
-import { consejero } from '../../../interface/interfaces';
-
-import { MatStepperModule } from '@angular/material/stepper';
-
+import { consejero, usuario, alerta } from '../../../interface/interfaces';
 
 @Component({
   selector: 'app-estudiante',
@@ -23,25 +16,6 @@ export class EstudianteComponent implements OnInit {
     cuerpo: "",
     titulo: ""
   }
-
-  consejeroSelecionado = 0;
-  controlBtn1 = true;
-  controlBtn2 = true;
-  mostrar = true;
-  alertaSelect = new FormControl();
-  alertaPopUp = false;
-
-  forma: FormGroup;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  alertas: string[] = [
-    "Inconvenientes personales con profesores", "Inconvenientes por la metodología de enseñanza ",
-    "Bajo desempeño", "Orientación para la vida profesional", "Inconvenientes por los métodos de evaluación",
-    "Desbalance en la carga academíca", "Dificultades de aprendizaje", "Estrés académico"
-  ];
-  inicio = false;
-  consejeros: consejero[] = [];
-
   modal: consejero = {
     nombre: "",
     cargo: "",
@@ -49,52 +23,27 @@ export class EstudianteComponent implements OnInit {
     correo: "",
     horario: []
   };
+  consejeros: consejero[] = [];
+  alertas: alerta[] = [];
+  consejeroSelecionado = 0;
+  controlBtn1 = true;
+  controlBtn2 = true;
+  mostrar = true;
+  alertaPopUp = false;
+  inicio = false;
   activarModal = false;
+  alertaSelect = new FormControl();
+  forma: FormGroup;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  estudianteActual: usuario = this._LogInService.usuario;
 
-  //funciones
-  constructor(private appComponent: AppComponent, private router: Router, public snackBar: MatSnackBar,
-    private _LogInService: LogInService, private _formBuilder: FormBuilder, private _EstudianteRestService: EstudianteRestService) {
+  constructor(public snackBar: MatSnackBar, public _LogInService: LogInService, private _formBuilder: FormBuilder, private _EstudianteRestService: EstudianteRestService) { }
 
+  ngOnInit() {
     this.forma = new FormGroup({
       opcion: new FormControl()
     });
-
-    this.consejeros = [];
-
-    this._EstudianteRestService.obtenerConsejeros(1).subscribe(res => {
-      res.results.forEach(element => {
-        let consejeroAux: consejero = {
-          nombre: "",
-          cargo: "",
-          areasInteres: "",
-          correo: "",
-          horario: [],
-          id: "",
-        };
-        consejeroAux.correo = element.correo;
-        consejeroAux.horario = ["FALTA"];
-        consejeroAux.areasInteres = "FALTA";
-        consejeroAux.cargo = "FALTA";
-        consejeroAux.id = element.id;
-        consejeroAux.nombre = element.nombres;
-        this.consejeros.push(consejeroAux);
-      });
-      // console.log(res.results[0]);
-    }, error => {
-      // this._LogInService.cerrarSesion()
-      this.alertaPopUp = true;
-      // tslint:disable-next-line:max-line-length
-      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
-      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
-    });
-
-
-
-  }
-
-  ngOnInit() {
-
     this.firstFormGroup = this._formBuilder.group({
       alertaSelect: ['', Validators.required]
     });
@@ -102,71 +51,85 @@ export class EstudianteComponent implements OnInit {
       consejeroSelect: ['', Validators.required]
     });
 
-
-
+    this.cargarAlertasRol();
   }
 
+  cargarAlertasRol() {
+    this._EstudianteRestService.obtenerAlertasEstudiante().subscribe(res => {
+      res.forEach(element => {
+        let alertaAgregar: alerta = {
+          nombreAlerta: element.nombre,
+          descripcion: element.descripcion,
+          criticidad: element.criticidad,
+          temporalidad: element.temporalidad,
+          id: element.id,
+        }
+        this.alertas.push(alertaAgregar);
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+    });
+  }
 
-
-
-
-
-  //FIXME: Falta crear la alerta
   agendar() {
-
-    // console.log(this.modal, localStorage.getItem("1"));
-    // console.log("Falta crear alerta");
+    // this._EstudianteRestService.crearMotivoDeAlerta(this.estudianteActual.id, this.consejeros[this.consejeroSelecionado].id);
     this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {
       duration: 2000,
     });
-
-
   }
 
   elegirAlerta(aler: string) {
-
-    // console.log(aler);
-    //console.log(this.forma.get("opcion"));
-
     if (aler !== "Seleccion una opción") {
-
       this.controlBtn1 = false;
       this.firstFormGroup.get("alertaSelect").setValue("correcto");
-      return;
+    } else {
+      this.controlBtn1 = true;
+      this.firstFormGroup.get("alertaSelect").setValue(null);
     }
-    this.controlBtn1 = true;
-    this.firstFormGroup.get("alertaSelect").setValue(null);
-
   }
 
   SelecionarConsejero(i: number) {
-
-    // console.log(i);
     this.consejeroSelecionado = i;
-
     this.controlBtn2 = false;
     this.modal = this.consejeros[i - 1];
     this.secondFormGroup.get("consejeroSelect").setValue("correcto");
     let x = document.getElementsByTagName("body");
-
     window.scrollTo(0, x[0].clientHeight);
   }
 
   subirPantalla() {
-
     window.scrollTo(0, 0);
-
-
   }
 
-  scrollToElementSiguiente() {
-
-  }
-
-  scrollToElementAnterior() {
-
-
+  obtenerConsejeros() {
+    // this._EstudianteRestService.obtenerConsejeros(this.estudianteActual).subscribe(res => {
+    //   res.results.forEach(element => {
+    //     let consejeroAux: consejero = {
+    //       nombre: "",
+    //       cargo: "",
+    //       areasInteres: "",
+    //       correo: "",
+    //       horario: [],
+    //       id: "",
+    //     };
+    //     consejeroAux.correo = element.correo;
+    //     consejeroAux.horario = ["FALTA"];
+    //     consejeroAux.areasInteres = "FALTA";
+    //     consejeroAux.cargo = "FALTA";
+    //     consejeroAux.id = element.id;
+    //     consejeroAux.nombre = element.nombres;
+    //     this.consejeros.push(consejeroAux);
+    //   });
+    // }, error => {
+    //   this.alertaPopUp = true;
+    //   this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+    //   this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+    //   setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+    // });
   }
 
 }

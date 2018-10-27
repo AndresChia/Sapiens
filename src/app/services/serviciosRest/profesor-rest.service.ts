@@ -17,23 +17,43 @@ export class ProfesorRestService {
   // tslint:disable-next-line:max-line-length
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 
-
-  obtenerClases(id: number) {
-    return this.http.get(this.url + "Clase/Profesor/" + id).pipe(
+  //TODO: falta
+  obtenerClases(idProfesor: number) {
+    return this.http.get(this.url + "Profesor/" + idProfesor + "/Clases").pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
 
   }
 
-  obtenerEstudiantesDeClase(id: number) {
-    return this.http.get(this.url + "Clase/" + id + "/Estudiantes").pipe(
+  //TODO: falta
+  obtenerEstudiantesDeClase(idClase: number) {
+    return this.http.get(this.url + "Clase/" + idClase + "/Estudiantes").pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
 
   }
 
+  //TODO: falta
+  obtenerAlertasProfesor() {
+    return this.http.get(this.url + "Rutas/Generador/Profesor").pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
+  //TODO: falta
+  crearMotivoDeAlerta(idProfesor: number) {
+    // let params = {
+    //   codigo_estudiante: estudiante,
+    //   codigo_consejero: consejero
+    // }
+    return this.http.get(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes").pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
 
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {

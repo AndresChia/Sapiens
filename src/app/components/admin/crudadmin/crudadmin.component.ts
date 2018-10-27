@@ -11,7 +11,7 @@ export class CrudadminComponent implements OnInit {
   desactivar = false;
   numeradorOpcion = 0;
 
-  constructor(private router: Router, private _LogInService: LogInService) { }
+  constructor(private router: Router, public _LogInService: LogInService) { }
 
   ngOnInit() {
   }

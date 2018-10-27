@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { datoBusqueda } from "../../../../interface/interfaces";
-import { ConsultardemandaService } from "../../../../services/consultardemanda.service";
+import { LocalStorageManager } from "../../../../services/LocalStorage-Manager.service";
 @Component({
     selector: 'app-demanda',
     templateUrl: './demanda.component.html',
@@ -34,7 +34,7 @@ export class DemandaComponent implements OnInit {
 
 
 
-    constructor(private _ConsultardemandaService: ConsultardemandaService) {
+    constructor(private _ConsultardemandaService: LocalStorageManager) {
         this.forma = new FormGroup({
             anioAcademico: new FormControl(),
             periodoAcademico: new FormControl()
@@ -73,11 +73,7 @@ export class DemandaComponent implements OnInit {
 
     //FIXME: falta crear la consulta y mostrarla en otra tabla
     crearConsulta() {
-        // console.log("falta crear donde ver la consulta y cargarla");
-
         this._ConsultardemandaService.cargar(JSON.stringify(this.busqueda));
-
-
     }
 
     eliminarElemento(i: number) {

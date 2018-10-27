@@ -1,9 +1,11 @@
 export interface estudiante {
+    id: string;
     nombre: string;
     apellido: string;
     carrera: string;
     semestre: number;
     check?: boolean;
+    facultad: string;
 }
 export interface clase {
     nombre: string;
@@ -27,15 +29,18 @@ export interface datoBusqueda {
 }
 export interface alerta {
     nombreAlerta: string;
-    estudiante: estudiante[];
-    remitente: string;
     criticidad: string;
-    incidencias: number;
+    id: string;
+    remitente?: string;
+    incidencias?: number;
     periodo?: string;
     fecha?: string;
+    descripcion?: string;
+    temporalidad?: string;
+    estudiante?: estudiante[];
+
 }
 export interface usuario {
-    id?: string;
     acceso: boolean;
     tipo: string;
     nombreUsuario: string;
@@ -79,5 +84,9 @@ export interface alertaSemestre {
     semestre: string;
     alerta: string;
     creador: string;
+}
 
+export interface director {
+    id: string;
+    facultad: string;
 }

@@ -14,10 +14,10 @@
           <select #alerta (click)="elegirAlerta(alerta.value)" formControlName="opcion" [(ngModel)]="actualAlerta"
             class="form-control" id="Alertas" required>
             <option value="0">Seleccione una opción</option>
-            <option *ngFor="let alerta of alertas,let indi=index">{{alerta}}</option>
+            <option *ngFor="let alerta of alertas,let indi=index">{{alerta.nombreAlerta}}</option>
           </select>
         </div>
-        <button mat-button matStepperNext [disabled]="controlBtn1">Siguiente</button>
+        <button (click)="obtenerClases()" mat-button matStepperNext [disabled]="controlBtn1">Siguiente</button>
 
       </form>
 

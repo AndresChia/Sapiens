@@ -3,7 +3,7 @@ import { Http } from '@angular/http'
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { usuario } from '../interface/interfaces';
+import { usuario, estudiante, consejero, director } from '../interface/interfaces';
 
 
 @Injectable({
@@ -11,13 +11,16 @@ import { usuario } from '../interface/interfaces';
 })
 export class LogInService {
   usuario: usuario = {
-    id: "1",
     acceso: false,
     tipo: "",
     nombreUsuario: "",
     contrasenia: "",
     load: false,
   }
+
+  estudiante: estudiante;
+  consejero: consejero;
+  director: director;
 
   opcion = false;
 
