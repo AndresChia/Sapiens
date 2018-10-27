@@ -62,7 +62,7 @@ export class ProfesorComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       estudianteSelect: ['', Validators.required]
     });
-    this.cargarAlertasRol();
+    this.cargarAlertasRol(this._LogInService);
   }
 
   obtenerClases() {
@@ -90,7 +90,7 @@ export class ProfesorComponent implements OnInit {
     // });
   }
 
-  cargarAlertasRol() {
+  cargarAlertasRol(_LogInService: LogInService) {
     this._ProfesorRestService.obtenerAlertasProfesor().subscribe(res => {
       res.forEach(element => {
         let alertaAgregar: alerta = {
@@ -106,7 +106,7 @@ export class ProfesorComponent implements OnInit {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
       this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
   }
 
@@ -124,8 +124,6 @@ export class ProfesorComponent implements OnInit {
 
   //FIXME: crear alerta
   alertar() {
-    // console.log("falta crear la alerta");
-
     let a: object = {
       opcion: 0
     }

@@ -17,8 +17,8 @@ export class EstudianteRestService {
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 
   //TODO: falta
-  obtenerConsejeros(carrera: number) {
-    return this.http.get(this.url + "Facultad/" + carrera + "/Consejeros").pipe(
+  obtenerConsejeros(carrera: string, facultad: string) {
+    return this.http.get(this.url + "Facultad/" + facultad + "/Carrera/" + carrera + "/Consejeros").pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));

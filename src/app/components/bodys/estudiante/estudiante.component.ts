@@ -51,10 +51,11 @@ export class EstudianteComponent implements OnInit {
       consejeroSelect: ['', Validators.required]
     });
 
-    this.cargarAlertasRol();
+    this.cargarAlertasRol(this._LogInService);
+    this.cargarConsejeros();
   }
 
-  cargarAlertasRol() {
+  cargarAlertasRol(_LogInService: LogInService) {
     this._EstudianteRestService.obtenerAlertasEstudiante().subscribe(res => {
       res.forEach(element => {
         let alertaAgregar: alerta = {
@@ -70,7 +71,29 @@ export class EstudianteComponent implements OnInit {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
       this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
+  }
+
+  cargarConsejeros() {
+    let _LogInService = this._LogInService;
+    this._EstudianteRestService.obtenerConsejeros(this._LogInService.estudiante.carrera, this._LogInService.estudiante.facultad).subscribe(res => {
+      res.forEach(element => {
+        let consejeroAgregar: consejero = {
+          areasInteres: "",
+          cargo: "",
+          correo: element.correo,
+          horario: [""],
+          id: element.id,
+          nombre: element.nombres + " " + element.apellido1 + " " + element.apellido2,
+        }
+        this.consejeros.push(consejeroAgregar);
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
   }
 

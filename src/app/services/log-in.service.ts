@@ -18,7 +18,15 @@ export class LogInService {
     load: false,
   }
 
-  estudiante: estudiante;
+  estudiante: estudiante = {
+    id: "string",
+    nombre: "string",
+    apellido: "string",
+    carrera: "ingenieria industrial",
+    semestre: 1,
+    check: false,
+    facultad: "ingenieria",
+  };
   consejero: consejero;
   director: director;
 
@@ -57,7 +65,6 @@ export class LogInService {
     this.usuario.acceso = false;
     this.router.navigate(["Home"]);
     localStorage.clear();
-
   }
   cerrarSesionAdmin() {
     this.usuario.acceso = false;
