@@ -101,7 +101,7 @@ export class BuscarComponent implements OnInit {
   }
 
   //FIXME:
-  buscar(nombre: string, correo: string) {
+  buscar() {
 
     // console.log("Falta buscar las alertas y ponerlas en la tabla");
     if (this.forma.get("nombre").value !== "" || this.forma.get("correo").value !== "") {
