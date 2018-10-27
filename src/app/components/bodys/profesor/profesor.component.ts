@@ -66,28 +66,28 @@ export class ProfesorComponent implements OnInit {
   }
 
   obtenerClases() {
-    let x = this._ProfesorRestService.obtenerClases(1).subscribe(res => {
-      let clasePro: clase = {
-        nombre: "",
-        numeroEstudiantes: "",
-        numero: "",
-        check: false,
-      };
-      res.results.forEach(element => {
-        clasePro.numero = element.codigo_clase;
-        clasePro.nombre = element.nombre_asignatura;
-        clasePro.numeroEstudiantes = element.numero_estudiantes;
-        this.clases.push(clasePro);
-      });
-      // console.log(res.results[0]);
-    }, error => {
-      // this._LogInService.cerrarSesion()
-      this.alertaPopUp = true;
-      // tslint:disable-next-line:max-line-length
-      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
-      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
-    });
+    // let x = this._ProfesorRestService.obtenerClases(1).subscribe(res => {
+    //   let clasePro: clase = {
+    //     nombre: "",
+    //     numeroEstudiantes: "",
+    //     numero: "",
+    //     check: false,
+    //   };
+    //   res.results.forEach(element => {
+    //     clasePro.numero = element.codigo_clase;
+    //     clasePro.nombre = element.nombre_asignatura;
+    //     clasePro.numeroEstudiantes = element.numero_estudiantes;
+    //     this.clases.push(clasePro);
+    //   });
+    //   // console.log(res.results[0]);
+    // }, error => {
+    //   // this._LogInService.cerrarSesion()
+    //   this.alertaPopUp = true;
+    //   // tslint:disable-next-line:max-line-length
+    //   this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+    //   this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+    //   setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+    // });
   }
 
   cargarAlertasRol() {

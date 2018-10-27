@@ -35,7 +35,6 @@ export class ProfesorRestService {
 
   }
 
-  //TODO: falta
   obtenerAlertasProfesor() {
     return this.http.get(this.url + "Rutas/Generador/Profesor").pipe(
       map(res => {

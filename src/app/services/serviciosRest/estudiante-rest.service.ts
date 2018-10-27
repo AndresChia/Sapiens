@@ -36,7 +36,6 @@ export class EstudianteRestService {
       }), catchError(this.handleError));
   }
 
-  //TODO: falta
   obtenerAlertasEstudiante() {
     return this.http.get(this.url + "Rutas/Generador/Estudiante").pipe(
       map(res => {
