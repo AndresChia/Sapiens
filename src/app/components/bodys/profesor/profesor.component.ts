@@ -69,13 +69,14 @@ export class ProfesorComponent implements OnInit {
     this.clases = [];
     let _LogInService: LogInService;
     let x = this._ProfesorRestService.obtenerClases(this._LogInService.usuario.nombreUsuario).subscribe(res => {
-      let clasePro: clase = {
-        nombre: "",
-        numeroEstudiantes: "",
-        numero: "",
-        check: false,
-      };
+
       res.clases.forEach(element => {
+        let clasePro: clase = {
+          nombre: "",
+          numeroEstudiantes: "",
+          numero: "",
+          check: false,
+        };
         clasePro.numero = element.numero_clase;
         clasePro.nombre = element.nombre;
         clasePro.numeroEstudiantes = "element.numero_estudiantes";

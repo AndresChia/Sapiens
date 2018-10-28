@@ -52,11 +52,12 @@ export class EstudianteComponent implements OnInit {
       consejeroSelect: ['', Validators.required]
     });
 
-    this.cargarAlertasRol(this._LogInService);
+    this.cargarAlertasRol();
     this.cargarConsejeros();
   }
 
-  cargarAlertasRol(_LogInService: LogInService) {
+  cargarAlertasRol() {
+    let _LogInService = this._LogInService;
     this._EstudianteRestService.obtenerAlertasEstudiante().subscribe(res => {
       res.forEach(element => {
         let alertaAgregar: alerta = {
@@ -77,6 +78,7 @@ export class EstudianteComponent implements OnInit {
   }
 
   cargarConsejeros() {
+    this.consejeros = [];
     let _LogInService = this._LogInService;
     this._EstudianteRestService.obtenerConsejeros(this._LogInService.estudiante.carrera, this._LogInService.estudiante.facultad).subscribe(res => {
       res.forEach(element => {

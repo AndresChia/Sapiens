@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
         } else {
           //usuario normal
           this.valido = false;
-          this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase());
+          this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase(), this.decodedToken.carrera);
           this.cargo = "Si Normal";
 
         }

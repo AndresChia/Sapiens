@@ -16,18 +16,17 @@
       </thead>
       <tbody>
         <tr [ngClass]="{
-            'table-warning': alerta.criticidad === 'Media',
-            'table-success': alerta.criticidad === 'Baja',
-            'table-danger': alerta.criticidad === 'Alta'
+            'table-warning': alerta.criticidad === 'media',
+            'table-success': alerta.criticidad === 'baja',
+            'table-danger': alerta.criticidad === 'alta'
             }"
           (click)="seleccionar(i)" *ngFor="let alerta of alertas, let i= index" style="cursor: pointer">
           <th scope="row">{{i+1}}</th>
           <td>{{alerta.nombreAlerta}}</td>
           <td>{{alerta.incidencias}}</td>
           <td>{{alerta.criticidad}}</td>
-          <td>Estudiante</td>
-          <td>Asincrona</td>
-
+          <td>{{alerta.remitente}}</td>
+          <td>{{alerta.tipo}}</td>
         </tr>
       </tbody>
     </table>
@@ -171,4 +170,11 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="fondoNegro" *ngIf="alertaPopUp">
+
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
 </div>

@@ -25,7 +25,7 @@ export class LogInService {
     id: "string",
     nombre: "string",
     apellido: "string",
-    carrera: "ingenieria industrial",
+    carrera: "",
     semestre: 1,
     check: false,
     facultad: "ingenieria",
@@ -122,11 +122,12 @@ export class LogInService {
     this.router.navigate(["/" + this.usuario.tipo]);
   }
 
-  usuarioCorrecto(tipo: string) {
+  usuarioCorrecto(tipo: string, carrera: string) {
     this.opcion = false;
     this.usuario.acceso = true;
     this.usuario.load = true;
     this.usuario.tipo = tipo;
+    this.estudiante.carrera = carrera;
     localStorage.setItem("1", JSON.stringify(this.usuario));
     this.navegar();
   }

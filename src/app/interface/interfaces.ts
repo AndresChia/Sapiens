@@ -39,6 +39,7 @@ export interface alerta {
     descripcion?: string;
     temporalidad?: string;
     estudiante?: estudiante[];
+    tipo?: string;
 
 }
 export interface usuario {

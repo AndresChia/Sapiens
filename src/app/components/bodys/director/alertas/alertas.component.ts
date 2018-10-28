@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { estudiante, alerta } from '../../../../interface/interfaces';
 import { MatSnackBar } from '@angular/material';
+import { LogInService } from 'src/app/services/log-in.service';
+import { DirectorService } from '../../../../services/serviciosRest/director.service';
 
 @Component({
     selector: 'app-alertas',
@@ -8,45 +10,23 @@ import { MatSnackBar } from '@angular/material';
     styleUrls: ['./alertas.component.css']
 })
 export class AlertasComponent implements OnInit {
+    mensaje = {
+        cuerpo: "",
+        titulo: ""
+    }
+    alertaPopUp = false;
     checkFecha = false;
     modal = true;
     estudianteActual: estudiante[];
     seleccionado = false;
     indexSelecionado: number;
-    alertas: alerta[] = [
-        {
-            estudiante: [
-                {
-                    nombre: "carlos",
-                    apellido: "salfa",
-                    carrera: "Ingenieria de sistemas",
-                    semestre: 5,
-                    id: "1",
-                    facultad: "ingenieria"
-                },
-                {
-                    nombre: "david",
-                    apellido: "somers",
-                    carrera: "Ingenieria de sistemas",
-                    semestre: 1,
-                    id: "1",
-                    facultad: "ingenieria"
-                }
-
-            ],
-            nombreAlerta: "Problema con profesor",
-            remitente: "string",
-            criticidad: "Alta",
-            incidencias: 1,
-            id: "1",
-        }
-
-    ]
+    alertas: alerta[] = []
 
 
-    constructor(public snackBar: MatSnackBar) { }
+    constructor(public snackBar: MatSnackBar, public _LogInService: LogInService, public _DirectorService: DirectorService) { }
 
     ngOnInit() {
+        this.mostrarAlertasAgrupadas();
     }
 
 
@@ -124,5 +104,36 @@ export class AlertasComponent implements OnInit {
         });
 
     }
+
+
+    mostrarAlertasAgrupadas() {
+        this.alertas = []
+        let _LogInService = this._LogInService;
+        this._DirectorService.obtenerAlertasAgrupadas(this._LogInService.usuario.nombreUsuario).subscribe(res => {
+            res.forEach(element => {
+                let alertaAgregar: alerta = {
+                    nombreAlerta: element.nombre,
+                    descripcion: element.descripcion,
+                    criticidad: element.criticidad,
+                    temporalidad: element.temporalidad,
+                    id: element.id,
+                    incidencias: element.incidencias,
+                    tipo: element.temporalidad,
+                }
+                this.alertas.push(alertaAgregar);
+
+                element.intervenciones.forEach(element2 => {
+
+                });
+            });
+        }, error => {
+            this.alertaPopUp = true;
+            this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+            this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+            setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+        });
+    }
+
+
 
 }
