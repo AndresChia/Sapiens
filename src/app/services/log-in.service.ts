@@ -122,12 +122,14 @@ export class LogInService {
     this.router.navigate(["/" + this.usuario.tipo]);
   }
 
-  usuarioCorrecto(tipo: string, carrera: string) {
+  usuarioCorrecto(tipo: string, carrera?: string) {
     this.opcion = false;
     this.usuario.acceso = true;
     this.usuario.load = true;
     this.usuario.tipo = tipo;
-    this.estudiante.carrera = carrera;
+    if (carrera !== undefined) {
+      this.estudiante.carrera = carrera;
+    }
     localStorage.setItem("1", JSON.stringify(this.usuario));
     this.navegar();
   }
