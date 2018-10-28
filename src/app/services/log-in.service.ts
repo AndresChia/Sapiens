@@ -3,7 +3,7 @@ import { Http } from '@angular/http'
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { usuario, estudiante, consejero, director, rol } from '../interface/interfaces';
+import { usuario, estudiante, consejero, director, rol, persona } from '../interface/interfaces';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
@@ -37,6 +37,7 @@ export class LogInService {
   respuesta = " ";
   roles: rol[] = [];
   url = environment.url;
+  persona: persona;
 
   constructor(private http: Http, private router: Router) {
     this.sesionActiva();
@@ -122,14 +123,19 @@ export class LogInService {
     this.router.navigate(["/" + this.usuario.tipo]);
   }
 
-  usuarioCorrecto(tipo: string, carrera?: string) {
+  usuarioCorrecto(tipo: string, datoUsuario: any) {
+
+    if (tipo === "estudiante") {
+      this.estudiante = datoUsuario;
+      this.estudiante.carrera = this.estudiante.carrera.toLocaleLowerCase();
+      this.estudiante.facultad = this.estudiante.facultad.toLocaleLowerCase();
+    } else {
+      this.persona = datoUsuario;
+    }
     this.opcion = false;
     this.usuario.acceso = true;
     this.usuario.load = true;
     this.usuario.tipo = tipo;
-    if (carrera !== undefined) {
-      this.estudiante.carrera = carrera;
-    }
     localStorage.setItem("1", JSON.stringify(this.usuario));
     this.navegar();
   }

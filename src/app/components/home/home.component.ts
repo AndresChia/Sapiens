@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { persona, usuario } from 'src/app/interface/interfaces';
 import * as jwt_decode from "jwt-decode";
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { estudiante } from '../../interface/interfaces';
 
 @Component({
   selector: 'app-home',
@@ -56,12 +57,40 @@ export class HomeComponent implements OnInit {
           //usuario normal
           this.valido = false;
           if ((this.decodedToken.roles[0] as string).toLowerCase() === "estudiante") {
-            this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase(), this.decodedToken.carrera);
+            let estudianteEnvio: estudiante = {
+              apellido: this.decodedToken.apellido1 + " " + this.decodedToken.apellido2,
+              carrera: this.decodedToken.carrera,
+              facultad: "Ingenieria",
+              check: false,
+              id: this.decodedToken.identificacion,
+              nombre: this.decodedToken.nombres,
+              semestre: 1,
+            }
 
-          } else {
-            this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase());
+            this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase(), estudianteEnvio);
 
           }
+          if ((this.decodedToken.roles[0] as string).toLowerCase() === "profesor" ||
+            (this.decodedToken.roles[0] as string).toLowerCase() === "director" ||
+            (this.decodedToken.roles[0] as string).toLowerCase() === "consejero") {
+            let person: persona = {
+              id: this.decodedToken.identificacion,
+              nombre: this.decodedToken.nombres,
+              apellido: this.decodedToken.apellido1 + " " + this.decodedToken.apellido2,
+              identificacion: this.decodedToken.identificacion,
+              tipoIdentificacion: "string",
+              genero: "string",
+              direccion: "string",
+              correo: this.decodedToken.correo,
+              telefono: "string",
+              rol: this.decodedToken.roles[0],
+              check: false,
+            }
+
+            this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase(), person);
+
+          }
+
           this.cargo = "Si Normal";
 
         }
