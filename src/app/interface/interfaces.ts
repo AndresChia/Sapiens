@@ -91,3 +91,8 @@ export interface director {
     id: string;
     facultad: string;
 }
+
+export interface rol {
+    check: boolean,
+    rolNombre: string,
+}

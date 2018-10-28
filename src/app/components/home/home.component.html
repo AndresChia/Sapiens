@@ -67,7 +67,7 @@
             <div class="card-body">
               <div class="form-check">
                 <input [(ngModel)]="rol.check" type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">{{rol.tipo}}</label>
+                <label class="form-check-label" for="exampleCheck1">{{rol.rolNombre}}</label>
               </div>
             </div>
           </a>
@@ -76,8 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button (click)="loginDobleRol(usuario.value ,contrasenia.value)" type="button" class="btn btn-primary"
-          data-dismiss="modal">Confirmar</button>
+        <button (click)="loginDobleRol( )" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
       </div>
     </div>
   </div>

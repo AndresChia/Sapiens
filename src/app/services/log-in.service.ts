@@ -3,7 +3,7 @@ import { Http } from '@angular/http'
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { usuario, estudiante, consejero, director } from '../interface/interfaces';
+import { usuario, estudiante, consejero, director, rol } from '../interface/interfaces';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
@@ -36,26 +36,7 @@ export class LogInService {
   opcion = false;
   multiRol = false;
   respuesta = " ";
-  roles: usuario[] = [
-    {
-      acceso: true,
-      tipo: "profesor",
-      nombreUsuario: "Andres",
-      contrasenia: "12334",
-      load: true,
-      check: false,
-    }, {
-      acceso: true,
-      tipo: "consejero",
-      nombreUsuario: "Andres",
-      contrasenia: "12334",
-      load: true,
-      check: false,
-    }
-
-
-  ];
-
+  roles: rol[] = [];
   url = environment.url;
 
   constructor(private http: Http, private router: Router) {
@@ -101,8 +82,8 @@ export class LogInService {
     return this.usuario.acceso;
   }
 
-  cargaRol(rol: string) {
-    this.usuario.tipo = rol;
+  cargaRol(rolActual: string) {
+    this.usuario.tipo = rolActual;
     this.usuario.load = false;
     localStorage.setItem("1", JSON.stringify(this.usuario));
 
@@ -150,5 +131,7 @@ export class LogInService {
     localStorage.setItem("1", JSON.stringify(this.usuario));
     this.navegar();
   }
+
+
 
 }

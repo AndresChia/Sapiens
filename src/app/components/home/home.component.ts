@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LogInService } from '../../services/log-in.service';
 import { Router } from '@angular/router';
 import { persona, usuario } from 'src/app/interface/interfaces';
+import * as jwt_decode from "jwt-decode";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +17,11 @@ export class HomeComponent implements OnInit {
   }
   alertaPopUp = false;
   valido = false;
-  modal = false;
   estado: string;
+  decodedToken: any = undefined;
+  cargo = "No";
   constructor(public _LogInService: LogInService, private router: Router) { }
-
+  modal = false;
 
   ngOnInit() {
   }
@@ -29,14 +32,34 @@ export class HomeComponent implements OnInit {
     let esDobleRol = false;
     if (usr !== "" && contrasenia !== "") {
       let respuesta = this._LogInService.iniciarSesion(contrasenia, usr).subscribe(res => {
-
+        this._LogInService.roles = [];
+        const helper = new JwtHelperService();
+        this.decodedToken = helper.decodeToken(res);
+        const expirationDate = helper.getTokenExpirationDate(res);
+        this.decodedToken.roles.forEach(element => {
+          let aux: any = {
+            check: false,
+            rolNombre: (element as string).toLowerCase(),
+          };
+          this._LogInService.roles.push(aux);
+        });
         //doble usuario si el tamaño de .roles es mayor a 1
-        if (res) {
+        if (this._LogInService.roles.length > 1) {
           esDobleRol = true;
+          this.valido = false;
+          this.alertaPopUp = false;
+          this.cargo = "Si DobleRol";
+          this.modal = true;
+          return
         } else {
           //usuario normal
-          this._LogInService.usuarioCorrecto("estudiante");
+          this.valido = false;
+          this._LogInService.usuarioCorrecto((this.decodedToken.roles[0] as string).toLowerCase());
+          this.cargo = "Si Normal";
+
         }
+
+
 
       }, error => {
         this.valido = true;
@@ -48,20 +71,14 @@ export class HomeComponent implements OnInit {
 
     }
 
-    if (!esDobleRol) {
-      this.modal = true;
-      this.valido = false;
-    }
 
-
-    this.valido = true;
 
   }
-
 
   cerrarPop() {
     this.alertaPopUp = false;
   }
+
 
 
   loginDobleRol() {
@@ -69,8 +86,8 @@ export class HomeComponent implements OnInit {
     this._LogInService.roles.forEach(element => {
 
       if (element.check === true) {
-        tipo = element.tipo;
-        this._LogInService.usuario.tipo = tipo;
+        tipo = element.rolNombre;
+        this._LogInService.usuario.tipo = element.rolNombre;
       }
 
     });
