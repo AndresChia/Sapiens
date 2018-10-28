@@ -7,13 +7,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import { throwError, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfesorRestService {
 
-  url = "http://localhost:1337/";
+  url = environment.url;
   // tslint:disable-next-line:max-line-length
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 

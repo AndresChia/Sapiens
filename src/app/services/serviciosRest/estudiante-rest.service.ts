@@ -6,13 +6,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstudianteRestService {
 
-  url = "http://localhost:1337/";
+  url = environment.url;
 
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 

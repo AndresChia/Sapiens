@@ -9,91 +9,84 @@ import { persona, usuario } from 'src/app/interface/interfaces';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  mensaje = {
+    cuerpo: "",
+    titulo: ""
+  }
+  alertaPopUp = false;
   valido = false;
   modal = false;
+  estado: string;
   constructor(public _LogInService: LogInService, private router: Router) { }
-
-  roles: usuario[] = [
-    {
-      acceso: true,
-      tipo: "profesor",
-      nombreUsuario: "Andres",
-      contrasenia: "12334",
-      load: true,
-      check: false,
-    }, {
-      acceso: true,
-      tipo: "consejero",
-      nombreUsuario: "Andres",
-      contrasenia: "12334",
-      load: true,
-      check: false,
-    }
-
-
-  ];
 
 
   ngOnInit() {
   }
 
   login(usr: string, contrasenia: string) {
-
-    // console.log(usuario, contrasenia)
-
+    let _LogInService: LogInService;
+    let pop = true;
+    let esDobleRol = false;
     if (usr !== "" && contrasenia !== "") {
-      let x: boolean = this.validorDobleRol(usr, contrasenia);
-      if (x) {
-        this.modal = true;
-      } else {
-        this.modal = false;
-        this._LogInService.iniciarSesion(contrasenia, usr);
-        this.valido = false;
-        return;
-      }
+      let respuesta = this._LogInService.iniciarSesion(contrasenia, usr).subscribe(res => {
+
+        //doble usuario si el tamaño de .roles es mayor a 1
+        if (res) {
+          esDobleRol = true;
+        } else {
+          //usuario normal
+          this._LogInService.usuarioCorrecto("estudiante");
+        }
+
+      }, error => {
+        this.valido = true;
+        this.alertaPopUp = true;
+        this.mensaje.cuerpo = this.estado;
+        this.mensaje.titulo = "ERROR DE LOG IN: Vuelva a escribir el usuario y contraseña.";
+      });
+
+
     }
+
+    if (!esDobleRol) {
+      this.modal = true;
+      this.valido = false;
+    }
+
 
     this.valido = true;
 
   }
 
 
-  validorDobleRol(usr, contrasenia): boolean {
-    //validarROl
-    if (usr === "doblerol") {
-      return true;
-    }
-    return false;
+  cerrarPop() {
+    this.alertaPopUp = false;
   }
 
 
-  loginDobleRol(usr: string, contrasenia: string) {
-
+  loginDobleRol() {
     let tipo;
-    this.roles.forEach(element => {
+    this._LogInService.roles.forEach(element => {
 
       if (element.check === true) {
         tipo = element.tipo;
+        this._LogInService.usuario.tipo = tipo;
       }
 
     });
 
-
-    this._LogInService.iniciarSesionDobleRol(contrasenia, usr, tipo);
-    this.valido = false;
+    this._LogInService.iniciarSesionDobleRol(tipo);
     return;
   }
 
 
   seleccionar(i: number) {
 
-    this.roles.forEach(element => {
-
+    this._LogInService.roles.forEach(element => {
       element.check = false;
-
     });
-    this.roles[i].check = !this.roles[i].check;
+    this._LogInService.roles[i].check = !this._LogInService.roles[i].check;
+
   }
 
 }

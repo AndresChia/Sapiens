@@ -4,7 +4,11 @@ import { Http } from '@angular/http'
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { usuario, estudiante, consejero, director } from '../interface/interfaces';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,7 @@ import { usuario, estudiante, consejero, director } from '../interface/interface
 export class LogInService {
   usuario: usuario = {
     acceso: false,
-    tipo: "",
+    tipo: "estudiante",
     nombreUsuario: "",
     contrasenia: "",
     load: false,
@@ -29,10 +33,30 @@ export class LogInService {
   };
   consejero: consejero;
   director: director;
-
   opcion = false;
+  multiRol = false;
+  respuesta = " ";
+  roles: usuario[] = [
+    {
+      acceso: true,
+      tipo: "profesor",
+      nombreUsuario: "Andres",
+      contrasenia: "12334",
+      load: true,
+      check: false,
+    }, {
+      acceso: true,
+      tipo: "consejero",
+      nombreUsuario: "Andres",
+      contrasenia: "12334",
+      load: true,
+      check: false,
+    }
 
-  url = "http://localhost:1337/";
+
+  ];
+
+  url = environment.url;
 
   constructor(private http: Http, private router: Router) {
     this.sesionActiva();
@@ -49,15 +73,16 @@ export class LogInService {
   }
   // #FIXME: falta cambiar el tipo lo debe generar la peticion
   iniciarSesion(contrasenia: string, usur: string) {
-    this.opcion = false;
-    this.usuario.acceso = true;
-    this.usuario.nombreUsuario = usur;
-    this.usuario.contrasenia = contrasenia;
-    this.usuario.load = true;
-    this.usuario.tipo = usur;
-    localStorage.setItem("1", JSON.stringify(this.usuario));
-    //console.log(this.usuario.nombreUsuario, this.usuario.id);
-    this.router.navigate(["/" + this.usuario.tipo]);
+    let params = {
+      correo: usur,
+      //"adriana-diaz@javeriana.edu.co"
+      password: contrasenia,
+      //"12345"
+    }
+    return this.http.post(this.url + "login", params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
   }
 
   cerrarSesion() {
@@ -70,7 +95,6 @@ export class LogInService {
     this.usuario.acceso = false;
     this.router.navigate(["/admin"]);
     localStorage.clear();
-
   }
 
   isAuthenticated() {
@@ -97,15 +121,34 @@ export class LogInService {
     this.opcion = true;
   }
 
-  iniciarSesionDobleRol(contrasenia: string, usur: string, tipo: string) {
+  iniciarSesionDobleRol(tipo: string) {
     this.opcion = false;
     this.usuario.acceso = true;
-    this.usuario.nombreUsuario = usur;
-    this.usuario.contrasenia = contrasenia;
     this.usuario.load = true;
     this.usuario.tipo = tipo;
     localStorage.setItem("1", JSON.stringify(this.usuario));
-    //console.log(this.usuario.nombreUsuario, this.usuario.id);
+    this.navegar()
+  }
+
+  handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.error('ERROR DEL CLIENTE :', errorResponse.error.message);
+    } else {
+      console.error('ERROR DEL SERVIDOR :', errorResponse);
+    }
+    return Observable.throw('EN ESTE MOMENTO TENEMOS PROBLEMAS CON EL SERVICIO. SERA NOTIFICADO CUANDO FUNCIONE. POR FAVOR INTENTE DE NUEVO.')
+  }
+  navegar() {
     this.router.navigate(["/" + this.usuario.tipo]);
   }
+
+  usuarioCorrecto(tipo: string) {
+    this.opcion = false;
+    this.usuario.acceso = true;
+    this.usuario.load = true;
+    this.usuario.tipo = tipo;
+    localStorage.setItem("1", JSON.stringify(this.usuario));
+    this.navegar();
+  }
+
 }

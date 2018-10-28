@@ -62,7 +62,7 @@
       </div>
       <div class="modal-body">
 
-        <div *ngFor="let rol of roles,let i=index" class="card m-3">
+        <div *ngFor="let rol of _LogInService.roles ,let i=index" class="card m-3">
           <a style="cursor: pointer" (click)="seleccionar(i)">
             <div class="card-body">
               <div class="form-check">
@@ -81,4 +81,14 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="fondoNegro" *ngIf="alertaPopUp">
+
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-warning popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
+  <button (click)="cerrarPop()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
