@@ -48,13 +48,10 @@
             class="card m-3">
 
             <a (click)="SelecionarConsejero(i+1)">
-
               <div class="imgConsejero m-3">
-                <img class="imgCon " style="width: inherit;" src="http://ingenieria.javeriana.edu.co/image/journal/article?img_id=9340707&t=1517937984871
-                                "
-                  alt="Card image cap ">
+                <img class="imgCon " style="width: inherit;" [src]="consejero.src_imagen" alt="Card image cap">
               </div>
-              <div class="cardbody m-5">
+              <div class=" cardbody m-5">
                 <div class="row">
                   <div class="col-6">
                     <h5> {{consejero.nombre}}</h5>

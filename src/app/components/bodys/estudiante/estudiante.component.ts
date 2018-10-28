@@ -23,6 +23,7 @@ export class EstudianteComponent implements OnInit {
     correo: "",
     horario: []
   };
+  srcs_imagen: string[] = [];
   consejeros: consejero[] = [];
   alertas: alerta[] = [];
   consejeroSelecionado = 0;
@@ -80,14 +81,16 @@ export class EstudianteComponent implements OnInit {
     this._EstudianteRestService.obtenerConsejeros(this._LogInService.estudiante.carrera, this._LogInService.estudiante.facultad).subscribe(res => {
       res.forEach(element => {
         let consejeroAgregar: consejero = {
-          areasInteres: "",
-          cargo: "",
+          areasInteres: element.areas_interes,
+          cargo: element.cargo,
           correo: element.correo,
-          horario: [""],
+          horario: element.horarios,
           id: element.id,
           nombre: element.nombres + " " + element.apellido1 + " " + element.apellido2,
+          src_imagen: element.src_imagen,
         }
         this.consejeros.push(consejeroAgregar);
+        this.srcs_imagen.push(element.src_imagen);
       });
     }, error => {
       this.alertaPopUp = true;

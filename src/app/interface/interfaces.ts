@@ -20,6 +20,7 @@ export interface consejero {
     areasInteres: string;
     correo: string;
     horario: string[];
+    src_imagen?: string;
 }
 export interface datoBusqueda {
     nombreAsignatura: string,
