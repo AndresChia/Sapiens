@@ -66,28 +66,27 @@ export class ProfesorComponent implements OnInit {
   }
 
   obtenerClases() {
-    // let x = this._ProfesorRestService.obtenerClases(1).subscribe(res => {
-    //   let clasePro: clase = {
-    //     nombre: "",
-    //     numeroEstudiantes: "",
-    //     numero: "",
-    //     check: false,
-    //   };
-    //   res.results.forEach(element => {
-    //     clasePro.numero = element.codigo_clase;
-    //     clasePro.nombre = element.nombre_asignatura;
-    //     clasePro.numeroEstudiantes = element.numero_estudiantes;
-    //     this.clases.push(clasePro);
-    //   });
-    //   // console.log(res.results[0]);
-    // }, error => {
-    //   // this._LogInService.cerrarSesion()
-    //   this.alertaPopUp = true;
-    //   // tslint:disable-next-line:max-line-length
-    //   this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
-    //   this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-    //   setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
-    // });
+    this.clases = [];
+    let _LogInService: LogInService;
+    let x = this._ProfesorRestService.obtenerClases(this._LogInService.usuario.nombreUsuario).subscribe(res => {
+      let clasePro: clase = {
+        nombre: "",
+        numeroEstudiantes: "",
+        numero: "",
+        check: false,
+      };
+      res.clases.forEach(element => {
+        clasePro.numero = element.numero_clase;
+        clasePro.nombre = element.nombre;
+        clasePro.numeroEstudiantes = "element.numero_estudiantes";
+        this.clases.push(clasePro);
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
   }
 
   cargarAlertasRol(_LogInService: LogInService) {
@@ -109,6 +108,9 @@ export class ProfesorComponent implements OnInit {
       setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
   }
+
+
+
 
   seleccionarEstudiante(i: number) {
 
@@ -143,9 +145,12 @@ export class ProfesorComponent implements OnInit {
   }
 
   seleccionClase(i: number) {
+    this.claseSelecionada = i;
+    this.controlBtn2 = false;
+    this.secondFormGroup.get("claseSelect").setValue("correcto");
+    let _LogInService = this._LogInService;
 
-    this._ProfesorRestService.obtenerEstudiantesDeClase(i).subscribe(res => {
-
+    this._ProfesorRestService.obtenerEstudiantesDeClase(this.clases[i - 1].numero).subscribe(res => {
       res.results.forEach(element => {
         let estudianteClase: estudiante = {
           nombre: "",
@@ -169,12 +174,10 @@ export class ProfesorComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
       this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function (_LogInService: LogInService) { this._LogInService.cerrarSesion() }, 5000);
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
     // this.mostrarEstudiantes = true;
-    this.claseSelecionada = i;
-    this.controlBtn2 = false;
-    this.secondFormGroup.get("claseSelect").setValue("correcto");
+
   }
 
 

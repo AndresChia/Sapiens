@@ -45,7 +45,6 @@ export interface usuario {
     acceso: boolean;
     tipo: string;
     nombreUsuario: string;
-    contrasenia: string;
     load: boolean;
     check?: boolean;
 }
@@ -95,4 +94,13 @@ export interface director {
 export interface rol {
     check: boolean,
     rolNombre: string,
+}
+
+export interface historialUsr {
+    nombreEstudiante: string,
+    idEstudiante: string,
+    nombreAlerta: string,
+    origen: string,
+    estado: string,
+    fecha: string,
 }

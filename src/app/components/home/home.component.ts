@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
           };
           this._LogInService.roles.push(aux);
         });
+        this._LogInService.usuario.nombreUsuario = this.decodedToken.identificacion;
         //doble usuario si el tamaño de .roles es mayor a 1
         if (this._LogInService.roles.length > 1) {
           esDobleRol = true;

@@ -18,7 +18,6 @@ export class LogInService {
     acceso: false,
     tipo: "estudiante",
     nombreUsuario: "",
-    contrasenia: "",
     load: false,
   }
 

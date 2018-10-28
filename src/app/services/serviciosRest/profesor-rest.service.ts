@@ -18,8 +18,7 @@ export class ProfesorRestService {
   // tslint:disable-next-line:max-line-length
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 
-  //TODO: falta
-  obtenerClases(idProfesor: number) {
+  obtenerClases(idProfesor: string) {
     return this.http.get(this.url + "Profesor/" + idProfesor + "/Clases").pipe(
       map(res => {
         return res.json();
@@ -28,7 +27,7 @@ export class ProfesorRestService {
   }
 
   //TODO: falta
-  obtenerEstudiantesDeClase(idClase: number) {
+  obtenerEstudiantesDeClase(idClase: string) {
     return this.http.get(this.url + "Clase/" + idClase + "/Estudiantes").pipe(
       map(res => {
         return res.json();
@@ -54,6 +53,7 @@ export class ProfesorRestService {
         return res.json();
       }), catchError(this.handleError));
   }
+
 
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {

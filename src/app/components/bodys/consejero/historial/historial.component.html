@@ -66,16 +66,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let item of historial">
+        <td>{{item.nombreEstudiante}}</td>
+        <td>{{item.idEstudiante}}</td>
+        <td>{{item.nombreAlerta}}</td>
+        <td>{{item.origen}}</td>
+        <td>{{item.estado}}</td>
+        <td>{{item.fecha}}</td>
       </tr>
-      <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
-      </tr>
+
     </tbody>
   </table>
 
@@ -88,4 +87,11 @@
     </ul>
   </nav>
 
+</div>
+
+<div class="fondoNegro" *ngIf="alertaPopUp">
+
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
 </div>
