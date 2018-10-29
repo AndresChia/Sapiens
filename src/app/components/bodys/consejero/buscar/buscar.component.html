@@ -347,3 +347,10 @@
     </div>
   </div>
 </div>
+
+<div class="fondoNegro" *ngIf="alertaPopUp">
+
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
+</div>

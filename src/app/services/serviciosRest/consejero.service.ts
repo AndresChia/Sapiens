@@ -20,6 +20,7 @@ export class ConsejeroService {
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 
 
+  //falta
   obtenerHistorialConsejero(idConsejero: string) {
     return this.http.get(this.url + "Estudiante/Historial?query=" + idConsejero).pipe(
       map(res => {
@@ -28,7 +29,28 @@ export class ConsejeroService {
 
   }
 
+  obtenerEstudiantes(nombre: string, correo: string) {
+    if (nombre === undefined) {
+      return this.http.get(this.url + "Estudiante/Historial?query=" + correo).pipe(
+        map(res => {
+          return res.json();
+        }), catchError(this.handleError));
+    }
+    if (correo === undefined) {
+      return this.http.get(this.url + "Estudiante/Historial?query=" + nombre).pipe(
+        map(res => {
+          return res.json();
+        }), catchError(this.handleError));
 
+    }
+
+    return this.http.get(this.url + "Estudiante/Historial?query=" + nombre + "-" + correo).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+
+
+  }
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('ERROR DEL CLIENTE :', errorResponse.error.message);

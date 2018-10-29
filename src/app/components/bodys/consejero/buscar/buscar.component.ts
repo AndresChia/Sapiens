@@ -5,6 +5,7 @@ import { LogInService } from '../../../../services/log-in.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { alertaSemestre, anotacion, datosAcademicos, estudiante } from 'src/app/interface/interfaces';
+import { ConsejeroService } from '../../../../services/serviciosRest/consejero.service';
 
 @Component({
   selector: 'app-buscar',
@@ -24,7 +25,12 @@ export class BuscarComponent implements OnInit {
     correo: "",
     opcion: "0"
   };
+  alertaPopUp = false;
 
+  mensaje = {
+    cuerpo: "",
+    titulo: ""
+  }
   alertas: string[] = [
     "Inconvenientes personales con profesores", "Inconvenientes por la metodología de enseñanza ",
     "Bajo desempeño", "Orientación para la vida profesional", "Inconvenientes por los métodos de evaluación",
@@ -34,14 +40,7 @@ export class BuscarComponent implements OnInit {
     "Habilidades matematicas básicas en examen de entrada", "Comprensión lectora y escritura en examen de entrada",
     "No Asistencia a clases"
   ];
-  estudiantes: estudiante[] = [{
-    id: "1",
-    nombre: "carlos",
-    apellido: "salda",
-    carrera: "sistemas",
-    semestre: 1,
-    facultad: "ingenieria"
-  }];
+  estudiantes: estudiante[] = [];
   historialAlerta: alertaSemestre[] = [{
     fecha: "10/10/2018",
     semestre: "1",
@@ -62,7 +61,7 @@ export class BuscarComponent implements OnInit {
   }];
 
   constructor(public _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar, public _ConsejeroService: ConsejeroService) {
     this.forma = new FormGroup({
       'nombre': new FormControl(''),
       'correo': new FormControl(''),
@@ -70,6 +69,8 @@ export class BuscarComponent implements OnInit {
     });
     this.forma.setValue(this.busqueda);
     this.url = router.url;
+
+
   }
 
   ngOnInit() { }
@@ -80,10 +81,48 @@ export class BuscarComponent implements OnInit {
 
   //FIXME:
   buscar() {
+    let _LogInService: LogInService;
+    let consulta;
     if (this.forma.get("nombre").value !== "" || this.forma.get("correo").value !== "") {
+      this.estudiantes = [];
       this.busquedaBool = true;
       this.mostrar = false;
+      if (this.forma.get("nombre").value === "") {
+        consulta = this._ConsejeroService.obtenerEstudiantes(undefined, this.forma.get("correo").value)
+      }
+      if (this.forma.get("correo").value === "") {
+        consulta = this._ConsejeroService.obtenerEstudiantes(this.forma.get("nombre").value, undefined);
+
+      }
+      if (this.forma.get("nombre").value !== "" && this.forma.get("correo").value !== "") {
+        consulta = this._ConsejeroService.obtenerEstudiantes(this.forma.get("nombre").value, this.forma.get("correo").value);
+
+      }
+
+      consulta.subscribe(res => {
+        this.estudiantes = [];
+        res.forEach(element => {
+          let estudianteActual: estudiante = {
+            id: element.id,
+            nombre: element.nombres,
+            apellido: element.apellido1 + " " + element.apellido2,
+            carrera: element.carrera,
+            semestre: 1,
+            facultad: element.facultad
+          };
+
+          this.estudiantes.push(estudianteActual);
+        });
+        this.estudiantes = this.estudiantes.slice(0, 6);
+      }, error => {
+        this.alertaPopUp = true;
+        this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+        this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+        setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+      });
+
     }
+
   }
 
   scrollToElement($element): void {
