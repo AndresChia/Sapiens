@@ -1,0 +1,8 @@
+hr {
+  border: 1;
+  clear: both;
+  display: block;
+  width: 80%;
+  background-color: rgb(9, 4, 59);
+  height: 1px;
+}

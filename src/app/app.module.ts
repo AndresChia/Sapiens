@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material';
+import { ChartsModule } from 'ng2-charts';
 
 
 //routes
@@ -101,7 +102,8 @@ import { ProfesorRestService } from './services/serviciosRest/profesor-rest.serv
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,
     HttpClientModule, FormsModule, ReactiveFormsModule, MatSnackBarModule, BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatStepperModule
+    MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatStepperModule,
+    ChartsModule
   ],
   providers: [LogInService, LocalStorageManager, EstudianteRestService, AdminService, DirectorService, ConsejeroService, ProfesorRestService],
   bootstrap: [AppComponent],

@@ -1,3 +1,72 @@
-<p>
-  ia works!
-</p>
+<h1 class="text-center">Bajo desempeño</h1>
+<div class="row">
+  <div class="col-6">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre estudiantes</th>
+          <th>Nombre alerta</th>
+          <th>Criticidad</th>
+          <th>Edad</th>
+          <th>Genero</th>
+          <th>Promedio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>pedro</td>
+          <td>bajo desempeño</td>
+          <td>alta</td>
+          <td>19</td>
+          <td>Masculino</td>
+          <td>3.2</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6">
+    <div>
+      <div style="display: block">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="text-center ">
+
+<h1 class="text-center">Datos 2</h1>
+<div class="row">
+  <div class="col-6">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre estudiantes</th>
+          <th>Nombre alerta</th>
+          <th>Criticidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6">
+    <div>
+      <div style="display: block">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
