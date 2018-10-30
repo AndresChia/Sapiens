@@ -4,7 +4,7 @@ import { ConsejeroComponent } from "../consejero.component";
 import { LogInService } from '../../../../services/log-in.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { alertaSemestre, anotacion, datosAcademicos, estudiante } from 'src/app/interface/interfaces';
+import { alertaSemestre, anotacion, datosAcademicos, estudiante, alerta } from 'src/app/interface/interfaces';
 import { ConsejeroService } from '../../../../services/serviciosRest/consejero.service';
 import { datosDemograficos } from '../../../../interface/interfaces';
 
@@ -20,6 +20,7 @@ export class BuscarComponent implements OnInit {
   remitirValor = true;
   checkFecha = false;
   busquedaBool = false;
+  alertaSeleccionada = "";
   url: string;
   forma: FormGroup;
   busqueda: any = {
@@ -33,15 +34,7 @@ export class BuscarComponent implements OnInit {
     cuerpo: "",
     titulo: ""
   }
-  alertas: string[] = [
-    "Inconvenientes personales con profesores", "Inconvenientes por la metodología de enseñanza ",
-    "Bajo desempeño", "Orientación para la vida profesional", "Inconvenientes por los métodos de evaluación",
-    "Desbalance en la carga academíca", "Dificultades de aprendizaje", "Estrés académico", "Retiro temporal",
-    "Retiro Definitivo", "Retiro de Asignaturas", "Dificultades en habilidades de comunicación",
-    "Dificultades para el trabajo en equipo", "Conocimientos de física en el examen de entrada",
-    "Habilidades matematicas básicas en examen de entrada", "Comprensión lectora y escritura en examen de entrada",
-    "No Asistencia a clases"
-  ];
+  alertas: alerta [] = [];
   estudiantes: estudiante[] = [];
   anotaciones: anotacion[] = [{
     responsable: "carlos",
@@ -79,10 +72,32 @@ export class BuscarComponent implements OnInit {
     this.forma.setValue(this.busqueda);
     this.url = router.url;
 
+    this.cargarAlertasRol();
 
   }
 
   ngOnInit() { }
+
+  cargarAlertasRol(){
+    let _LogInService = this._LogInService;
+    this._ConsejeroService.obtenerAlertasConsejero().subscribe(res => {
+      res.forEach(element => {
+        let alertaAgregar: alerta = {
+          nombreAlerta: element.nombre,
+          descripcion: element.descripcion,
+          criticidad: element.criticidad,
+          temporalidad: element.temporalidad,
+          id: element.id,
+        }
+        this.alertas.push(alertaAgregar);
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
+  }
 
   seleccionar(actual: number) {
     this.mostrar = true;

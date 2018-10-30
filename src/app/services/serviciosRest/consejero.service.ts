@@ -29,6 +29,13 @@ export class ConsejeroService {
 
   }
 
+  obtenerAlertasConsejero() {
+    return this.http.get(this.url + "Rutas/Generador/Consejero").pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
   obtenerEstudiantes(nombre: string, correo: string) {
     if (nombre === undefined) {
       return this.http.get(this.url + "Estudiante/Historial?query=" + correo + "&codigoConsejero=" + this._LogInService.usuario.nombreUsuario).pipe(
