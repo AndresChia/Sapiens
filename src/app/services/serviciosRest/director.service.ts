@@ -29,7 +29,7 @@ export class DirectorService {
   }
 
   obtenerHistorialDirector(idDirector: string) {
-    return this.http.get(this.url + "Estudiante/Historial?query=" + idDirector).pipe(
+    return this.http.get(this.url + "Estudiante/Historial?codigoConsejero=" + idDirector).pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));

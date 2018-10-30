@@ -129,7 +129,7 @@ export class BuscarComponent implements OnInit {
             nacimiento: element.F_Nacimiento,
             estado_civil: element.Estado_Civil,
             pais: element.Pais,
-            ciudad: element.Pais,
+            ciudad: element.Estado_Depto,
             grupo_etnico: element.Grupo_Etnico,
             descripcion_etnica: element.Descripcion,
             pricipal: element.Principal,

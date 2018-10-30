@@ -45,17 +45,18 @@ export class HistorialComponent implements OnInit {
   cargarHistorial() {
     let _LogInService = this._LogInService;
     this._DirectorService.obtenerHistorialDirector(this._LogInService.usuario.nombreUsuario).subscribe(res => {
-
-      res[0].alertas.forEach(element => {
-        let hostirialActual: historialUsr = {
-          estado: element.estado,
-          fecha: (element.fechaInicio as string).split("T")[0],
-          idEstudiante: element.alerta.id,
-          nombreAlerta: element.alerta.nombre,
-          nombreEstudiante: "FALTA",
-          origen: "FALTA",
-        };
-        this.historial.push(hostirialActual);
+      res.forEach(estudiante => {
+        estudiante.alertas.forEach(element => {
+          let hostirialActual: historialUsr = {
+            estado: element.estado,
+            fecha: (element.fechaInicio as string).split("T")[0],
+            idEstudiante: estudiante.identificacion,
+            nombreAlerta: element.alerta.nombre,
+            nombreEstudiante: estudiante.nombres + " " + estudiante.apellido1 + estudiante.apellido2,
+            origen: "Consejero"
+          };
+          this.historial.push(hostirialActual);
+        });
       });
     }, error => {
       this.alertaPopUp = true;
