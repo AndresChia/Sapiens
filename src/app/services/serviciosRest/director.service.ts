@@ -28,7 +28,13 @@ export class DirectorService {
 
   }
 
+  obtenerHistorialDirector(idDirector: string) {
+    return this.http.get(this.url + "Estudiante/Historial?query=" + idDirector).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
 
+  }
 
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {

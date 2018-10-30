@@ -60,21 +60,20 @@
         <th>Nombre de alerta</th>
         <th>Origen</th>
         <th>Estado</th>
-        <th>Encargado Actual</th>
         <th>Fecha</th>
+
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let item of historial">
+        <td>{{item.nombreEstudiante}}</td>
+        <td>{{item.idEstudiante}}</td>
+        <td>{{item.nombreAlerta}}</td>
+        <td>{{item.origen}}</td>
+        <td>{{item.estado}}</td>
+        <td>{{item.fecha}}</td>
       </tr>
-      <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
-      </tr>
+
     </tbody>
   </table>
 
@@ -86,4 +85,11 @@
       <li class="page-item"><a (click)="cambioPag(-2)" class="page-link" href="#">Next</a></li>
     </ul>
   </nav>
+</div>
+
+<div class="fondoNegro" *ngIf="alertaPopUp">
+
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
 </div>

@@ -20,7 +20,6 @@ export class ConsejeroService {
   constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
 
 
-  //falta
   obtenerHistorialConsejero(idConsejero: string) {
     return this.http.get(this.url + "Estudiante/Historial?query=" + idConsejero).pipe(
       map(res => {
