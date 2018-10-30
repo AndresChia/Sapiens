@@ -79,7 +79,7 @@ export class ProfesorComponent implements OnInit {
         };
         clasePro.numero = element.numero_clase;
         clasePro.nombre = element.nombre;
-        clasePro.numeroEstudiantes = "element.numero_estudiantes";
+        clasePro.numeroEstudiantes = element.estudiantes;
         this.clases.push(clasePro);
       });
     }, error => {

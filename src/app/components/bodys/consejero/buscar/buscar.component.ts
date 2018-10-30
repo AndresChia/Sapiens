@@ -101,7 +101,7 @@ export class BuscarComponent implements OnInit {
       this.busquedaBool = true;
       this.mostrar = false;
       if (this.forma.get("nombre").value === "") {
-        consulta = this._ConsejeroService.obtenerEstudiantes(undefined, this.forma.get("correo").value)
+        consulta = this._ConsejeroService.obtenerEstudiantes(undefined, this.forma.get("correo").value);
       }
       if (this.forma.get("correo").value === "") {
         consulta = this._ConsejeroService.obtenerEstudiantes(this.forma.get("nombre").value, undefined);
@@ -126,15 +126,15 @@ export class BuscarComponent implements OnInit {
           let dtosDemograficos: datosDemograficos = {
             id: element.id,
             genero: element.Sexo,
-            nacimiento: "FALTA",
-            estado_civil: "FALTA",
-            pais: "FALTA",
-            ciudad: "FALTA",
-            grupo_etnico: "FALTA",
-            descripcion_etnica: "FALTA",
-            pricipal: "FALTA",
-            tipo_discapacidad: "FALTA",
-            descripcion_discapacidad: "FALTA",
+            nacimiento: element.F_Nacimiento,
+            estado_civil: element.Estado_Civil,
+            pais: element.Pais,
+            ciudad: element.Pais,
+            grupo_etnico: element.Grupo_Etnico,
+            descripcion_etnica: element.Descripcion,
+            pricipal: element.Principal,
+            tipo_discapacidad: element.Discapacidad,
+            descripcion_discapacidad: element.Descripcion_discapacidad,
           }
 
           let compiladoAcademicos: datosAcademicos[] = [];

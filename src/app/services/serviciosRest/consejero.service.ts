@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { LogInService } from 'src/app/services/log-in.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { catchError } from 'rxjs/operators';
@@ -17,7 +18,7 @@ export class ConsejeroService {
   url = environment.url;
 
 
-  constructor(private http: Http, private router: Router, private httpClient: HttpClient) { }
+  constructor(public _LogInService: LogInService, private http: Http, private router: Router, private httpClient: HttpClient) { }
 
 
   obtenerHistorialConsejero(idConsejero: string) {
@@ -30,20 +31,20 @@ export class ConsejeroService {
 
   obtenerEstudiantes(nombre: string, correo: string) {
     if (nombre === undefined) {
-      return this.http.get(this.url + "Estudiante/Historial?query=" + correo).pipe(
+      return this.http.get(this.url + "Estudiante/Historial?query=" + correo + "&codigoConsejero=" + this._LogInService.usuario.nombreUsuario).pipe(
         map(res => {
           return res.json();
         }), catchError(this.handleError));
     }
     if (correo === undefined) {
-      return this.http.get(this.url + "Estudiante/Historial?query=" + nombre).pipe(
+      return this.http.get(this.url + "Estudiante/Historial?query=" + nombre + "&codigoConsejero=" + this._LogInService.usuario.nombreUsuario).pipe(
         map(res => {
           return res.json();
         }), catchError(this.handleError));
 
     }
 
-    return this.http.get(this.url + "Estudiante/Historial?query=" + nombre + "-" + correo).pipe(
+    return this.http.get(this.url + "Estudiante/Historial?query=" + nombre + "-" + correo + "&codigoConsejero=" + this._LogInService.usuario.nombreUsuario).pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
