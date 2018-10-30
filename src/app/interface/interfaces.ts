@@ -105,3 +105,17 @@ export interface historialUsr {
     estado: string,
     fecha: string,
 }
+
+export interface datosDemograficos {
+    id: string;
+    genero: string;
+    nacimiento: string;
+    estado_civil: string;
+    pais: string;
+    ciudad: string;
+    grupo_etnico: string;
+    descripcion_etnica: string;
+    pricipal: string;
+    tipo_discapacidad: string;
+    descripcion_discapacidad: string;
+}

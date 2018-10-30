@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { alertaSemestre, anotacion, datosAcademicos, estudiante } from 'src/app/interface/interfaces';
 import { ConsejeroService } from '../../../../services/serviciosRest/consejero.service';
+import { datosDemograficos } from '../../../../interface/interfaces';
 
 @Component({
   selector: 'app-buscar',
@@ -14,6 +15,7 @@ import { ConsejeroService } from '../../../../services/serviciosRest/consejero.s
 })
 export class BuscarComponent implements OnInit {
 
+  indexEstudiante = 0;
   mostrar = false;
   remitirValor = true;
   checkFecha = false;
@@ -41,25 +43,32 @@ export class BuscarComponent implements OnInit {
     "No Asistencia a clases"
   ];
   estudiantes: estudiante[] = [];
-  historialAlerta: alertaSemestre[] = [{
-    fecha: "10/10/2018",
-    semestre: "1",
-    alerta: "cear",
-    creador: "carlos",
-  }];
   anotaciones: anotacion[] = [{
     responsable: "carlos",
     anotacion: "string",
     alerta: "adadah adioooiads ",
     fecha: "10/10/2018",
   }];
-  datosAcademicos: datosAcademicos[] = [{
-    creditosAprobados: "20",
-    creditosRetirados: "0",
-    promedio: "3.5",
-    semestre: "1",
-  }];
+  academicos: datosAcademicos[][] = [];
+  demograficos: datosDemograficos[] = [];
+  historialAlerta: alertaSemestre[][] = [];
 
+
+  alertasEstudiante: alertaSemestre[] = [];
+  demograficoActual: datosDemograficos = {
+    id: "",
+    genero: "",
+    nacimiento: "",
+    estado_civil: "",
+    pais: "",
+    ciudad: "",
+    grupo_etnico: "",
+    descripcion_etnica: "",
+    pricipal: "",
+    tipo_discapacidad: "",
+    descripcion_discapacidad: "",
+  };
+  academicosActual: datosAcademicos[] = [];
   constructor(public _LogInService: LogInService, private consejeroComponent: ConsejeroComponent, private router: Router,
     public snackBar: MatSnackBar, public _ConsejeroService: ConsejeroService) {
     this.forma = new FormGroup({
@@ -77,6 +86,10 @@ export class BuscarComponent implements OnInit {
 
   seleccionar(actual: number) {
     this.mostrar = true;
+    this.indexEstudiante = actual;
+    this.demograficoActual = this.demograficos[actual];
+    this.academicosActual = this.academicos[actual];
+    this.alertasEstudiante = this.historialAlerta[actual];
   }
 
   //FIXME:
@@ -110,7 +123,43 @@ export class BuscarComponent implements OnInit {
             semestre: 1,
             facultad: element.facultad
           };
+          let dtosDemograficos: datosDemograficos = {
+            id: element.id,
+            genero: element.Sexo,
+            nacimiento: "FALTA",
+            estado_civil: "FALTA",
+            pais: "FALTA",
+            ciudad: "FALTA",
+            grupo_etnico: "FALTA",
+            descripcion_etnica: "FALTA",
+            pricipal: "FALTA",
+            tipo_discapacidad: "FALTA",
+            descripcion_discapacidad: "FALTA",
+          }
 
+          let compiladoAcademicos: datosAcademicos[] = [];
+          element.info_semestres.forEach(element2 => {
+            let datAcademicos: datosAcademicos = {
+              creditosAprobados: element2.creditos_aprobados,
+              creditosRetirados: element2.creditos_retirados,
+              promedio: element2.promedio,
+              semestre: element2.numero_semestre,
+            }
+            compiladoAcademicos.push(datAcademicos);
+          });
+          let compiladoAlertas: alertaSemestre[] = [];
+          element.alertas.forEach(element3 => {
+            let datAlerta: alertaSemestre = {
+              alerta: element3.alerta.nombre,
+              creador: "FALTA",
+              fecha: (element3.fechaInicio as string).split("T")[0],
+              semestre: "FALTA",
+            }
+            compiladoAlertas.push(datAlerta);
+          });
+          this.historialAlerta.push(compiladoAlertas);
+          this.academicos.push(compiladoAcademicos);
+          this.demograficos.push(dtosDemograficos);
           this.estudiantes.push(estudianteActual);
         });
         this.estudiantes = this.estudiantes.slice(0, 6);

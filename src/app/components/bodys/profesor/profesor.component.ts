@@ -152,20 +152,20 @@ export class ProfesorComponent implements OnInit {
     let _LogInService = this._LogInService;
 
     this._ProfesorRestService.obtenerEstudiantesDeClase(this.clases[i - 1].numero).subscribe(res => {
-      res.results.forEach(element => {
+      res.forEach(element => {
         let estudianteClase: estudiante = {
-          nombre: "",
-          apellido: "",
-          carrera: "",
-          semestre: undefined,
+          nombre: element.nombres,
+          apellido: element.apellido1 + " " + element.apellido2,
+          carrera: element.carrera,
+          semestre: element.Semestre,
           check: false,
-          id: "",
-          facultad: ""
+          id: element.identificacion,
+          facultad: "Ingenieria"
         };
-        estudianteClase.nombre = element.nombres;
-        estudianteClase.apellido = element.apellido;
-        estudianteClase.carrera = "FALTA";
-        estudianteClase.semestre = -1;
+        // estudianteClase.nombre = element.nombres;
+        // estudianteClase.apellido = element.apellido;
+        // estudianteClase.carrera = "FALTA";
+        // estudianteClase.semestre = -1;
         this.estudiantes.push(estudianteClase);
       });
       // console.log(res.results[0]);

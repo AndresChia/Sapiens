@@ -44,14 +44,14 @@ export class HistorialCComponent implements OnInit {
     let _LogInService = this._LogInService;
     this._ConsejeroService.obtenerHistorialConsejero(this._LogInService.usuario.nombreUsuario).subscribe(res => {
 
-      res.alertas.forEach(element => {
+      res[0].alertas.forEach(element => {
         let hostirialActual: historialUsr = {
-          estado: "",
-          fecha: "",
-          idEstudiante: "",
-          nombreAlerta: "",
-          nombreEstudiante: " ",
-          origen: "",
+          estado: element.estado,
+          fecha: (element.fechaInicio as string).split("T")[0],
+          idEstudiante: element.alerta.id,
+          nombreAlerta: element.alerta.nombre,
+          nombreEstudiante: "FALTA",
+          origen: "FALTA",
         };
 
         this.historial.push(hostirialActual);
