@@ -37,7 +37,18 @@ export class LogInService {
   respuesta = " ";
   roles: rol[] = [];
   url = environment.url;
-  persona: persona;
+  persona: persona = {
+    apellido: "",
+    correo: "",
+    direccion: "",
+    genero: "",
+    id: 1,
+    identificacion: "",
+    nombre: "",
+    rol: "",
+    telefono: "",
+    tipoIdentificacion: "",
+  };
 
   constructor(private http: Http, private router: Router) {
     this.sesionActiva();

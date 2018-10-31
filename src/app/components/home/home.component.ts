@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogInService } from '../../services/log-in.service';
 import { Router } from '@angular/router';
-import { persona, usuario } from 'src/app/interface/interfaces';
-import * as jwt_decode from "jwt-decode";
+import { persona } from 'src/app/interface/interfaces';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { estudiante } from '../../interface/interfaces';
 
@@ -25,8 +24,11 @@ export class HomeComponent implements OnInit {
   constructor(public _LogInService: LogInService, private router: Router) { }
   modal = false;
 
+
   ngOnInit() {
   }
+
+
 
   login(usr: string, contrasenia: string) {
     this.confirmarActivado = true;
@@ -54,7 +56,6 @@ export class HomeComponent implements OnInit {
           this.alertaPopUp = false;
           this.cargo = "Si DobleRol";
           this.modal = true;
-          return
         } else {
           //usuario normal
           this.valido = false;
@@ -109,6 +110,9 @@ export class HomeComponent implements OnInit {
 
     }
 
+    setTimeout(() => {
+      this.modal = true;
+    }, 1000);
 
 
   }

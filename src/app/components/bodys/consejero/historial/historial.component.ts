@@ -60,7 +60,7 @@ export class HistorialCComponent implements OnInit {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
       this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { this._LogInService.cerrarSesion() }, 5000);
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
 
   }
