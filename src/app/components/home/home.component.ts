@@ -12,6 +12,7 @@ import { estudiante } from '../../interface/interfaces';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  confirmarActivado = true;
   mensaje = {
     cuerpo: "",
     titulo: ""
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   login(usr: string, contrasenia: string) {
+    this.confirmarActivado = true;
     let _LogInService: LogInService;
     let pop = true;
     let esDobleRol = false;
@@ -134,7 +136,7 @@ export class HomeComponent implements OnInit {
 
 
   seleccionar(i: number) {
-
+    this.confirmarActivado = false;
     this._LogInService.roles.forEach(element => {
       element.check = false;
     });

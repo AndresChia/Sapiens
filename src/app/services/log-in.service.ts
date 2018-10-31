@@ -54,6 +54,12 @@ export class LogInService {
   }
   // #FIXME: falta cambiar el tipo lo debe generar la peticion
   iniciarSesion(contrasenia: string, usur: string) {
+
+    if (usur.split("@").length === 1) {
+      usur += "@javeriana.edu.co";
+    }
+
+
     let params = {
       correo: usur,
       //"adriana-diaz@javeriana.edu.co"

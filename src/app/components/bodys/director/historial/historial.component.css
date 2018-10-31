@@ -13,3 +13,9 @@ hr {
   display: -webkit-box;
   list-style: none;
 }
+
+.activoPag {
+
+  background-color: #FFC107;
+  color: antiquewhite;
+}

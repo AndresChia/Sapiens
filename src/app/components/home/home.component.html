@@ -64,10 +64,10 @@
 
         <div *ngFor="let rol of _LogInService.roles ,let i=index" class="card m-3">
           <a style="cursor: pointer" (click)="seleccionar(i)">
-            <div class="card-body">
+            <div [ngClass]="{'cardSelected': rol.check}" class="card-body">
               <div class="form-check">
-                <input [(ngModel)]="rol.check" type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">{{rol.rolNombre}}</label>
+                <input [(ngModel)]="rol.check" type="checkbox" class="form-check-input" id="${{i}}}">
+                <label class="form-check-label" for="${{i}}">{{rol.rolNombre}}</label>
               </div>
             </div>
           </a>
@@ -76,7 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button (click)="loginDobleRol( )" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+        <button (click)="loginDobleRol( )" type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="confirmarActivado">Confirmar</button>
       </div>
     </div>
   </div>

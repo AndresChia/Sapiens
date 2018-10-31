@@ -16,6 +16,55 @@ hr {
 
 }
 
+button.botton.fa:hover {
+  border-radius: inherit;
+  width: 120px;
+}
+
+
+button.botton.fas:hover {
+  border-radius: inherit;
+  width: 120px;
+}
+
+
+
+button.botton.fa.fa-arrow-up:hover p::before {
+  border-radius: inherit;
+  width: 120px;
+  content: "Volver a buscar";
+  font-family: sans-serif;
+}
+
+button.botton.fa.fa-address-card:hover p::before {
+  border-radius: inherit;
+  width: 120px;
+  content: "Datos demograficos";
+  font-family: sans-serif;
+}
+
+button.botton.fas.fa-chalkboard-teacher:hover p::before {
+  border-radius: inherit;
+  width: 120px;
+  content: "Datos academicos";
+  font-family: sans-serif;
+}
+
+button.botton.fa.fa-exclamation-triangle:hover p::before {
+  border-radius: inherit;
+  width: 120px;
+  content: "Historial de alertas";
+  font-family: sans-serif;
+}
+
+button.botton.fas.fa-file-signature:hover p::before {
+  border-radius: inherit;
+  width: 120px;
+  content: "Finalizar";
+  font-family: sans-serif;
+}
+
+
 
 .botton {
 

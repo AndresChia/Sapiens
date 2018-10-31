@@ -173,20 +173,25 @@
 
   <button class="botton btn-danger fa fa-arrow-up" (click)="scrollToElementInicio()" name="buttondemograficos" href="#buscarEstudiante"
     role="button">
+    <p></p>
   </button>
 
   <button class="botton btn-primary fa fa-address-card" (click)="scrollToElement(demograficos)" name="buttondemograficos"
     href="#demograficos" role="button">
+    <p></p>
   </button>
 
   <button class="botton btn-primary fas fa-chalkboard-teacher" (click)="scrollToElement(academicos)" name="buttondemograficos"
     href="#academicos" role="button">
+    <p></p>
   </button>
   <button class="botton btn-primary fa fa-exclamation-triangle" (click)="scrollToElement(histoAlertas)" name="buttondemograficos"
     href="#histoAlertas" role="button">
+    <p></p>
   </button>
   <button class="botton btn-primary fas fa-file-signature" (click)="scrollToElement(anotaciones)" name="buttondemograficos"
     href="#anotaciones" role="button">
+    <p></p>
   </button>
 
 </div>
@@ -291,7 +296,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button (click)="escalar()" type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="remitirValor">Confirmar</button>
+        <button id="BotonEscalar" (click)="escalar()" type="button" class="btn btn-primary" data-dismiss="modal"
+          [disabled]="remitirValor">Confirmar</button>
       </div>
     </div>
   </div>
@@ -355,3 +361,16 @@
 <div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
   <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
 </div>
+
+<script>
+  $('.BotonEscalar').each(function () {
+    var $this = $(this);
+    $this.popover({
+      trigger: 'hover',
+      placement: 'right',
+      html: true,
+      content: "$this.find('.userInfo').html()"
+    });
+  });
+
+</script>
