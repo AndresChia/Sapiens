@@ -110,9 +110,9 @@ export class HomeComponent implements OnInit {
 
     }
 
-    setTimeout(() => {
-      this.modal = true;
-    }, 1000);
+    // setTimeout(() => {
+    //   this.modal = true;
+    // }, 1000);
 
 
   }

@@ -1,72 +1,58 @@
-<h1 class="text-center">Bajo desempeño</h1>
-<div class="row">
-  <div class="col-6">
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nombre estudiantes</th>
-          <th>Nombre alerta</th>
-          <th>Criticidad</th>
-          <th>Edad</th>
-          <th>Genero</th>
-          <th>Promedio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>pedro</td>
-          <td>bajo desempeño</td>
-          <td>alta</td>
-          <td>19</td>
-          <td>Masculino</td>
-          <td>3.2</td>
-
-        </tr>
-      </tbody>
-    </table>
+<div *ngFor="let alertaIA of alertasInArt" class="ia">
+  <hr class="text-center ">
+  <div class="titulo">
+    <h1 class="text-center">{{alertaIA.nombreAlerta}} </h1>
+    <h1 [ngClass]="{'textRojo': 'media'===alertaIA.criticidad}">({{alertaIA.criticidad}}) </h1>
   </div>
-  <div class="col-6">
-    <div>
-      <div style="display: block">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-          [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-      </div>
+
+  <div class="row">
+    <div class="col-6">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombres de estudiantes</th>
+            <th>Edad</th>
+            <th>Genero</th>
+            <th>Promedio acumulado</th>
+            <th>Puntaje lectura critica</th>
+            <th>Puntaje Matematica</th>
+            <th>Calificación Global</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of alertaIA.Estudiante">
+            <td>{{estudiante.nombreEstudiante}}</td>
+            <td>{{estudiante.edad}}</td>
+            <td>{{estudiante.genero}}</td>
+            <td>{{estudiante.promedio_ponderado}}</td>
+            <td>{{estudiante.Puntaje_Lectura_Critica}}</td>
+            <td>{{estudiante.Puntaje_Matematica}}</td>
+            <td>{{estudiante.Calif_Global}}</td>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <div class="col-6">
+      <div class="m-5">
+        <div style="display: block">
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
 
+    </div>
   </div>
+
+
+
 </div>
 
-<hr class="text-center ">
+<div class="fondoNegro" *ngIf="alertaPopUp">
 
-<h1 class="text-center">Datos 2</h1>
-<div class="row">
-  <div class="col-6">
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nombre estudiantes</th>
-          <th>Nombre alerta</th>
-          <th>Criticidad</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-6">
-    <div>
-      <div style="display: block">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-          [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-      </div>
-    </div>
-
-  </div>
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
 </div>

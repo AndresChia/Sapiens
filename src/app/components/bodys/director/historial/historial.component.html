@@ -65,7 +65,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of historialDeMostrar">
+      <tr *ngFor="let item of historialDeMostrar ">
         <td>{{item.nombreEstudiante}}</td>
         <td>{{item.idEstudiante}}</td>
         <td>{{item.nombreAlerta}}</td>
@@ -78,7 +78,9 @@
   </table>
 
   <nav aria-label="Page navigation example" style="display: flex;">
-    <ul class="pagination, centrar">
+    <ul class="pagination, centrar" style="margin-left: auto;
+    padding-left: 0;
+    margin-right: auto;">
       <li class="page-item"><a (click)="cambioPag(1,'antes')" class="page-link">Previous</a></li>
       <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a [ngClass]="{'activoPag': i===indice}"
           (click)="cambioPag(i,'pagina')" class="page-link">{{i+1}}</a></li>

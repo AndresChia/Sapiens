@@ -36,6 +36,48 @@ export class DirectorService {
 
   }
 
+  obtenerAsignaturas(idConsejero: string, asignatura: string) {
+
+    return this.http.get(this.url + "Asignaturas?nombre_asignatura=" + asignatura + "&codigoConsejero=" + idConsejero).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
+  ia(carrera: string) {
+    let params = {};
+
+    if (carrera === "ingenieria industrial") {
+
+      return this.http.post("http://104.248.229.214:1337/predict/IIND", params).pipe(
+        map(res => {
+          return res.json();
+        }), catchError(this.handleError));
+    }
+
+    if (carrera === "ingenieria civil") {
+      return this.http.post("http://104.248.229.214:1337/predict/ICVL", params).pipe(
+        map(res => {
+          return res.json();
+        }), catchError(this.handleError));
+    }
+
+    if (carrera === "ingenieria sistemas") {
+      return this.http.post("http://104.248.229.214:1337/predict/ISIST", params).pipe(
+        map(res => {
+          return res.json();
+        }), catchError(this.handleError));
+    }
+    if (carrera === "ingenieria electronica") {
+      return this.http.post("http://104.248.229.214:1337/predict/IELEC", params).pipe(
+        map(res => {
+          return res.json();
+        }), catchError(this.handleError));
+    }
+
+  }
+
+
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('ERROR DEL CLIENTE :', errorResponse.error.message);

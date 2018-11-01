@@ -34,7 +34,7 @@ export class BuscarComponent implements OnInit {
     cuerpo: "",
     titulo: ""
   }
-  alertas: alerta [] = [];
+  alertas: alerta[] = [];
   estudiantes: estudiante[] = [];
   anotaciones: anotacion[] = [{
     responsable: "carlos",
@@ -78,7 +78,7 @@ export class BuscarComponent implements OnInit {
 
   ngOnInit() { }
 
-  cargarAlertasRol(){
+  cargarAlertasRol() {
     let _LogInService = this._LogInService;
     this._ConsejeroService.obtenerAlertasConsejero().subscribe(res => {
       res.forEach(element => {

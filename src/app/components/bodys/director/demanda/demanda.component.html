@@ -78,31 +78,7 @@
 
             </div>
             <datalist id="listas">
-              <option value="azul">
-              <option value="rojo">
-              <option value="amarillo">
-              <option value="negro">
-              <option value="verde">
-              <option value="azul">
-              <option value="rojo">
-              <option value="amarillo">
-              <option value="negro">
-              <option value="verde">
-              <option value="azul">
-              <option value="rojo">
-              <option value="amarillo">
-              <option value="negro">
-              <option value="verde">
-              <option value="azul">
-              <option value="rojo">
-              <option value="amarillo">
-              <option value="negro">
-              <option value="verde">
-              <option value="azul">
-              <option value="rojo">
-              <option value="amarillo">
-              <option value="negro">
-              <option value="verde">
+              <option *ngFor="let asignatura of asignaturas" value="{{asignatura.nombre}}">
             </datalist>
 
 

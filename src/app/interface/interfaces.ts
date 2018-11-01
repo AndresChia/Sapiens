@@ -26,7 +26,8 @@ export interface datoBusqueda {
     nombreAsignatura: string,
     parametro: string,
     menor: number,
-    mayor: number
+    mayor: number,
+    id: string,
 }
 export interface alerta {
     nombreAlerta: string;
@@ -118,4 +119,28 @@ export interface datosDemograficos {
     pricipal: string;
     tipo_discapacidad: string;
     descripcion_discapacidad: string;
+}
+
+export interface asignatura {
+    id: string;
+    nombre: string;
+}
+
+export interface alertasIA {
+
+    nombreAlerta: string;
+    criticidad: string;
+    Estudiante: estudianteIA[];
+}
+
+export interface estudianteIA {
+    id: string;
+    nombreEstudiante: string;
+    edad: number;
+    apellido: string;
+    genero: string;
+    Puntaje_Lectura_Critica: number;
+    Puntaje_Matematica: number;
+    promedio_ponderado: number;
+    Calif_Global: number;
 }

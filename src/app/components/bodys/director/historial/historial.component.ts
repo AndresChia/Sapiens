@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DirectorService } from '../../../../services/serviciosRest/director.service';
 import { LogInService } from 'src/app/services/log-in.service';
 import { historialUsr } from 'src/app/interface/interfaces';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-historial',
@@ -18,6 +19,10 @@ export class HistorialComponent implements OnInit {
   historial: historialUsr[] = [];
   hisotorialCortado: historialUsr[][] = [[]];
   historialDeMostrar: historialUsr[] = [];
+
+  vehicles: Observable<Array<historialUsr>>;
+
+
   filtro = false;
   numeroDePags: number[];
   pagActual = 1;
@@ -27,12 +32,13 @@ export class HistorialComponent implements OnInit {
     setTimeout(() => {
 
 
-      for (let index = 0; index < Math.round(this.historial.length / 7); index++) {
-        this.hisotorialCortado[index] = this.historial.splice(6 * (index + 1), 7);
+      for (let index = 0; index < Math.round(this.historial.length / 10); index++) {
+        this.hisotorialCortado[index] = this.historial.splice(6 * (index + 1), 10);
       }
-      this.numeroDePags = Array(Math.round(this.historial.length / 7)).fill(1, 2).map((x, i) => i);
+      this.numeroDePags = Array(Math.round(this.historial.length / 10)).fill(1, 2).map((x, i) => i);
       this.historialDeMostrar = this.hisotorialCortado[0];
-    }, 1000);
+
+    }, 2000);
   }
 
   ngOnInit() {

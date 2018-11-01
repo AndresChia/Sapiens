@@ -6,3 +6,7 @@ hr {
   background-color: rgb(9, 4, 59);
   height: 1px;
 }
+
+.textRojo {
+  color: orangered;
+}

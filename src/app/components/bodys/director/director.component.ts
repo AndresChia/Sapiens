@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogInService } from '../../../services/log-in.service';
+import { DirectorService } from '../../../services/serviciosRest/director.service';
+import { alertasIA, estudianteIA } from 'src/app/interface/interfaces';
 
 @Component({
   selector: 'app-director',
@@ -7,9 +9,14 @@ import { LogInService } from '../../../services/log-in.service';
   styleUrls: ['./director.component.css']
 })
 export class DirectorComponent implements OnInit {
+
   opcion = false;
 
-  constructor(public _LogInService: LogInService) {
+
+  constructor() {
+
+
+
   }
   ngOnInit() {
   }
@@ -19,4 +26,7 @@ export class DirectorComponent implements OnInit {
     this.opcion = true;
   }
 
+
+
 }
+
