@@ -87,7 +87,7 @@ export class EstudianteComponent implements OnInit {
           cargo: element.cargo,
           correo: element.correo,
           horario: element.horarios,
-          id: element.id,
+          id: element.identificacion,
           nombre: element.nombres + " " + element.apellido1 + " " + element.apellido2,
           src_imagen: element.src_imagen,
         }
@@ -103,7 +103,7 @@ export class EstudianteComponent implements OnInit {
   }
 
   agendar() {
-    // this._EstudianteRestService.crearMotivoDeAlerta(this.estudianteActual.id, this.consejeros[this.consejeroSelecionado].id);
+    this._EstudianteRestService.crearMotivoDeAlerta(this._LogInService.usuario.nombreUsuario, this.consejeros[this.consejeroSelecionado].id);
     this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {
       duration: 2000,

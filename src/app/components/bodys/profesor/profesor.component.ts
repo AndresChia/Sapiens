@@ -43,6 +43,7 @@ export class ProfesorComponent implements OnInit {
   alertaPopUp = false;
   activarModal = false;
   colOrdenAnteri = 0;
+  estudiantesCheck: estudiante[] = [];
 
 
   constructor(public _LogInService: LogInService, public snackBar: MatSnackBar, private _formBuilder: FormBuilder,
@@ -111,14 +112,10 @@ export class ProfesorComponent implements OnInit {
   }
 
 
-
-
-  seleccionarEstudiante(i: number) {
-
-    this.activarModal = true;
-  }
   seleccionarCheck(i: number) {
     this.estudiantes[i].check = !this.estudiantes[i].check;
+
+    this.estudiantesCheck.push(this.estudiantes[i]);
 
     this.controlBtn3 = false;
     this.thirdFormGroup.get("estudianteSelect").setValue("correcto");
@@ -127,19 +124,14 @@ export class ProfesorComponent implements OnInit {
 
   //FIXME: crear alerta
   alertar() {
-
-
     let a: object = {
       opcion: 0
     }
     this.forma.setValue(a);
 
-    let estudiantesChescks: estudiante[] = [];
-    this.estudiantes.forEach(element => {
-      if (element.check) {
-        estudiantesChescks.push(element);
-      }
-    });
+    console.log(this.estudiantesCheck);
+    this._ProfesorRestService.crearMotivoDeAlerta(this._LogInService.usuario.nombreUsuario,this.estudiantesCheck);
+
 
 
     this.textArea = "";
@@ -157,6 +149,7 @@ export class ProfesorComponent implements OnInit {
     });
 
 
+
     this.snackBar.open("Alerta creada", "Cerrar", {
       duration: 2000,
       horizontalPosition: "center",
@@ -165,7 +158,7 @@ export class ProfesorComponent implements OnInit {
     });
 
 
-
+    this.estudiantesCheck = [];
 
   }
 

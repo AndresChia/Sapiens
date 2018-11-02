@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
+import { estudiante, clase, alerta } from "../../interface/interfaces";
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import { throwError, Observable } from 'rxjs';
@@ -43,7 +43,7 @@ export class ProfesorRestService {
   }
 
   //TODO: falta
-  crearMotivoDeAlerta(idProfesor: number) {
+  crearMotivoDeAlerta(idProfesor: string, estudiantes : estudiante []) {
     // let params = {
     //   codigo_estudiante: estudiante,
     //   codigo_consejero: consejero

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs';
@@ -30,8 +31,11 @@ export class EstudianteRestService {
     let params = {
       codigo_estudiante: estudiante,
       codigo_consejero: consejero
-    }
-    return this.http.post(this.url + "/Citas/Agendar", { params }).pipe(
+    };
+    let body = {};
+    this.http
+    .post(this.url + "Citas/Agendar?codigo_estudiante=" + params.codigo_estudiante + "&codigo_consejero=" + params.codigo_consejero + "&motivo=Holanda",body)
+    .pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
