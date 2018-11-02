@@ -12,11 +12,42 @@
 </div>
 
 <div *ngIf="_LogInService.usuario.tipo==='director' || _LogInService.usuario.tipo==='consejero'" class="director">
-
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4 text-center">Bienvenido {{_LogInService.usuario.nombreUsuario }}</h1>
+      <h1 class="display-4 text-center m-5">Bienvenido {{_LogInService.usuario.nombreUsuario }}</h1>
+      <div class="botones">
+        <div class="cuadroDemanda cuadro">
+          <a title="Header" data-toggle="popover" data-trigger="hover" data-content="Some content" class="link" (click)="botonesDirector('demanda')">
+            <i class="fa fa-external-link fa-4" aria-hidden="true"></i>
+            <h6>Demanda</h6>
+          </a>
+        </div>
+        <div class="cuadroAlerta cuadro">
+          <a class="link" (click)="botonesDirector('alerta')">
+            <i class="fa fa-exclamation-triangle fa-4" aria-hidden="true"></i>
+            <h6>Alertas</h6>
+          </a>
+        </div>
+        <div class="cuadrohistorial cuadro">
+          <a class="link" (click)="botonesDirector('historial')">
+            <i class="fa fa-history fa-4" aria-hidden="true"></i>
+            <h6>Historial</h6>
+          </a>
+        </div>
+        <div class="cuadroIa cuadro">
+          <a class="link" (click)="botonesDirector('ia')">
+            <i class="fa fa-flask fa-4" aria-hidden="true"></i>
+            <h6>Predicción</h6>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+  });
+
+</script>

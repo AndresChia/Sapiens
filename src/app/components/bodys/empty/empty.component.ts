@@ -43,5 +43,25 @@ export class EmptyComponent implements OnInit {
 
   ngOnInit() {
   }
+  botonesDirector(nombre: string) {
+    if (nombre === "demanda") {
+      this.router.navigate(["director", "demanda"]);
+
+    }
+    if (nombre === "alerta") {
+      this.router.navigate(["director", "alertas"]);
+
+    }
+    if (nombre === "historial") {
+      this.router.navigate(["director", "historial"]);
+
+    }
+    if (nombre === "ia") {
+      this.router.navigate(["director", "ia"]);
+
+    }
+
+
+  }
 
 }

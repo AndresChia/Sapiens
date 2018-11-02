@@ -29,6 +29,15 @@
 
 }
 
+
+.snackbar {
+  width: 400px;
+  height: 60px;
+  background: rgb(83, 82, 83);
+  font-size: 90px;
+}
+
+
 .alert-danger {
   color: #ffffff;
   background-color: #9e212c;

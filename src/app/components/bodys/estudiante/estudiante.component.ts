@@ -107,7 +107,11 @@ export class EstudianteComponent implements OnInit {
     this._LogInService.cerrarSesion();
     this.snackBar.open("Cita creada", "Cerrar", {
       duration: 2000,
+      horizontalPosition: "center",
+      panelClass: ['snackbar'],
+      verticalPosition: "top"
     });
+
   }
 
   elegirAlerta(aler: string) {

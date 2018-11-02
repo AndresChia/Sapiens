@@ -17,7 +17,7 @@
             <option *ngFor="let alerta of alertas,let indi=index">{{alerta.nombreAlerta}}</option>
           </select>
         </div>
-        <button (click)="obtenerClases()" mat-button matStepperNext [disabled]="controlBtn1">Siguiente</button>
+        <button class="pull-right" (click)="obtenerClases()" mat-button matStepperNext [disabled]="controlBtn1">Siguiente</button>
 
       </form>
 
@@ -63,8 +63,8 @@
 
 
       </div>
-      <button mat-button matStepperPrevious>Regresar</button>
-      <button mat-button matStepperNext [disabled]="controlBtn2">Siguiente</button>
+      <button class="pull-left" mat-button matStepperPrevious>Regresar</button>
+      <button class="pull-right" mat-button matStepperNext [disabled]="controlBtn2">Siguiente</button>
 
     </form>
   </mat-step>
@@ -111,8 +111,8 @@
         </table>
 
       </div>
-      <button mat-button matStepperPrevious>Regresar</button>
-      <button mat-button matStepperNext [disabled]="controlBtn3">Siguiente</button>
+      <button class="pull-left" mat-button matStepperPrevious>Regresar</button>
+      <button class="pull-right" mat-button matStepperNext [disabled]="controlBtn3">Siguiente</button>
 
     </form>
   </mat-step>
@@ -131,8 +131,9 @@
 
       </ul>
       <label for="exampleFormControlTextarea1">Mas informacion de la alerta:</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea [(ngModel)]="textArea" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
+
 
     <button (click)=alertar() (click)="stepper.reset()" type="button" class="btn btn-primary pull-right">Alertar</button>
 

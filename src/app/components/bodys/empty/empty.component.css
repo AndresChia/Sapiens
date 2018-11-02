@@ -1,0 +1,24 @@
+.botones {
+  display: inline-flex;
+  text-align: -webkit-center;
+  width: 300px !important;
+  margin-left: 30%;
+  margin-right: 30%;
+  width: initial;
+}
+
+
+.cuadro {
+  margin-right: 22%;
+  cursor: pointer;
+}
+
+.link {
+  color: #007bff !important;
+  text-decoration: none !important;
+}
+
+.link:hover {
+  color: black !important;
+
+}

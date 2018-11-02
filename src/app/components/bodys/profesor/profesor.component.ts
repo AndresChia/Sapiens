@@ -27,7 +27,7 @@ export class ProfesorComponent implements OnInit {
   controlBtn1 = true;
   controlBtn2 = true;
   controlBtn3 = true;
-
+  textArea = "";
 
   forma: FormGroup;
   firstFormGroup: FormGroup;
@@ -127,6 +127,8 @@ export class ProfesorComponent implements OnInit {
 
   //FIXME: crear alerta
   alertar() {
+
+
     let a: object = {
       opcion: 0
     }
@@ -139,9 +141,31 @@ export class ProfesorComponent implements OnInit {
       }
     });
 
+
+    this.textArea = "";
+    this.indiceActual = -1;
+    this.claseSelecionada = -1;
+    this.controlBtn1 = true;
+    this.controlBtn2 = true;
+    this.controlBtn3 = true;
+    this.estudiantes.forEach(element => {
+      element.check = false;
+    });
+
+    this.clases.forEach(element => {
+      element.check = false;
+    });
+
+
     this.snackBar.open("Alerta creada", "Cerrar", {
       duration: 2000,
+      horizontalPosition: "center",
+      panelClass: ['snackbar'],
+      verticalPosition: "top"
     });
+
+
+
 
   }
 
@@ -152,6 +176,7 @@ export class ProfesorComponent implements OnInit {
     let _LogInService = this._LogInService;
 
     this._ProfesorRestService.obtenerEstudiantesDeClase(this.clases[i - 1].numero).subscribe(res => {
+      this.estudiantes = [];
       res.forEach(element => {
         let estudianteClase: estudiante = {
           nombre: element.nombres,
@@ -183,9 +208,6 @@ export class ProfesorComponent implements OnInit {
 
 
   elegirAlerta(aler: string) {
-
-    // console.log(aler);
-    //console.log(this.forma.get("opcion"));
 
     if (aler !== "0") {
 

@@ -219,9 +219,14 @@ export class BuscarComponent implements OnInit {
   remitir(opc: number) {
     window.scrollTo(0, 0);
     this.mostrar = false;
+
     this.snackBar.open("Remición creada", "Cerrar", {
       duration: 2000,
+      horizontalPosition: "center",
+      panelClass: ['snackbar'],
+      verticalPosition: "top"
     });
+
   }
 
   escalar() {
