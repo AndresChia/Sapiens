@@ -16,4 +16,13 @@ export class LocalStorageManager {
   getData(idItem: string): string {
     return localStorage.getItem("0");
   }
+
+  cargarParametro(id: string, valor: string) {
+    localStorage.setItem(id, valor);
+  }
+
+
+  getDataParametros(idItem: string): string {
+    return localStorage.getItem(idItem);
+  }
 }

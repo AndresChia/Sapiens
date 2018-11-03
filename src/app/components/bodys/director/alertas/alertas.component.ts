@@ -3,6 +3,9 @@ import { estudiante, alerta } from '../../../../interface/interfaces';
 import { MatSnackBar } from '@angular/material';
 import { LogInService } from 'src/app/services/log-in.service';
 import { DirectorService } from '../../../../services/serviciosRest/director.service';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
+import { LocalStorageManager } from '../../../../services/LocalStorage-Manager.service';
 
 @Component({
     selector: 'app-alertas',
@@ -26,7 +29,7 @@ export class AlertasComponent implements OnInit {
     estudiantesAgrupadosBien: any[] = [];
 
 
-    constructor(public snackBar: MatSnackBar, public _LogInService: LogInService, public _DirectorService: DirectorService) { }
+    constructor(public snackBar: MatSnackBar, public _LogInService: LogInService, public _DirectorService: DirectorService, public router: Router, public _LocalStorageManager: LocalStorageManager) { }
 
     ngOnInit() {
         this.mostrarAlertasAgrupadas();
@@ -133,14 +136,14 @@ export class AlertasComponent implements OnInit {
                 element.intervenciones.forEach(element2 => {
                     let estudiantesPush: estudiante = {
 
-                        id: element2.estudianteidentificacion,
+                        id: element2.estudiante.identificacion,
                         nombre: element2.estudiante.nombres,
                         apellido: element2.estudiante.apellido1 + " " + element2.estudiante.apellido2,
                         carrera: "Falta",
                         semestre: 1,
                         check: false,
                         facultad: "Ingenieria",
-                        identificacion: element2.estudianteidentificacion,
+                        identificacion: element2.estudiante.identificacion,
 
                     }
 
@@ -163,6 +166,10 @@ export class AlertasComponent implements OnInit {
         });
     }
 
+    cargarDatosInformacionExtra(index: number) {
 
+        let x = this.estudianteActual[index];
+        this._LocalStorageManager.cargarParametro("3", x.id);
+    }
 
 }

@@ -1,4 +1,6 @@
-<div class="datosEstudiante m-5">
+<div [ngClass]="{'mostrar': mostrar===true,
+'ocultar': mostrar===false}" class="datosEstudiante m-5">
+  <br>
   <hr>
   <div #demograficos id="demograficos" class="datosdemograficos">
     <h1 class="text-center">Datos Demograficos</h1>
@@ -8,19 +10,19 @@
       <div class="row">
         <div class="col">
           <label for="id">Id</label>
-          <input id="id" type="text" class="form-control" placeholder="id" disabled="true">
+          <input id="id" type="text" class="form-control" placeholder="id" disabled="true" [value]="demograficoActual.id">
           <label for="nacimiento">Nacimiento</label>
-          <input id="nacimiento" type="date" class="form-control" placeholder="nacimiento" disabled="true">
+          <input id="nacimiento" type="text" class="form-control" placeholder="nacimiento" disabled="true" [value]="demograficoActual.nacimiento">
           <label for="origen">País Origen</label>
-          <input id="origen" type="text" class="form-control" placeholder="origen" disabled="true">
+          <input id="origen" type="text" class="form-control" placeholder="origen" disabled="true" [value]="demograficoActual.pais">
         </div>
         <div class="col">
           <label for="Genero">Genero</label>
-          <input id="Genero" type="text" class="form-control" placeholder="Genero" disabled="true">
+          <input id="Genero" type="text" class="form-control" placeholder="Genero" disabled="true" [value]="demograficoActual.genero">
           <label for="estado">Estado Civil</label>
-          <input id="estado" type="text" class="form-control" placeholder="estado" disabled="true">
+          <input id="estado" type="text" class="form-control" placeholder="estado" disabled="true" [value]="demograficoActual.estado_civil">
           <label for="ciudad">Ciudad de origen</label>
-          <input id="ciudad" type="text" class="form-control" placeholder="ciudad" disabled="true">
+          <input id="ciudad" type="text" class="form-control" placeholder="ciudad" disabled="true" [value]="demograficoActual.ciudad">
         </div>
       </div>
     </div>
@@ -29,15 +31,15 @@
       <div class="row">
         <div class="col">
           <label for="grupo">Grupo Étnico</label>
-          <input class="form-control" type="text" id="grupo" placeholder="grupo" disabled="true">
+          <input class="form-control" type="text" id="grupo" placeholder="grupo" disabled="true" [value]="demograficoActual.grupo_etnico">
         </div>
         <div class="col">
           <label for="descripcion">Descripción</label>
-          <input class="form-control" type="text" id="descripcion" placeholder="descripcion" disabled="true">
+          <input class="form-control" type="text" id="descripcion" placeholder="descripcion" disabled="true" [value]="demograficoActual.descripcion_etnica">
         </div>
         <div class="col">
           <label for="principal">Principal</label>
-          <input class="form-control" type="text" id="principal" placeholder="principal" disabled="true">
+          <input class="form-control" type="text" id="principal" placeholder="principal" disabled="true" [value]="demograficoActual.pricipal">
         </div>
       </div>
     </div>
@@ -46,12 +48,12 @@
       <div class="row">
         <div class="col">
           <label for="discapacidad">Tipo de discapacidad</label>
-          <input class="form-control" type="text" id="discapacidad" placeholder="discapacidad" disabled="true">
+          <input class="form-control" type="text" id="discapacidad" placeholder="discapacidad" disabled="true" [value]="demograficoActual.tipo_discapacidad">
         </div>
         <div class="col">
           <label for="descripcionDiscapacidad">Descripción</label>
           <input class="form-control" type="text" id="descripcionDiscapacidad" placeholder="descripcionDiscapacidad"
-            disabled="true">
+            disabled="true" [value]="demograficoActual.descripcion_discapacidad">
         </div>
       </div>
     </div>
@@ -73,7 +75,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr (click)="seleccionar(i)" *ngFor="let datoAcademico of datosAcademicos ;let i= index" style="cursor: pointer">
+          <tr (click)="seleccionar(i)" *ngFor="let datoAcademico of academicosActual;let i=index" style="cursor: pointer">
             <th scope="row">{{i+1}}</th>
             <td>{{datoAcademico.semestre}}</td>
             <td>{{datoAcademico.creditosAprobados}}</td>
@@ -102,43 +104,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let historial of historialAlerta, let i= index" style="cursor: pointer">
+          <tr *ngFor="let histoActual of alertasEstudiante;let i=index" style="cursor: pointer">
             <th scope="row">{{i+1}}</th>
-            <td>{{historial.fecha}}</td>
-            <td>{{historial.semestre}}</td>
-            <td>{{historial.alerta}}</td>
-            <td>{{historial.creador}}</td>
+            <td>{{histoActual.fecha}}</td>
+            <td>{{histoActual.semestre}}</td>
+            <td>{{histoActual.alerta}}</td>
+            <td>{{histoActual.creador}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-
+  <br #anotaciones>
+  <hr>
   <br>
 
-  <div class="anotaciones">
-    <h1 class="text-center">Anotaciones</h1>
-    <table class="table">
-      <thead class=" bg-warning">
-        <tr>
-          <th>#</th>
-          <th>Nombre responsable</th>
-          <th>Anotación</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let anotacion of anotaciones, let i=index">
-          <th scope="row">{{i+1}}</th>
-          <td>{{anotacion.responsable}}</td>
-          <td>{{anotacion.anotacion}}</td>
-          <td>{{anotacion.fecha}}</td>
+</div>
 
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="fondoNegro" *ngIf="alertaPopUp">
 
-
-
+</div>
+<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
 </div>

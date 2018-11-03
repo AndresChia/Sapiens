@@ -74,9 +74,8 @@ export class ConsejeroService {
 
   escalar(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoPrincipalPost: string) {
 
-
     let params = {}
-    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Escalar?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoPrincipal=" + codigoPrincipalPost + "&codigoIntermedio=" + codigoPrincipalPost, params).pipe(
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Escalar?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoPrincipal=" + codigoPrincipalPost, params).pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
@@ -87,9 +86,8 @@ export class ConsejeroService {
 
     let params = {
     }
-    console.log(this.url + "Estudiante/" + codigoEstudiantePost + "/Atender?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoAtiende=" + codigoAtiendePost + "&codigoResolucion=" + codigoResolucionPost);
 
-    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Atender?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoAtiende=" + codigoAtiendePost + "&codigoResolucion=" + codigoResolucionPost, params).pipe(
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Atender?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoPrincipal=" + codigoAtiendePost + "&codigoResolucion=" + codigoResolucionPost, params).pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
