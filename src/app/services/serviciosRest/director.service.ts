@@ -78,6 +78,21 @@ export class DirectorService {
   }
 
 
+  consultaDemanda(anno_academicoPost: string, periodo_academicoPost: string, filtros_clasePost: any) {
+
+    let params = {
+      anno_academico: anno_academicoPost,
+      periodo_academico: periodo_academicoPost,
+      filtros_clase: filtros_clasePost
+    };
+
+
+    return this.http.post(this.url + "Estudiante/Filtro/", params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('ERROR DEL CLIENTE :', errorResponse.error.message);

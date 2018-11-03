@@ -22,7 +22,7 @@ export class ConsejeroService {
 
 
   obtenerHistorialConsejero(idConsejero: string) {
-    return this.http.get(this.url + "Estudiante/Historial?query=" + idConsejero).pipe(
+    return this.http.get(this.url + "Consejero/+" + idConsejero + "/Alertas/Rol/consejero").pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
@@ -58,6 +58,43 @@ export class ConsejeroService {
 
 
   }
+
+  remitir(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoRemitidoPost: string) {
+
+    let params = {
+      codigoAlerta: codigoAlertaPost,
+      codigoFuente: codigoFuentePost,
+      codigoRemitido: codigoRemitidoPost,
+    }
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Remitir", params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
+  escalar(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoPrincipalPost: string) {
+
+
+    let params = {}
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Escalar?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoPrincipal=" + codigoPrincipalPost + "&codigoIntermedio=" + codigoPrincipalPost, params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+
+  }
+
+  atender(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoAtiendePost: String, codigoResolucionPost: string) {
+
+    let params = {
+    }
+    console.log(this.url + "Estudiante/" + codigoEstudiantePost + "/Atender?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoAtiende=" + codigoAtiendePost + "&codigoResolucion=" + codigoResolucionPost);
+
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Atender?codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoAtiende=" + codigoAtiendePost + "&codigoResolucion=" + codigoResolucionPost, params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('ERROR DEL CLIENTE :', errorResponse.error.message);

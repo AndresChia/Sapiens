@@ -6,6 +6,7 @@ export interface estudiante {
     semestre: number;
     check?: boolean;
     facultad: string;
+    identificacion?: string;
 }
 export interface clase {
     nombre: string;
@@ -23,6 +24,8 @@ export interface consejero {
     src_imagen?: string;
 }
 export interface datoBusqueda {
+    anno_academico: string,
+    periodo_academico: string,
     nombreAsignatura: string,
     parametro: string,
     menor: number,

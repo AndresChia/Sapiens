@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from "../../../app.component";
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { estudiante, clase, alerta } from "../../../interface/interfaces";
+import { estudiante, clase, alerta, usuario } from '../../../interface/interfaces';
 import { LogInService } from '../../../services/log-in.service';
 import { ProfesorRestService } from '../../../services/serviciosRest/profesor-rest.service';
 
@@ -43,7 +43,6 @@ export class ProfesorComponent implements OnInit {
   alertaPopUp = false;
   activarModal = false;
   colOrdenAnteri = 0;
-  estudiantesCheck: estudiante[] = [];
 
 
   constructor(public _LogInService: LogInService, public snackBar: MatSnackBar, private _formBuilder: FormBuilder,
@@ -112,10 +111,14 @@ export class ProfesorComponent implements OnInit {
   }
 
 
+
+
+  seleccionarEstudiante(i: number) {
+
+    this.activarModal = true;
+  }
   seleccionarCheck(i: number) {
     this.estudiantes[i].check = !this.estudiantes[i].check;
-
-    this.estudiantesCheck.push(this.estudiantes[i]);
 
     this.controlBtn3 = false;
     this.thirdFormGroup.get("estudianteSelect").setValue("correcto");
@@ -124,13 +127,22 @@ export class ProfesorComponent implements OnInit {
 
   //FIXME: crear alerta
   alertar() {
+    let alertaPost = this.actualAlerta;
+    let estudiantesIdsPost: string[] = [];
+
+
+
     let a: object = {
       opcion: 0
     }
     this.forma.setValue(a);
 
-    console.log(this.estudiantesCheck);
-    this._ProfesorRestService.crearMotivoDeAlerta(this._LogInService.usuario.nombreUsuario,this.estudiantesCheck);
+    this.estudiantes.forEach(element => {
+      if (element.check) {
+        estudiantesIdsPost.push(element.id);
+      }
+    });
+
 
 
 
@@ -149,7 +161,6 @@ export class ProfesorComponent implements OnInit {
     });
 
 
-
     this.snackBar.open("Alerta creada", "Cerrar", {
       duration: 2000,
       horizontalPosition: "center",
@@ -157,8 +168,20 @@ export class ProfesorComponent implements OnInit {
       verticalPosition: "top"
     });
 
+    let _LogInService: LogInService;
+    this._ProfesorRestService.crearMotivoDeAlerta(this._LogInService.usuario.nombreUsuario, estudiantesIdsPost, alertaPost).subscribe(res => {
 
-    this.estudiantesCheck = [];
+
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
+
+
+
+
 
   }
 

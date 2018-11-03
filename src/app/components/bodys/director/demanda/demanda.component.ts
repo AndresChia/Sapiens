@@ -30,8 +30,11 @@ export class DemandaComponent implements OnInit {
         menor: 0,
         mayor: 0,
         id: "",
+        periodo_academico: "",
+        anno_academico: ""
     }
-
+    anoAcademico = "2018";
+    periodoAcademico = "3";
     asignaturas: asignatura[] = [];
 
     busqueda: datoBusqueda[] = [];
@@ -72,7 +75,8 @@ export class DemandaComponent implements OnInit {
         this.actual.menor = 0;
         this.actual.parametro = "";
         this.activarModal = true;
-
+        this.actual.anno_academico = this.anoAcademico;
+        this.actual.periodo_academico = this.periodoAcademico;
     }
 
 

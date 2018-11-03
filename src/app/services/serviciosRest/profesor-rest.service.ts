@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptionsArgs } from '@angular/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { estudiante, clase, alerta } from "../../interface/interfaces";
 import { catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
-import { throwError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +25,6 @@ export class ProfesorRestService {
 
   }
 
-  //TODO: falta
   obtenerEstudiantesDeClase(idClase: string) {
     return this.http.get(this.url + "Clase/" + idClase + "/Estudiantes").pipe(
       map(res => {
@@ -42,13 +40,15 @@ export class ProfesorRestService {
       }), catchError(this.handleError));
   }
 
+
+
   //TODO: falta
-  crearMotivoDeAlerta(idProfesor: string, estudiantes : estudiante []) {
-    // let params = {
-    //   codigo_estudiante: estudiante,
-    //   codigo_consejero: consejero
-    // }
-    return this.http.get(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes").pipe(
+  crearMotivoDeAlerta(idProfesor: string, estudiantes: string[], motivo: string) {
+    let params = {
+      codigos: estudiantes,
+      motivo: motivo,
+    }
+    return this.http.post(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes", params).pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));

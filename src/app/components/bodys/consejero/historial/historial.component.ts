@@ -14,23 +14,37 @@ export class HistorialCComponent implements OnInit {
     cuerpo: "",
     titulo: ""
   }
+  indice = 0;
+
   filtro = false;
   numeroDePags: number[];
   pagActual = 1;
   alertaPopUp = false;
 
   historial: historialUsr[] = [];
+  hisotorialCortado: historialUsr[][] = [[]];
+  historialDeMostrar: historialUsr[] = [];
+
 
   constructor(public _ConsejeroService: ConsejeroService, public _LogInService: LogInService) {
-    this.numeroDePags = Array(2).fill(1, 2).map((x, i) => i);
     this.cargarHistorial();
+
+    setTimeout(() => {
+
+
+      for (let index = 0; index < Math.round(this.historial.length / 10); index++) {
+        this.hisotorialCortado[index] = this.historial.splice(6 * (index + 1), 10);
+      }
+      this.numeroDePags = Array(Math.round(this.historial.length / 10)).fill(1, 2).map((x, i) => i);
+      this.historialDeMostrar = this.hisotorialCortado[0];
+
+    }, 2000);
+
   }
 
   ngOnInit() {
   }
 
-  cambioPag(index: number) {
-  }
 
 
   filtrar(nombre, id, alerta, origen, fecha, estado) {
@@ -40,21 +54,45 @@ export class HistorialCComponent implements OnInit {
     }
   }
 
+
+  cambioPag(index: number, indicacion: string) {
+
+    if (indicacion === "antes") {
+      if (this.indice > 0) {
+        this.indice -= index;
+      }
+
+    }
+
+    if (indicacion === "despues") {
+      if (this.indice < Math.round(this.historial.length / 7) - 1) {
+        this.indice += index;
+      }
+
+    }
+    if (indicacion === "pagina") {
+      this.indice = index;
+
+    }
+    this.historialDeMostrar = this.hisotorialCortado[this.indice];
+
+  }
+
   cargarHistorial() {
     let _LogInService = this._LogInService;
     this._ConsejeroService.obtenerHistorialConsejero(this._LogInService.usuario.nombreUsuario).subscribe(res => {
-
-      res[0].alertas.forEach(element => {
-        let hostirialActual: historialUsr = {
-          estado: element.estado,
-          fecha: (element.fechaInicio as string).split("T")[0],
-          idEstudiante: element.alerta.id,
-          nombreAlerta: element.alerta.nombre,
-          nombreEstudiante: "FALTA",
-          origen: "FALTA",
-        };
-
-        this.historial.push(hostirialActual);
+      res.alertas.forEach(estudiante => {
+        estudiante.alertas.forEach(element => {
+          let hostirialActual: historialUsr = {
+            estado: element.estado,
+            fecha: (element.fechaInicio as string).split("T")[0],
+            idEstudiante: estudiante.id,
+            nombreAlerta: element.alerta.nombre,
+            nombreEstudiante: estudiante.nombres + " " + estudiante.apellido1 + estudiante.apellido2,
+            origen: "Consejero"
+          };
+          this.historial.push(hostirialActual);
+        });
       });
     }, error => {
       this.alertaPopUp = true;

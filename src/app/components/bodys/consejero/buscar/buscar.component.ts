@@ -136,7 +136,8 @@ export class BuscarComponent implements OnInit {
             apellido: element.apellido1 + " " + element.apellido2,
             carrera: element.carrera,
             semestre: 1,
-            facultad: element.facultad
+            facultad: element.facultad,
+            identificacion: element.identificacion
           };
           let dtosDemograficos: datosDemograficos = {
             id: element.id,
@@ -216,7 +217,7 @@ export class BuscarComponent implements OnInit {
     this.forma.setValue(this.busqueda);
   }
 
-  remitir(opc: number) {
+  remitir(opc: number, alertaVal: string) {
     window.scrollTo(0, 0);
     this.mostrar = false;
 
@@ -226,23 +227,88 @@ export class BuscarComponent implements OnInit {
       panelClass: ['snackbar'],
       verticalPosition: "top"
     });
+    let _LogInService: LogInService;
+    let Remitidoa = "";
+    if (opc === 1) {
+      Remitidoa = "caps";
+    } else {
+      Remitidoa = "aulas_aprendizaje";
+
+    }
+
+    this.alertaSeleccionada = this.obtenerIDalerta(this.alertaSeleccionada);
+
+    this._ConsejeroService.remitir(this.alertaSeleccionada, this._LogInService.usuario.nombreUsuario, this.estudiantes[this.indexEstudiante].identificacion, Remitidoa).subscribe(res => {
+      res.forEach(element => {
+
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
+
+
 
   }
 
-  escalar() {
+  escalar(alertaVal: string) {
     window.scrollTo(0, 0);
     this.mostrar = false;
+
     this.snackBar.open("Escalamiento creado", "Cerrar", {
       duration: 2000,
+      horizontalPosition: "center",
+      panelClass: ['snackbar'],
+      verticalPosition: "top"
     });
+
+    let _LogInService: LogInService;
+    this.alertaSeleccionada = this.obtenerIDalerta(this.alertaSeleccionada);
+
+    this._ConsejeroService.escalar(this.alertaSeleccionada, this._LogInService.usuario.nombreUsuario, this.estudiantes[this.indexEstudiante].identificacion, this._LogInService.usuario.nombreUsuario).subscribe(res => {
+      res.forEach(element => {
+
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
+
+
+
   }
 
-  atender() {
+  atender(alertaVal: string) {
     window.scrollTo(0, 0);
     this.mostrar = false;
+
     this.snackBar.open("Atencion realizada", "Cerrar", {
       duration: 2000,
+      horizontalPosition: "center",
+      panelClass: ['snackbar'],
+      verticalPosition: "top"
     });
+
+
+    let _LogInService: LogInService;
+    this.alertaSeleccionada = this.obtenerIDalerta(this.alertaSeleccionada);
+
+    this._ConsejeroService.atender(this.alertaSeleccionada, this._LogInService.usuario.nombreUsuario, this.estudiantes[this.indexEstudiante].identificacion, this._LogInService.usuario.nombreUsuario, this._LogInService.usuario.nombreUsuario).subscribe(res => {
+      res.forEach(element => {
+
+      });
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
+
+
   }
 
   check() {
@@ -255,6 +321,19 @@ export class BuscarComponent implements OnInit {
     } else {
       this.remitirValor = true;
     }
+
   }
+
+  obtenerIDalerta(nombreAlerta: string): string {
+    let idActual = "";
+    this.alertas.forEach(element => {
+      if (nombreAlerta === element.nombreAlerta) {
+        idActual = element.id;
+      }
+    })
+
+    return idActual;
+  }
+
 
 }

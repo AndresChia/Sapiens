@@ -22,6 +22,9 @@ export class AlertasComponent implements OnInit {
     indexSelecionado: number;
     alertas: alerta[] = []
 
+    estudiantesAgrupados: any[] = [];
+    estudiantesAgrupadosBien: any[] = [];
+
 
     constructor(public snackBar: MatSnackBar, public _LogInService: LogInService, public _DirectorService: DirectorService) { }
 
@@ -32,7 +35,8 @@ export class AlertasComponent implements OnInit {
 
     seleccionar(i: number) {
 
-        this.estudianteActual = this.alertas[i].estudiante;
+
+        this.estudianteActual = this.estudiantesAgrupadosBien[i];
         this.seleccionado = true;
 
 
@@ -40,6 +44,8 @@ export class AlertasComponent implements OnInit {
 
 
     seleccionarCheck(i: number) {
+
+
         this.estudianteActual[i].check = !this.estudianteActual[i].check;
         this.indexSelecionado = i;
     }
@@ -111,6 +117,8 @@ export class AlertasComponent implements OnInit {
         let _LogInService = this._LogInService;
         this._DirectorService.obtenerAlertasAgrupadas(this._LogInService.usuario.nombreUsuario).subscribe(res => {
             res.forEach(element => {
+
+
                 let alertaAgregar: alerta = {
                     nombreAlerta: element.nombre,
                     descripcion: element.descripcion,
@@ -120,6 +128,27 @@ export class AlertasComponent implements OnInit {
                     incidencias: element.incidencias,
                     tipo: element.temporalidad,
                 }
+
+                this.estudiantesAgrupados = [];
+                element.intervenciones.forEach(element2 => {
+                    let estudiantesPush: estudiante = {
+
+                        id: element2.estudianteidentificacion,
+                        nombre: element2.estudiante.nombres,
+                        apellido: element2.estudiante.apellido1 + " " + element2.estudiante.apellido2,
+                        carrera: "Falta",
+                        semestre: 1,
+                        check: false,
+                        facultad: "Ingenieria",
+                        identificacion: element2.estudianteidentificacion,
+
+                    }
+
+                    this.estudiantesAgrupados.push(estudiantesPush);
+                });
+
+                this.estudiantesAgrupadosBien.push(this.estudiantesAgrupados);
+
                 this.alertas.push(alertaAgregar);
 
                 element.intervenciones.forEach(element2 => {

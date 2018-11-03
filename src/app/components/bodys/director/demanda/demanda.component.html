@@ -2,19 +2,17 @@
   <div class="row m-3 ">
     <div class="col-sm-6">
       <label for="anio">Año academico</label>
-      <input formControlName="anioAcademico" type="text" class="form-control" name="anio" id="anio" aria-describedby="helpId"
-        required>
+      <input [(ngModel)]="anoAcademico" formControlName="anioAcademico" type="text" class="form-control" name="anio" id="anio"
+        aria-describedby="helpId" required>
     </div>
     <div class="col-sm-6">
       <label for="periodo">Periodo academico</label>
-      <input formControlName="periodoAcademico" type="text" class="form-control" name="periodo" id="periodo"
-        aria-describedby="as" required>
+      <input [(ngModel)]="periodoAcademico" formControlName="periodoAcademico" type="text" class="form-control" name="periodo"
+        id="periodo" aria-describedby="as" required>
     </div>
   </div>
 </div>
-
 <div class="container">
-
   <table *ngIf="!consultarBool" id="tabla" class="table table-hover m-3  ">
     <thead class=" bg-warning">
       <tr>

@@ -213,9 +213,10 @@
         <div class=" m-3 form-group ">
           <form [formGroup]="forma" class="form-group ">
             <label for="alerta">Seleccione la alerta</label>
-            <select (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control" id="alerta">
+            <select [(ngModel)]="alertaSeleccionada" (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control"
+              id="alerta">
               <option selected="selected" value="0">Seleccione una opción</option>
-              <option *ngFor="let alerta of alertas">{{alerta.nombreAlerta}}</option>
+              <option *ngFor="let alerta of alertas" value="{{alerta.nombreAlerta}}">{{alerta.nombreAlerta}}</option>
             </select>
           </form>
 
@@ -240,7 +241,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Centro de asesoría psicológica y salud</h5>
-                <button (click)="remitir(1)" type="button" class="btn btn-primary btn-block" data-dismiss="modal"
+                <button (click)="remitir(1,alerta.value)" type="button" class="btn btn-primary btn-block" data-dismiss="modal"
                   [disabled]="remitirValor">Remitir</button>
               </div>
             </div>
@@ -250,7 +251,7 @@
               <div class="card-body">
                 <h5 class="card-title">Aulas de aprendizaje</h5>
                 <br>
-                <button (click)="remitir(2)" type="button" class="btn btn-primary btn-block" data-dismiss="modal"
+                <button (click)="remitir(2,alerta.value)" type="button" class="btn btn-primary btn-block" data-dismiss="modal"
                   [disabled]="remitirValor">Remitir</button>
               </div>
             </div>
@@ -279,9 +280,10 @@
       <div class="modal-body">
         <form [formGroup]="forma" class="form-group ">
           <label for="alerta">Seleccione la alerta</label>
-          <select (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control" id="alerta">
+          <select [(ngModel)]="alertaSeleccionada" (click)="selecionAlerta()" #alerta formControlName="opcion" class="form-control"
+            id="alerta">
             <option selected="selected" value="0">Seleccione una opción</option>
-            <option *ngFor="let alerta of alertas">{{alerta.nombreAlerta}}</option>
+            <option *ngFor="let alerta of alertas" value="{{alerta.nombreAlerta}}">{{alerta.nombreAlerta}}</option>
           </select>
         </form>
 
@@ -296,7 +298,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button id="BotonEscalar" (click)="escalar()" type="button" class="btn btn-primary" data-dismiss="modal"
+        <button id="BotonEscalar" (click)="escalar(alerta.value)" type="button" class="btn btn-primary" data-dismiss="modal"
           [disabled]="remitirValor">Confirmar</button>
       </div>
     </div>
@@ -320,9 +322,10 @@
 
         <form [formGroup]="forma" class="form-group ">
           <label for="alerta">Seleccione la alerta</label>
-          <select #alerta (click)="selecionAlerta()" formControlName="opcion" class="form-control" id="alerta">
+          <select [(ngModel)]="alertaSeleccionada" #alerta (click)="selecionAlerta()" formControlName="opcion" class="form-control"
+            id="alerta">
             <option selected="selected" value="0">Seleccione una opción</option>
-            <option *ngFor="let alerta of alertas">{{alerta.nombreAlerta}}</option>
+            <option *ngFor="let alerta of alertas" value="{{alerta.nombreAlerta}}">{{alerta.nombreAlerta}}</option>
           </select>
         </form>
 
@@ -349,7 +352,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button [disabled]="remitirValor" (click)="atender()" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+        <button [disabled]="remitirValor" (click)="atender(alerta.value)" type="button" class="btn btn-primary"
+          data-dismiss="modal">Confirmar</button>
       </div>
     </div>
   </div>

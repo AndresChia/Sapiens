@@ -15,18 +15,18 @@
   top: 50%;
   width: 90%;
   text-align: center;
-
+  overflow: hidden;
 }
 
 .fondoNegro {
-  overflow: hidden;
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-
+  overflow-y: hidden !important;
+  overflow: hidden;
 }
 
 
