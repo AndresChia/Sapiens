@@ -44,13 +44,21 @@ export class ProfesorRestService {
 
   //TODO: falta
   crearMotivoDeAlerta(idProfesor: string, estudiantes: string[], motivo: string) {
-    let params = {
-      codigos: estudiantes,
-      motivo: motivo,
+    let body = {};
+    var cad = "";
+
+    for(var i = 0; i < estudiantes.length; i++){
+      if (i !== estudiantes.length - 1){
+        cad += "codigos[" + i + "]=" + estudiantes[i] + "&";
+      }
+      else {
+        cad += "codigos[" + i + "]=" + estudiantes[i];
+      }
     }
-    return this.http.post(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes", params).pipe(
+    console.log(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?codigos=" + cad + "&motivo=" + motivo);
+    return this.http.post(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?" + cad + "&motivo=" + motivo, body).pipe(
       map(res => {
-        return res.json();
+        return res.ok;
       }), catchError(this.handleError));
   }
 

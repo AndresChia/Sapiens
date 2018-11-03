@@ -80,14 +80,9 @@ export class DirectorService {
 
   consultaDemanda(anno_academicoPost: string, periodo_academicoPost: string, filtros_clasePost: any) {
 
-    let params = {
-      anno_academico: anno_academicoPost,
-      periodo_academico: periodo_academicoPost,
-      filtros_clase: filtros_clasePost
-    };
-
-
-    return this.http.post(this.url + "Estudiante/Filtro/", params).pipe(
+    let body = {};
+    console.log(this.url + "Estudiante/Filtro?anno_academico=" + anno_academicoPost + "&periodo_academico=" + periodo_academicoPost + "&filtros_clase=" + JSON.stringify(filtros_clasePost));
+    return this.http.post(this.url + "Estudiante/Filtro?anno_academico=" + anno_academicoPost + "&periodo_academico=" + periodo_academicoPost + "&filtros_clase=" + JSON.stringify(filtros_clasePost), body).pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));

@@ -34,7 +34,7 @@ export class DemandaComponent implements OnInit {
         anno_academico: ""
     }
     anoAcademico = "2018";
-    periodoAcademico = "3";
+    periodoAcademico = "1";
     asignaturas: asignatura[] = [];
 
     busqueda: datoBusqueda[] = [];
@@ -52,7 +52,7 @@ export class DemandaComponent implements OnInit {
 
         this.forma.setValue({
             anioAcademico: "2018",
-            periodoAcademico: "3"
+            periodoAcademico: "1"
         });
     }
 
@@ -95,7 +95,9 @@ export class DemandaComponent implements OnInit {
 
     //FIXME: falta crear la consulta y mostrarla en otra tabla
     crearConsulta() {
+        //debugger;
         this._ConsultardemandaService.cargar(JSON.stringify(this.busqueda));
+        this._DirectorService.consultaDemanda(this.anoAcademico, this.periodoAcademico, this.busqueda);
     }
 
     eliminarElemento(i: number) {

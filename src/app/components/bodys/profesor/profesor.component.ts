@@ -117,6 +117,7 @@ export class ProfesorComponent implements OnInit {
 
     this.activarModal = true;
   }
+
   seleccionarCheck(i: number) {
     this.estudiantes[i].check = !this.estudiantes[i].check;
 
@@ -144,7 +145,16 @@ export class ProfesorComponent implements OnInit {
     });
 
 
+    let _LogInService: LogInService;
+    this._ProfesorRestService.crearMotivoDeAlerta(this._LogInService.usuario.nombreUsuario, estudiantesIdsPost, alertaPost).subscribe(res => {
 
+
+    }, error => {
+      this.alertaPopUp = true;
+      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+    });
 
     this.textArea = "";
     this.indiceActual = -1;
@@ -167,22 +177,6 @@ export class ProfesorComponent implements OnInit {
       panelClass: ['snackbar'],
       verticalPosition: "top"
     });
-
-    let _LogInService: LogInService;
-    this._ProfesorRestService.crearMotivoDeAlerta(this._LogInService.usuario.nombreUsuario, estudiantesIdsPost, alertaPost).subscribe(res => {
-
-
-    }, error => {
-      this.alertaPopUp = true;
-      this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
-      this.mensaje.titulo = "ERROR DEL SERVIDOR :";
-      setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
-    });
-
-
-
-
-
   }
 
   seleccionClase(i: number) {
