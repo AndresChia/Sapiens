@@ -19,18 +19,7 @@ export class ConsultaDemandaComponent implements OnInit {
 
     busqueda: datoBusqueda[] = [];
     modal = false;
-    estudiantes: estudiante[] = [
-        {
-            nombre: "carlos",
-            apellido: "salfa",
-            carrera: "Ingenieria de sistemas",
-            semestre: 5,
-            check: false,
-            id: "1",
-            facultad: "ingenieria"
-        }
-
-    ]
+    estudiantes: estudiante[] = []
     constructor(private _ConsultardemandaService: LocalStorageManager, public _DirectorService: DirectorService, public _LogInService: LogInService) {
         let a: string = _ConsultardemandaService.getData("0");
         this.busqueda = JSON.parse(a);
@@ -62,6 +51,22 @@ export class ConsultaDemandaComponent implements OnInit {
 
         this._DirectorService.consultaDemanda(this.busqueda[0].anno_academico, this.busqueda[0].periodo_academico, filtros_clasePost).subscribe(res => {
 
+            res.forEach(element => {
+                let estudianteActual: estudiante = {
+                    apellido: element.apellido1,
+                    carrera: element.carrera,
+                    check: false,
+                    facultad: element.Semestre,
+                    id: element._id,
+                    nombre: element.nombres,
+                    semestre: 1,
+                    notasClase: this.cargarMaterias(element.clases),
+                }
+
+                this.estudiantes.push(estudianteActual);
+            });
+
+
         }, error => {
             this.alertaPopUp = true;
             this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
@@ -70,6 +75,20 @@ export class ConsultaDemandaComponent implements OnInit {
         });
 
 
+    }
+    cargarMaterias(clases: any): string[] {
+        let notitas: string[] = [];
+
+        this.busqueda.forEach(element => {
+            clases.forEach(element2 => {
+                if (element.nombreAsignatura === element2.nombre) {
+                    notitas.push(element2.nota);
+                }
+            });
+        });
+
+
+        return notitas;
     }
 
 

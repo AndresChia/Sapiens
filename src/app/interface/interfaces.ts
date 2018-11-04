@@ -7,6 +7,7 @@ export interface estudiante {
     check?: boolean;
     facultad: string;
     identificacion?: string;
+    notasClase?: string[];
 }
 export interface clase {
     nombre: string;

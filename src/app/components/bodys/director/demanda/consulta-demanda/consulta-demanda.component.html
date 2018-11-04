@@ -28,6 +28,8 @@
         <td>{{i+1}}</td>
         <td>{{estudiante.nombre}}&nbsp;{{estudiante.apellido}}</td>
         <td>{{estudiante.semestre}}</td>
+        <td>{{estudiante.id}}</td>
+        <td *ngFor="let notas of estudiante.notasClase">{{notas}}</td>
 
       </tr>
     </tbody>
