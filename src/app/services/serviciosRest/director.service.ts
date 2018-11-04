@@ -88,6 +88,27 @@ export class DirectorService {
       }), catchError(this.handleError));
   }
 
+  citarEstudiantes(idProfesor: string, estudiantes: string[]) {
+    let body = {};
+    var cad = "";
+
+    for (var i = 0; i < estudiantes.length; i++) {
+      if (i !== estudiantes.length - 1) {
+        cad += "codigos[" + i + "]=" + estudiantes[i] + "&";
+      }
+      else {
+        cad += "codigos[" + i + "]=" + estudiantes[i];
+      }
+    }
+
+
+    console.log(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?codigos=" + cad + "&motivo=Bajo desempeño academico");
+    return this.http.post(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico", body).pipe(
+      map(res => {
+        return res.ok;
+      }), catchError(this.handleError));
+  }
+
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {
       console.error('ERROR DEL CLIENTE :', errorResponse.error.message);

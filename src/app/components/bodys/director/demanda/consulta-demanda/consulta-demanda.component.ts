@@ -41,8 +41,8 @@ export class ConsultaDemandaComponent implements OnInit {
             let filtros_clase = {
                 nombre: element.nombreAsignatura,
                 estado: element.parametro,
-                min: element.menor,
-                max: element.mayor,
+                min: "" + element.mayor,
+                max: "" + element.menor,
             };
 
             filtros_clasePost.push(filtros_clase);
@@ -58,6 +58,7 @@ export class ConsultaDemandaComponent implements OnInit {
                     check: false,
                     facultad: element.Semestre,
                     id: element._id,
+                    identificacion: element.identificacion,
                     nombre: element.nombres,
                     semestre: 1,
                     notasClase: this.cargarMaterias(element.clases),
@@ -104,24 +105,46 @@ export class ConsultaDemandaComponent implements OnInit {
 
 
     citar() {
-        let constan = 0;
-        this.estudiantes.forEach(element => {
-            if (element.check) {
-                constan++;
-            }
-
-        });
-
-        if (constan === 0) {
-            this.modal = false;
-        } else {
-            this.modal = true;
+      let constan = 0;
+      this.estudiantes.forEach(element => {
+        if (element.check) {
+          constan++;
         }
+
+      });
+
+      if (constan === 0) {
+        this.modal = false;
+      } else {
+        this.modal = true;
+      }
 
     }
 
     atender() {
+      let estudiantesIdsPost: string[] = [];
+
+      this.estudiantes.forEach(element => {
+        if (element.check) {
+          estudiantesIdsPost.push(element.identificacion);
+        }
+      });
+
+      let _LogInService: LogInService;
+      this._DirectorService.citarEstudiantes(this._LogInService.usuario.nombreUsuario, estudiantesIdsPost).subscribe(res => {
+
+
+      }, error => {
+        this.alertaPopUp = true;
+        this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
+        this.mensaje.titulo = "ERROR DEL SERVIDOR :";
+        setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
+      });
+
+
+      this.estudiantes.forEach(element => {
+        element.check = false;
+      });
 
     }
-
 }

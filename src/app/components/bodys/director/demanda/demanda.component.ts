@@ -97,7 +97,7 @@ export class DemandaComponent implements OnInit {
     crearConsulta() {
         //debugger;
         this._ConsultardemandaService.cargar(JSON.stringify(this.busqueda));
-        this._DirectorService.consultaDemanda(this.anoAcademico, this.periodoAcademico, this.busqueda);
+        //this._DirectorService.consultaDemanda(this.anoAcademico, this.periodoAcademico, this.busqueda);
     }
 
     eliminarElemento(i: number) {
