@@ -27,7 +27,8 @@ export class AlertasComponent implements OnInit {
 
     estudiantesAgrupados: any[] = [];
     estudiantesAgrupadosBien: any[] = [];
-
+    alertaSeleccionada: alerta;
+    estudiantes: estudiante[] = [];
 
     constructor(public snackBar: MatSnackBar, public _LogInService: LogInService, public _DirectorService: DirectorService, public router: Router, public _LocalStorageManager: LocalStorageManager) { }
 
@@ -41,7 +42,7 @@ export class AlertasComponent implements OnInit {
 
         this.estudianteActual = this.estudiantesAgrupadosBien[i];
         this.seleccionado = true;
-
+        this.alertaSeleccionada = this.alertas[i];
 
     }
 
@@ -51,6 +52,18 @@ export class AlertasComponent implements OnInit {
 
         this.estudianteActual[i].check = !this.estudianteActual[i].check;
         this.indexSelecionado = i;
+        if (this.estudianteActual[i].check) {
+            this.estudiantes.push(this.estudianteActual[i]);
+            //agregar
+        } else {
+            //eliminar
+            for (let index = 0; index < this.estudiantes.length; index++) {
+                if (this.estudianteActual[i].id === this.estudiantes[index].id) {
+                    this.estudiantes.splice(index, 1);
+                }
+            }
+        }
+
     }
 
 
@@ -94,15 +107,36 @@ export class AlertasComponent implements OnInit {
     check() {
         this.checkFecha = (!this.checkFecha);
 
+
     }
 
 
     atender() {
 
-
         this.snackBar.open("Atencion realizada", "Cerrar", {
             duration: 2000,
+            horizontalPosition: "center",
+            panelClass: ['snackbar'],
+            verticalPosition: "top"
         });
+
+        let Idalerta = this.obtenerIDalerta(this.alertaSeleccionada.nombreAlerta);
+
+        for (let index = 0; index < this.estudiantes.length; index++) {
+            this._DirectorService.atender(
+                Idalerta,
+                this._LogInService.usuario.nombreUsuario,
+                this.estudiantes[index].identificacion,
+                this._LogInService.usuario.nombreUsuario,
+                this._LogInService.usuario.nombreUsuario,
+                this.estudiantes[index].intervencion
+            ).subscribe(res => {
+            });
+        }
+
+
+        this.mostrarAlertasAgrupadas();
+
 
     }
 
@@ -110,7 +144,34 @@ export class AlertasComponent implements OnInit {
 
         this.snackBar.open("Remición creada", "Cerrar", {
             duration: 2000,
+            horizontalPosition: "center",
+            panelClass: ['snackbar'],
+            verticalPosition: "top"
         });
+
+
+        let _LogInService: LogInService;
+        let Remitidoa = "";
+        if (opc === 1) {
+            Remitidoa = "caps";
+        } else {
+            Remitidoa = "aulas_aprendizaje";
+
+        }
+
+        let Idalerta = this.obtenerIDalerta(this.alertaSeleccionada.nombreAlerta);
+
+        for (let index = 0; index < this.estudiantes.length; index++) {
+            this._DirectorService.remitir(
+                Idalerta,
+                this._LogInService.usuario.nombreUsuario,
+                this.estudiantes[index].identificacion,
+                Remitidoa).subscribe(res => {
+                });
+        }
+
+
+        this.mostrarAlertasAgrupadas();
 
     }
 
@@ -144,6 +205,7 @@ export class AlertasComponent implements OnInit {
                         check: false,
                         facultad: "Ingenieria",
                         identificacion: element2.estudiante.identificacion,
+                        intervencion: element2._id
 
                     }
 
@@ -171,5 +233,17 @@ export class AlertasComponent implements OnInit {
         let x = this.estudianteActual[index];
         this._LocalStorageManager.cargarParametro("3", x.id);
     }
+
+    obtenerIDalerta(nombreAlerta: string): string {
+        let idActual = "";
+        this.alertas.forEach(element => {
+            if (nombreAlerta === element.nombreAlerta) {
+                idActual = element.id;
+            }
+        })
+
+        return idActual;
+    }
+
 
 }

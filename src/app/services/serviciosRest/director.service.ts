@@ -101,13 +101,37 @@ export class DirectorService {
       }
     }
 
-
-    console.log(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?codigos=" + cad + "&motivo=Bajo desempeño academico");
     return this.http.post(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico", body).pipe(
       map(res => {
         return res.ok;
       }), catchError(this.handleError));
   }
+
+
+  remitir(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoRemitidoPost: string) {
+
+    let params = {
+      codigoAlerta: codigoAlertaPost,
+      codigoFuente: codigoFuentePost,
+      codigoRemitido: codigoRemitidoPost,
+    }
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Remitir", params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
+  atender(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoAtiendePost: String, codigoResolucionPost: string, codigoIntervencion: string) {
+
+    let params = {
+    }
+
+    return this.http.post(this.url + "Estudiante/" + codigoEstudiantePost + "/Atender?codigoIntervencion=" + codigoIntervencion + "&codigoAlerta=" + codigoAlertaPost + "&codigoFuente=" + codigoFuentePost + "&codigoEstudiante=" + codigoEstudiantePost + "&codigoPrincipal=" + codigoAtiendePost + "&codigoResolucion=" + codigoResolucionPost, params).pipe(
+      map(res => {
+        return res.json();
+      }), catchError(this.handleError));
+  }
+
 
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {

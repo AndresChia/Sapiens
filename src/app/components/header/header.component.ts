@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AppComponent } from "../../app.component";
 import { LogInService } from "../../services/log-in.service";
+import { DirectorService } from '../../services/serviciosRest/director.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,9 @@ export class HeaderComponent implements OnInit {
 
 
   activo = false;
+  intervalo: NodeJS.Timer;
 
-  constructor(public _LogInService: LogInService, private router: Router) {
+  constructor(public _LogInService: LogInService, private router: Router, public _DirectorService: DirectorService) {
     _LogInService.sesionActiva();
     let URLactual = (window.location.hash).split("/");
 
@@ -33,6 +35,14 @@ export class HeaderComponent implements OnInit {
 
     }
     if (this._LogInService.usuario.tipo === "director") {
+
+      // this.intervalo = setInterval(function () {
+
+
+
+
+      // }, 1000, "JavaScript");
+
       if (URLactual[2] === "demanda") {
         //demanda
         this.numeradorOpcion = 4;
@@ -67,6 +77,7 @@ export class HeaderComponent implements OnInit {
     this.numeradorOpcion = 0;
     this._LogInService.cerrarSesion();
     this.activo = false;
+    clearInterval(this.intervalo);
 
   }
 

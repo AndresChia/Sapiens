@@ -8,6 +8,7 @@ export interface estudiante {
     facultad: string;
     identificacion?: string;
     notasClase?: string[];
+    intervencion?: string;
 }
 export interface clase {
     nombre: string;

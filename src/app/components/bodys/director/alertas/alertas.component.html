@@ -63,9 +63,9 @@
       </table>
 
       <button (click)="ActivarModalAtender()" name="atender" id="atender" class="btn btn-success m-1 pull-right"
-        data-toggle="modal" data-target="#myModal-Atender">Atender</button>
+        data-toggle="modal" data-target="#myModal-Atender" [disabled]="estudiantes.length">Atender</button>
       <button (click)="ActivarModalEscalar()" name="escalar" id="Remitir" class="btn btn-primary m-1 pull-right"
-        data-toggle="modal" data-target="#myModal-Remitir">Remitir</button>
+        data-toggle="modal" data-target="#myModal-Remitir" [disabled]="estudiantes.length">Remitir</button>
 
 
     </div>

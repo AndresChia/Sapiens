@@ -41,7 +41,7 @@ export class HistorialComponent implements OnInit {
 
         }
       }
-      this.numeroDePags = Array(Math.round(this.tamaño / 6) + 1).fill(1, 2).map((x, i) => i);
+      this.numeroDePags = Array(Math.round(this.tamaño / 6)).fill(1, 2).map((x, i) => i);
       this.historialDeMostrar = this.hisotorialCortado[0];
 
 
@@ -61,7 +61,7 @@ export class HistorialComponent implements OnInit {
     }
 
     if (indicacion === "despues") {
-      if (this.indice - 1 < Math.round(this.tamaño / 6)) {
+      if (this.indice - 1 < this.numeroDePags.length - 1) {
         this.indice += index;
       }
 
