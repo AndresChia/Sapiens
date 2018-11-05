@@ -45,7 +45,7 @@ export class DirectorService {
       }), catchError(this.handleError));
   }
 
-  ia(carrera: string, codigoDirector : string) {
+  ia(carrera: string, codigoDirector: string) {
     let params = {};
 
     if (carrera === "ingenieria industrial") {
