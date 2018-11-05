@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
 
   activo = false;
-  intervalo: NodeJS.Timer;
+  intervalo: any;
 
   constructor(public _LogInService: LogInService, private router: Router, public _DirectorService: DirectorService) {
     _LogInService.sesionActiva();
@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
     this.numeradorOpcion = 0;
     this._LogInService.cerrarSesion();
     this.activo = false;
-    clearInterval(this.intervalo);
+    // clearInterval(this.intervalo);
 
   }
 
