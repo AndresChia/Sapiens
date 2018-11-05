@@ -45,32 +45,32 @@ export class DirectorService {
       }), catchError(this.handleError));
   }
 
-  ia(carrera: string) {
+  ia(carrera: string, codigoDirector : string) {
     let params = {};
 
     if (carrera === "ingenieria industrial") {
 
-      return this.http.post("http://104.248.229.214:1337/predict/IIND", params).pipe(
+      return this.http.post("http://104.248.229.214:1337/predict/IIND?codigoDirector=" + codigoDirector, params).pipe(
         map(res => {
           return res.json();
         }), catchError(this.handleError));
     }
 
     if (carrera === "ingenieria civil") {
-      return this.http.post("http://104.248.229.214:1337/predict/ICVL", params).pipe(
+      return this.http.post("http://104.248.229.214:1337/predict/ICVL?codigoDirector=" + codigoDirector, params).pipe(
         map(res => {
           return res.json();
         }), catchError(this.handleError));
     }
 
     if (carrera === "ingenieria sistemas") {
-      return this.http.post("http://104.248.229.214:1337/predict/ISIST", params).pipe(
+      return this.http.post("http://104.248.229.214:1337/predict/ISIST?codigoDirector=" + codigoDirector, params).pipe(
         map(res => {
           return res.json();
         }), catchError(this.handleError));
     }
     if (carrera === "ingenieria electronica") {
-      return this.http.post("http://104.248.229.214:1337/predict/IELEC", params).pipe(
+      return this.http.post("http://104.248.229.214:1337/predict/IELEC?codigoDirector=" + codigoDirector, params).pipe(
         map(res => {
           return res.json();
         }), catchError(this.handleError));
@@ -101,7 +101,7 @@ export class DirectorService {
       }
     }
 
-    return this.http.post(this.url + "Profesor/" + idProfesor + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico", body).pipe(
+    return this.http.post(this.url + "Director/" + idProfesor + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico", body).pipe(
       map(res => {
         return res.ok;
       }), catchError(this.handleError));

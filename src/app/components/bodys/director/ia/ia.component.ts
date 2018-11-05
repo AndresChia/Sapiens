@@ -64,7 +64,7 @@ export class IaComponent implements OnInit {
   obtenerIA() {
 
     let _LogInService = this._LogInService;
-    this._DirectorService.ia("ingenieria industrial").subscribe(res => {
+    this._DirectorService.ia("ingenieria industrial", this._LogInService.usuario.nombreUsuario).subscribe(res => {
       res.forEach(element => {
 
         let estudianteActual: estudianteIA = {
