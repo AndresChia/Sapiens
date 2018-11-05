@@ -82,16 +82,15 @@
     padding-left: 0;
     margin-right: auto;">
       <li class="page-item"><a (click)="cambioPag(1,'antes')" class="page-link">Previous</a></li>
-      <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a [ngClass]="{'activoPag': i===indice}"
+      <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a [ngClass]="{'activoPag': (i+1)===indice}"
           (click)="cambioPag(i,'pagina')" class="page-link">{{i+1}}</a></li>
       <li class="page-item"><a (click)="cambioPag(1,'despues')" class="page-link">Next</a></li>
     </ul>
   </nav>
-</div>
 
-<div class="fondoNegro" *ngIf="alertaPopUp">
+  <div class="fondoNegro" *ngIf="alertaPopUp">
 
-</div>
-<div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
-  <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
-</div>
+  </div>
+  <div *ngIf="alertaPopUp" class="animated fadeIn alert alert-danger popUp">
+    <strong>{{mensaje.titulo}}</strong> {{ mensaje.cuerpo}}
+  </div>

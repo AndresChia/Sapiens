@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./historial.component.css']
 })
 export class HistorialComponent implements OnInit {
-  indice = 0;
+  indice = 1;
   mensaje = {
     cuerpo: "",
     titulo: ""
@@ -21,6 +21,7 @@ export class HistorialComponent implements OnInit {
   historialDeMostrar: historialUsr[] = [];
 
   vehicles: Observable<Array<historialUsr>>;
+  tamaño = 0;
 
 
   filtro = false;
@@ -30,13 +31,19 @@ export class HistorialComponent implements OnInit {
     this.cargarHistorial();
 
     setTimeout(() => {
+      this.tamaño = this.historial.length;
 
+      for (let index = 0; index <= Math.round(this.tamaño / 6); index++) {
+        if (this.historial.length > 6) {
+          this.hisotorialCortado[index] = this.historial.splice(0, 6);
+        } else {
+          this.hisotorialCortado[index] = this.historial;
 
-      for (let index = 0; index < Math.round(this.historial.length / 10); index++) {
-        this.hisotorialCortado[index] = this.historial.splice(6 * (index + 1), 10);
+        }
       }
-      this.numeroDePags = Array(Math.round(this.historial.length / 10)).fill(1, 2).map((x, i) => i);
+      this.numeroDePags = Array(Math.round(this.tamaño / 6) + 1).fill(1, 2).map((x, i) => i);
       this.historialDeMostrar = this.hisotorialCortado[0];
+
 
     }, 2000);
   }
@@ -47,23 +54,23 @@ export class HistorialComponent implements OnInit {
   cambioPag(index: number, indicacion: string) {
 
     if (indicacion === "antes") {
-      if (this.indice > 0) {
+      if (this.indice - 1 > 0) {
         this.indice -= index;
       }
 
     }
 
     if (indicacion === "despues") {
-      if (this.indice < Math.round(this.historial.length / 7) - 1) {
+      if (this.indice - 1 < Math.round(this.tamaño / 6)) {
         this.indice += index;
       }
 
     }
     if (indicacion === "pagina") {
-      this.indice = index;
+      this.indice = index + 1;
 
     }
-    this.historialDeMostrar = this.hisotorialCortado[this.indice];
+    this.historialDeMostrar = this.hisotorialCortado[this.indice - 1];
 
   }
 
@@ -80,19 +87,23 @@ export class HistorialComponent implements OnInit {
   cargarHistorial() {
     let _LogInService = this._LogInService;
     this._DirectorService.obtenerHistorialDirector(this._LogInService.usuario.nombreUsuario).subscribe(res => {
-      res.forEach(estudiante => {
-        estudiante.alertas.forEach(element => {
-          let hostirialActual: historialUsr = {
-            estado: element.estado,
-            fecha: (element.fechaInicio as string).split("T")[0],
-            idEstudiante: estudiante.id,
-            nombreAlerta: element.alerta.nombre,
-            nombreEstudiante: estudiante.nombres + " " + estudiante.apellido1 + estudiante.apellido2,
-            origen: "Consejero"
-          };
-          this.historial.push(hostirialActual);
-        });
+      res.forEach(alert => {
+
+        let datos = this.getEstudiante(alert.actores);
+        let hostirialActual: historialUsr = {
+          estado: alert.estado,
+          fecha: (alert.fechaInicio as string).split("T")[0],
+          idEstudiante: datos[0],
+          nombreAlerta: alert.alerta.nombre,
+          nombreEstudiante: datos[1],
+          origen: datos[2],
+        };
+
+        this.historial.push(hostirialActual);
+
+
       });
+
     }, error => {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
@@ -101,5 +112,36 @@ export class HistorialComponent implements OnInit {
     });
 
   }
+
+  getEstudiante(actores: any): string[] {
+    let arregloActual: string[] = ["", "", ""];
+    actores.forEach(element => {
+      let fuenteT = false;
+      let estudianteT = false;
+      element.roles.forEach(element2 => {
+        if (element2.rol === "fuente") {
+          fuenteT = true;
+          arregloActual[2] = (element.nombres + " " + element.apellido1);
+        }
+        if (element2.rol === "estudiante") {
+          estudianteT = true;
+          arregloActual[0] = element.identificacion;
+          arregloActual[1] = (element.nombres + " " + element.apellido1);
+        }
+
+      });
+
+      if (arregloActual.filter(a => a !== "").length === 3) {
+        return arregloActual;
+      }
+
+
+    });
+
+
+    return arregloActual;
+  }
+
+
 
 }

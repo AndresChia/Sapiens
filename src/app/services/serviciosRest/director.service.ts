@@ -28,8 +28,9 @@ export class DirectorService {
 
   }
 
+
   obtenerHistorialDirector(idDirector: string) {
-    return this.http.get(this.url + "Estudiante/Historial?codigoConsejero=" + idDirector).pipe(
+    return this.http.get(this.url + "Director/" + idDirector + "/HistorialAlertas").pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
