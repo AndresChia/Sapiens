@@ -22,7 +22,8 @@ export class ConsejeroService {
 
 
   obtenerHistorialConsejero(idConsejero: string) {
-    return this.http.get(this.url + "Consejero/+" + idConsejero + "/Alertas/Rol/consejero").pipe(
+
+    return this.http.get(this.url + "Consejero/" + idConsejero + "/HistorialAlertas").pipe(
       map(res => {
         return res.json();
       }), catchError(this.handleError));
@@ -30,6 +31,7 @@ export class ConsejeroService {
   }
 
   obtenerAlertasConsejero() {
+
     return this.http.get(this.url + "Rutas/Generador/Consejero").pipe(
       map(res => {
         return res.json();

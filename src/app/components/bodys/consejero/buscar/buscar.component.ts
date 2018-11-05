@@ -239,9 +239,7 @@ export class BuscarComponent implements OnInit {
     this.alertaSeleccionada = this.obtenerIDalerta(this.alertaSeleccionada);
 
     this._ConsejeroService.remitir(this.alertaSeleccionada, this._LogInService.usuario.nombreUsuario, this.estudiantes[this.indexEstudiante].identificacion, Remitidoa).subscribe(res => {
-      res.forEach(element => {
 
-      });
     }, error => {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
@@ -268,9 +266,7 @@ export class BuscarComponent implements OnInit {
     this.alertaSeleccionada = this.obtenerIDalerta(this.alertaSeleccionada);
 
     this._ConsejeroService.escalar(this.alertaSeleccionada, this._LogInService.usuario.nombreUsuario, this.estudiantes[this.indexEstudiante].identificacion, this._LogInService.usuario.nombreUsuario).subscribe(res => {
-      res.forEach(element => {
 
-      });
     }, error => {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";
@@ -298,9 +294,7 @@ export class BuscarComponent implements OnInit {
     this.alertaSeleccionada = this.obtenerIDalerta(this.alertaSeleccionada);
 
     this._ConsejeroService.atender(this.alertaSeleccionada, this._LogInService.usuario.nombreUsuario, this.estudiantes[this.indexEstudiante].identificacion, this._LogInService.usuario.nombreUsuario, this._LogInService.usuario.nombreUsuario).subscribe(res => {
-      res.forEach(element => {
 
-      });
     }, error => {
       this.alertaPopUp = true;
       this.mensaje.cuerpo = "En este momento tenemos problemas con el servicio. sera notificado cuando funcione. Por favor intente de nuevo.";

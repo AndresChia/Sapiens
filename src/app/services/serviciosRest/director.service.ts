@@ -90,13 +90,12 @@ export class DirectorService {
 
   citarEstudiantes(idProfesor: string, estudiantes: string[]) {
     let body = {};
-    var cad = "";
+    let cad = "";
 
-    for (var i = 0; i < estudiantes.length; i++) {
+    for (let i = 0; i < estudiantes.length; i++) {
       if (i !== estudiantes.length - 1) {
         cad += "codigos[" + i + "]=" + estudiantes[i] + "&";
-      }
-      else {
+      } else {
         cad += "codigos[" + i + "]=" + estudiantes[i];
       }
     }

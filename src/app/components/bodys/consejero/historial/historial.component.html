@@ -14,7 +14,11 @@
 
 
       <label for="">Nombre Alerta</label>
-      <input #alerta type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      <label for="exampleFormControlSelect1">Origen de la alerta</label>
+      <select #alerta class="form-control" id="exampleFormControlSelect1">
+        <option>Seleccione una opción</option>
+        <option *ngFor="let item of alertas">{{item.nombreAlerta}}</option>
+      </select>
 
 
       <label for="exampleFormControlSelect1">Origen de la alerta</label>
@@ -83,7 +87,7 @@
     padding-left: 0;
     margin-right: auto;">
       <li class="page-item"><a (click)="cambioPag(1,'antes')" class="page-link">Previous</a></li>
-      <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a [ngClass]="{'activoPag': i===indice}"
+      <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a [ngClass]="{'activoPag': (i+1)===indice}"
           (click)="cambioPag(i,'pagina')" class="page-link">{{i+1}}</a></li>
       <li class="page-item"><a (click)="cambioPag(1,'despues')" class="page-link">Next</a></li>
     </ul>

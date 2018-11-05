@@ -13,3 +13,8 @@ hr {
   display: -webkit-box;
   list-style: none;
 }
+
+.activoPag {
+
+  background: #FFC107;
+}
