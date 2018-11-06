@@ -1,8 +1,15 @@
-<div *ngFor="let alertaIA of alertasInArt" class="ia">
+<div *ngFor="let alertaIA of alertasInArt; let i=index" class="ia">
   <hr class="text-center ">
-  <div class="titulo">
-    <h1 class="text-center">{{alertaIA.nombreAlerta}} </h1>
-    <h1 [ngClass]="{'textRojo': 'media'===alertaIA.criticidad}">({{alertaIA.criticidad}}) </h1>
+  <div class="titulo text-center">
+    <ul class="ulclass ">
+      <li>
+        <h1 class="text-center">{{alertaIA.nombreAlerta}} </h1>
+      </li>
+      <li>
+        <h1 [ngClass]="{'textRojo': 'Alta'===alertaIA.criticidad}">({{alertaIA.criticidad}}) </h1>
+      </li>
+    </ul>
+
   </div>
 
   <div class="row">
@@ -11,13 +18,13 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Nombres de estudiantes</th>
-            <th>Edad</th>
-            <th>Genero</th>
-            <th>Promedio acumulado</th>
-            <th>Puntaje lectura critica</th>
-            <th>Puntaje Matematica</th>
-            <th>Calificación Global</th>
+            <th style="cursor: pointer">Nombres de estudiantes</th>
+            <th style="cursor: pointer" (click)="edad(i)">Edad</th>
+            <th style="cursor: pointer" (click)="genero(i)">Genero</th>
+            <th style="cursor: pointer">Promedio acumulado</th>
+            <th style="cursor: pointer">Puntaje lectura critica</th>
+            <th style="cursor: pointer">Puntaje Matematica</th>
+            <th style="cursor: pointer">Calificación Global</th>
 
           </tr>
         </thead>
@@ -37,12 +44,12 @@
     </div>
     <div class="col-6">
       <div class="m-5">
-        <div style="display: block">
-          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        <div *ngIf="cargar[i]" style="display: block">
+          <canvas id="graph{{i}}" baseChart [datasets]="graficas[i].barChartData" [labels]="graficas[i].barChartLabels"
+            [options]="graficas[i].barChartOptions" [legend]="graficas[i].barChartLegend" [chartType]="graficas[i].barChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-
     </div>
   </div>
 

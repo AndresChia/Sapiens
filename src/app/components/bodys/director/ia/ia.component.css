@@ -10,3 +10,8 @@ hr {
 .textRojo {
   color: orangered;
 }
+
+.ulclass {
+  display: inline-flex;
+  list-style: none;
+}
