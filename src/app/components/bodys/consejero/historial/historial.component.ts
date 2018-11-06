@@ -26,7 +26,8 @@ export class HistorialCComponent implements OnInit {
   hisotorialCortado: historialUsr[][] = [[]];
   historialDeMostrar: historialUsr[] = [];
   tamaño = 0;
-
+  copia: historialUsr[] = [];
+  origenes: any = [];
 
   constructor(public _ConsejeroService: ConsejeroService, public _LogInService: LogInService) {
     this.cargarHistorial();
@@ -42,11 +43,13 @@ export class HistorialCComponent implements OnInit {
 
         }
       }
-      this.numeroDePags = Array(Math.round(this.tamaño / 6) + 1).fill(1, 2).map((x, i) => i);
+      this.numeroDePags = Array(Math.round(this.tamaño / 6)).fill(1, 2).map((x, i) => i);
       this.historialDeMostrar = this.hisotorialCortado[0];
 
 
     }, 2000);
+
+    this.copia = this.historialDeMostrar;
 
   }
 
@@ -55,13 +58,107 @@ export class HistorialCComponent implements OnInit {
 
 
 
+
   filtrar(nombre, id, alertaP, origen, fecha, estado) {
-    if (nombre !== "" || id !== "" || alertaP !== "" || origen !== "Seleccione una opción" || fecha !== ""
+
+    this.Quitarfiltrar()
+
+    if (nombre !== "" || id !== "" || alertaP !== "Seleccione una opción" || origen !== "Seleccione una opción" || fecha !== ""
       || estado !== "Seleccione una opción") {
+
       this.filtro = true;
+      let historialFiltros: historialUsr[] = [];
+      if (nombre !== "") {
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].nombreEstudiante.includes(nombre);
+          if (this.historialDeMostrar[index].nombreEstudiante.toLocaleLowerCase().includes(nombre)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+      }
+      if (id !== "") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].idEstudiante.includes(id);
+          if (this.historialDeMostrar[index].idEstudiante.toLocaleLowerCase().includes(id)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+      if (alertaP !== "") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].nombreAlerta.includes(alertaP);
+          if (this.historialDeMostrar[index].nombreAlerta.includes(alertaP)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+      if (origen !== "Seleccione una opción") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].origen.includes(origen);
+          if (this.historialDeMostrar[index].origen.includes(origen)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+
+      if (fecha !== "") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].fecha.includes(fecha);
+          if (this.historialDeMostrar[index].fecha.includes(fecha)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+
+      if (estado !== "Seleccione una opción") {
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].estado.includes(estado);
+          if (this.historialDeMostrar[index].estado.includes(estado)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+      }
+
+
+      this.historialDeMostrar = historialFiltros;
     }
   }
+  verificarExistente(idEstudiante: string, historialFiltros: historialUsr[]): boolean {
+    let x = false;
+    historialFiltros.forEach(element => {
+      if (idEstudiante === element.idEstudiante) {
+        x = true;
+      }
+    });
 
+    return x;
+  }
+  Quitarfiltrar() {
+    this.historialDeMostrar = this.hisotorialCortado[0];
+    this.indice = 1;
+    this.numeroDePags = Array(Math.round(this.tamaño / 6)).fill(1, 2).map((x, i) => i);
+
+  }
 
   cambioPag(index: number, indicacion: string) {
 
@@ -73,7 +170,7 @@ export class HistorialCComponent implements OnInit {
     }
 
     if (indicacion === "despues") {
-      if (this.indice - 1 < Math.round(this.tamaño / 6)) {
+      if (this.indice - 1 < this.numeroDePags.length - 1) {
         this.indice += index;
       }
 
@@ -101,6 +198,15 @@ export class HistorialCComponent implements OnInit {
           origen: datos[2],
         };
 
+        let aux = false;
+        this.origenes.forEach(element => {
+          if (hostirialActual.origen === element) {
+            aux = true;
+          }
+        });
+        if (!aux) {
+          this.origenes.push(hostirialActual.origen);
+        }
         this.historial.push(hostirialActual);
 
 

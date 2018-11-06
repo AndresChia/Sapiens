@@ -12,10 +12,11 @@
     </div>
     <div class="col-4">
 
-
       <label for="">Nombre Alerta</label>
-      <input #alerta type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-
+      <select #alerta class="form-control" id="exampleFormControlSelect1">
+        <option>Seleccione una opción</option>
+        <option *ngFor="let item of alertas">{{item.nombreAlerta}}</option>
+      </select>
 
       <label for="exampleFormControlSelect1">Origen de la alerta</label>
       <select #origen class="form-control" id="exampleFormControlSelect1">

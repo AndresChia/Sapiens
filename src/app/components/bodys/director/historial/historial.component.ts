@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DirectorService } from '../../../../services/serviciosRest/director.service';
 import { LogInService } from 'src/app/services/log-in.service';
-import { historialUsr } from 'src/app/interface/interfaces';
+import { historialUsr, alerta } from 'src/app/interface/interfaces';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -19,9 +19,10 @@ export class HistorialComponent implements OnInit {
   historial: historialUsr[] = [];
   hisotorialCortado: historialUsr[][] = [[]];
   historialDeMostrar: historialUsr[] = [];
-
+  alertas: alerta[] = [];
   vehicles: Observable<Array<historialUsr>>;
   tamaño = 0;
+  origenes: any = [];
 
 
   filtro = false;
@@ -75,15 +76,107 @@ export class HistorialComponent implements OnInit {
   }
 
 
-  filtrar(nombre, id, alerta, origen, fecha, estado) {
-    if (nombre !== "" || id !== "" || alerta !== "" || origen !== "Seleccione una opción" || fecha !== ""
-      || estado !== "Seleccione una opción") {
-      this.filtro = true;
-    }
+  filtrar(nombre, id, alertaP, origen, fecha, estado) {
 
+    this.Quitarfiltrar()
+
+    if (nombre !== "" || id !== "" || alertaP !== "Seleccione una opción" || origen !== "Seleccione una opción" || fecha !== ""
+      || estado !== "Seleccione una opción") {
+
+      this.filtro = true;
+      let historialFiltros: historialUsr[] = [];
+      if (nombre !== "") {
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].nombreEstudiante.includes(nombre);
+          if (this.historialDeMostrar[index].nombreEstudiante.toLocaleLowerCase().includes(nombre)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+      }
+      if (id !== "") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].idEstudiante.includes(id);
+          if (this.historialDeMostrar[index].idEstudiante.toLocaleLowerCase().includes(id)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+      if (alertaP !== "") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].nombreAlerta.includes(alertaP);
+          if (this.historialDeMostrar[index].nombreAlerta.includes(alertaP)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+      if (origen !== "Seleccione una opción") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].origen.includes(origen);
+          if (this.historialDeMostrar[index].origen.includes(origen)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+
+      if (fecha !== "") {
+
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].fecha.includes(fecha);
+          if (this.historialDeMostrar[index].fecha.includes(fecha)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+
+      }
+
+      if (estado !== "Seleccione una opción") {
+        for (let index = 0; index < this.historialDeMostrar.length; index++) {
+          let x = this.historialDeMostrar[index].estado.includes(estado);
+          if (this.historialDeMostrar[index].estado.includes(estado)) {
+            if (!this.verificarExistente(this.historialDeMostrar[index].idEstudiante, historialFiltros)) {
+              historialFiltros.push(this.historialDeMostrar[index]);
+            }
+          }
+        }
+      }
+
+
+      this.historialDeMostrar = historialFiltros;
+    }
+  }
+  verificarExistente(idEstudiante: string, historialFiltros: historialUsr[]): boolean {
+    let x = false;
+    historialFiltros.forEach(element => {
+      if (idEstudiante === element.idEstudiante) {
+        x = true;
+      }
+    });
+
+    return x;
   }
 
+  Quitarfiltrar() {
+    this.historialDeMostrar = this.hisotorialCortado[0];
+    this.indice = 1;
+    this.numeroDePags = Array(Math.round(this.tamaño / 6)).fill(1, 2).map((x, i) => i);
 
+  }
   cargarHistorial() {
     let _LogInService = this._LogInService;
     this._DirectorService.obtenerHistorialDirector(this._LogInService.usuario.nombreUsuario).subscribe(res => {
@@ -99,7 +192,18 @@ export class HistorialComponent implements OnInit {
           origen: datos[2],
         };
 
+        let aux = false;
+        this.origenes.forEach(element => {
+          if (hostirialActual.origen === element) {
+            aux = true;
+          }
+        });
+        if (!aux) {
+          this.origenes.push(hostirialActual.origen);
+        }
         this.historial.push(hostirialActual);
+
+
 
 
       });

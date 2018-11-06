@@ -14,7 +14,6 @@
 
 
       <label for="">Nombre Alerta</label>
-      <label for="exampleFormControlSelect1">Origen de la alerta</label>
       <select #alerta class="form-control" id="exampleFormControlSelect1">
         <option>Seleccione una opción</option>
         <option *ngFor="let item of alertas">{{item.nombreAlerta}}</option>
@@ -24,12 +23,8 @@
       <label for="exampleFormControlSelect1">Origen de la alerta</label>
       <select #origen class="form-control" id="exampleFormControlSelect1">
         <option>Seleccione una opción</option>
-        <option>Sistema</option>
-        <option>Profesor</option>
-        <option>Alumno</option>
-        <option>Director</option>
+        <option *ngFor="let item of origenes">{{item}}</option>
       </select>
-
 
     </div>
     <div class="col-4">
@@ -48,10 +43,9 @@
   </div>
 
   <button (click)="filtrar(nombre.value,id.value,alerta.value,origen.value,fecha.value,estado.value)" type="button"
-    class="pull-right btn btn-primary m-4">Filtrar</button>
-
+    class="pull-right btn btn-primary m-2">Filtrar</button>
+  <button (click)="Quitarfiltrar()" type="button" class="pull-right btn btn-success m-2">Quitar filtros</button>
 </div>
-
 
 <hr>
 
