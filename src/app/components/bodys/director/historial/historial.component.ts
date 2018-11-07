@@ -24,7 +24,11 @@ export class HistorialComponent implements OnInit {
   tamaño = 0;
   origenes: any = [];
 
+  indexModal = 0;
+  modal = false;
 
+  intervencion: any[] = [];
+  intervencionModal: any;
   filtro = false;
   numeroDePags: number[];
   pagActual = 1;
@@ -182,6 +186,21 @@ export class HistorialComponent implements OnInit {
     this._DirectorService.obtenerHistorialDirector(this._LogInService.usuario.nombreUsuario).subscribe(res => {
       res.forEach(alert => {
 
+
+        let intervencionActual: any = {
+          _id: alert._id,
+          actores: alert.actores,
+          fechaInicio: alert.fechaInicio,
+          nombre: alert.alerta.nombre,
+          temporalidad: alert.alerta.temporalidad,
+          criticidad: alert.alerta.criticidad,
+          estado: alert.estado,
+          fechaFin: alert.fechaFin,
+        };
+        (this.intervencion as any).push(intervencionActual);
+
+
+
         let datos = this.getEstudiante(alert.actores);
         let hostirialActual: historialUsr = {
           estado: alert.estado,
@@ -247,5 +266,32 @@ export class HistorialComponent implements OnInit {
   }
 
 
+  cargarInformacion(index: number) {
+    this.modal = true
+    this.indexModal = index;
+    this.intervencionModal = this.intervencion[index];
+  }
+
+}
+
+interface intervencion {
+  _id: string,
+  fechaInicio: string,
+  actores: actor[],
+
+}
+
+interface actor {
+  apellido1: string,
+  apellido2: string,
+  identificacion: string,
+  nombres: string,
+  roles: rol[],
+
+}
+interface rol {
+
+  fechaInicio: string,
+  rol: string,
 
 }

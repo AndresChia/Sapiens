@@ -14,6 +14,7 @@ export class HistorialCComponent implements OnInit {
     cuerpo: "",
     titulo: ""
   }
+  modal = false;
   indice = 1;
   paginado = false;
   filtro = false;
@@ -28,6 +29,10 @@ export class HistorialCComponent implements OnInit {
   tamaño = 0;
   copia: historialUsr[] = [];
   origenes: any = [];
+  indexModal = 0;
+
+  intervencion: any[] = [];
+  intervencionModal: any;
 
   constructor(public _ConsejeroService: ConsejeroService, public _LogInService: LogInService) {
     this.cargarHistorial();
@@ -188,6 +193,19 @@ export class HistorialCComponent implements OnInit {
     this._ConsejeroService.obtenerHistorialConsejero(this._LogInService.usuario.nombreUsuario).subscribe(res => {
       res.forEach(alert => {
 
+
+        let intervencionActual: any = {
+          _id: alert._id,
+          actores: alert.actores,
+          fechaInicio: alert.fechaInicio,
+          nombre: alert.alerta.nombre,
+          temporalidad: alert.alerta.temporalidad,
+          criticidad: alert.alerta.criticidad,
+          estado: alert.estado,
+          fechaFin: alert.fechaFin,
+        };
+        (this.intervencion as any).push(intervencionActual);
+
         let datos = this.getEstudiante(alert.actores);
         let hostirialActual: historialUsr = {
           estado: alert.estado,
@@ -270,5 +288,34 @@ export class HistorialCComponent implements OnInit {
       setTimeout(function () { _LogInService.cerrarSesion() }, 5000);
     });
   }
+
+
+  cargarInformacion(index: number) {
+    this.modal = true
+    this.indexModal = index;
+    this.intervencionModal = this.intervencion[index];
+  }
+
+}
+
+interface intervencion {
+  _id: string,
+  fechaInicio: string,
+  actores: actor[],
+
+}
+
+interface actor {
+  apellido1: string,
+  apellido2: string,
+  identificacion: string,
+  nombres: string,
+  roles: rol[],
+
+}
+interface rol {
+
+  fechaInicio: string,
+  rol: string,
 
 }
