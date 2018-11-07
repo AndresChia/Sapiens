@@ -18,64 +18,14 @@ export class IaComponent implements OnInit {
   }
   alertaPopUp = false;
 
-  alertasInArt: alertasIA[] = [{
-    nombreAlerta: "repetir",
-    criticidad: "Alta",
-    Estudiante: [{
-      nombreEstudiante: "juan",
-      apellido: "paez",
-      Calif_Global: 3.4,
-      edad: 16,
-      genero: "M",
-      id: "1",
-      promedio_ponderado: 3.4,
-      Puntaje_Lectura_Critica: 3.2,
-      Puntaje_Matematica: 3.3,
-    }, {
-      nombreEstudiante: "laura",
-      apellido: "tino",
-      Calif_Global: 3.1,
-      edad: 18,
-      genero: "F",
-      id: "1",
-      promedio_ponderado: 3.6,
-      Puntaje_Lectura_Critica: 3.0,
-      Puntaje_Matematica: 1.0,
-    }],
-  }, {
-    criticidad: "Media",
-    nombreAlerta: "repetir2",
-    Estudiante: [{
-      nombreEstudiante: "albet",
-      apellido: "sanch",
-      Calif_Global: 3.4,
-      edad: 27,
-      genero: "M",
-      id: "1",
-      promedio_ponderado: 3.4,
-      Puntaje_Lectura_Critica: 3.2,
-      Puntaje_Matematica: 3.3,
-    }, {
-      nombreEstudiante: "clau",
-      apellido: "somers",
-      Calif_Global: 3.1,
-      edad: 23,
-      genero: "M",
-      id: "1",
-      promedio_ponderado: 3.6,
-      Puntaje_Lectura_Critica: 3.0,
-      Puntaje_Matematica: 1.0,
-    }],
-
-
-  }];
+  alertasInArt: alertasIA[] = [];
   actualGraph: any;
 
 
 
   constructor(public _LogInService: LogInService, public _DirectorService: DirectorService) {
 
-    // this.obtenerIA();
+    this.obtenerIA();
 
 
   }
