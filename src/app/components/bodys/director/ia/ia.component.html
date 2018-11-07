@@ -12,50 +12,45 @@
 
   </div>
 
-  <div class="row">
-    <div class="col-6">
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="cursor: pointer">Nombres de estudiantes</th>
-            <th style="cursor: pointer" (click)="edad(i)">Edad</th>
-            <th style="cursor: pointer" (click)="genero(i)">Genero</th>
-            <th style="cursor: pointer">Promedio acumulado</th>
-            <th style="cursor: pointer">Puntaje lectura critica</th>
-            <th style="cursor: pointer">Puntaje Matematica</th>
-            <th style="cursor: pointer">Calificación Global</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let estudiante of alertaIA.Estudiante">
-            <td>{{estudiante.nombreEstudiante}}</td>
-            <td>{{estudiante.edad}}</td>
-            <td>{{estudiante.genero}}</td>
-            <td>{{estudiante.promedio_ponderado}}</td>
-            <td>{{estudiante.Puntaje_Lectura_Critica}}</td>
-            <td>{{estudiante.Puntaje_Matematica}}</td>
-            <td>{{estudiante.Calif_Global}}</td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-6">
-      <div class="m-5">
-        <div *ngIf="cargar[i]" style="display: block">
-          <canvas id="graph{{i}}" baseChart [datasets]="graficas[i].barChartData" [labels]="graficas[i].barChartLabels"
-            [options]="graficas[i].barChartOptions" [legend]="graficas[i].barChartLegend" [chartType]="graficas[i].barChartType"
-            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombres de estudiantes</th>
+        <th>Edad</th>
+        <th>Genero</th>
+        <th>Promedio acumulado</th>
+        <th>Puntaje lectura critica</th>
+        <th>Puntaje Matematica</th>
+        <th>Calificación Global</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of alertaIA.Estudiante">
+        <td>{{estudiante.nombreEstudiante}}</td>
+        <td>{{estudiante.edad}}</td>
+        <td>{{estudiante.genero}}</td>
+        <td>{{estudiante.promedio_ponderado}}</td>
+        <td>{{estudiante.Puntaje_Lectura_Critica}}</td>
+        <td>{{estudiante.Puntaje_Matematica}}</td>
+        <td>{{estudiante.Calif_Global}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <a type="button" (click)="calcularGrafica(i)" href="#/director/grafica" target="_blank" class="btn btn-primary pull-right">Generar
+    graficas</a>
+
+  <br>
+  <br>
 
 </div>
+<hr class="text-center ">
 
 <div class="fondoNegro" *ngIf="alertaPopUp">
 

@@ -1,0 +1,82 @@
+<h3 class="text-center">{{titulo}}</h3>
+<hr>
+<br>
+<div class="row">
+  <div class="col-6">
+
+    <div class="grafica">
+      <h3 class="text-center">Grafica por edad</h3>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="EdadbarChartData" [labels]="EdadbarChartLabels" [options]="EdadbarChartOptions"
+            [legend]="EdadbarChartLegend" [chartType]="EdadbarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="grafica">
+      <h3 class="text-center">Grafica por puntaje lectura critica</h3>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="lecturabarChartData" [labels]="lecturabarChartLabels" [options]="lecturabarChartOptions"
+            [legend]="lecturabarChartLegend" [chartType]="lecturabarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grafica">
+      <h3 class="text-center">Grafica por calificación Global</h3>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="globalbarChartData" [labels]="globalbarChartLabels" [options]="globalbarChartOptions"
+            [legend]="globalbarChartLegend" [chartType]="globalbarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <div class="col-6">
+
+    <div class="grafica">
+      <h3 class="text-center">Grafica por genero</h3>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="GenerobarChartData" [labels]="GenerobarChartLabels" [options]="GenerobarChartOptions"
+            [legend]="GenerobarChartLegend" [chartType]="GenerobarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="grafica">
+      <h3 class="text-center">Grafica por promedio acumulado</h3>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="PromacumbarChartData" [labels]="PromacumbarChartLabels" [options]="PromacumbarChartOptions"
+            [legend]="PromacumbarChartLegend" [chartType]="PromacumbarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grafica">
+      <h3 class="text-center">Grafica por puntaje Matematica </h3>
+      <div>
+        <div style="display: block">
+          <canvas baseChart [datasets]="matematicabarChartData" [labels]="matematicabarChartLabels" [options]="matematicabarChartOptions"
+            [legend]="matematicabarChartLegend" [chartType]="matematicabarChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

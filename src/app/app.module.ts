@@ -64,6 +64,7 @@ import { AdminService } from './services/serviciosRest/admin.service';
 import { DirectorService } from './services/serviciosRest/director.service';
 import { ConsejeroService } from './services/serviciosRest/consejero.service';
 import { ProfesorRestService } from './services/serviciosRest/profesor-rest.service';
+import { GraficaComponent } from './components/bodys/director/ia/grafica/grafica.component';
 
 
 
@@ -97,7 +98,8 @@ import { ProfesorRestService } from './services/serviciosRest/profesor-rest.serv
     AlertasComponent,
     HistorialCComponent,
     AsociarrolComponent,
-    InformacionComponent
+    InformacionComponent,
+    GraficaComponent
   ],
   imports: [
     BrowserModule, NgbModule.forRoot(), APP_ROUTING, AngularFontAwesomeModule, HttpModule,

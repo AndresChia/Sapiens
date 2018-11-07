@@ -69,48 +69,19 @@ export class IaComponent implements OnInit {
 
 
   }];
+  actualGraph: any;
 
-  cargar: boolean[] = [];
 
-  graficas: graficas[] = [];
-
-  op: option = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    maintainAspectRatio: true,
-  }
-
-  dat: data[] = [{
-    data: [],
-    label: ""
-  }
-  ];
-
-  actualGraph: graficas = {
-    barChartType: 'bar',
-    barChartLegend: true,
-    barChartLabels: [],
-    barChartOptions: this.op,
-    barChartData: this.dat,
-  };
 
   constructor(public _LogInService: LogInService, public _DirectorService: DirectorService) {
 
     // this.obtenerIA();
-    this.eliminar();
 
 
   }
   ngOnInit() {
   }
 
-  eliminar() {
-    for (let index = 0; index < this.alertasInArt.length; index++) {
-      this.graficas.push(this.actualGraph);
-      this.cargar[index] = false;
-    }
-
-  }
 
   // events
   public chartClicked(e: any): void {
@@ -121,7 +92,18 @@ export class IaComponent implements OnInit {
     console.log(e);
   }
 
+  calcularGrafica(index: number) {
 
+    localStorage.setItem("graficaEdad", JSON.stringify(this.edad(index)));
+    localStorage.setItem("graficaGenero", JSON.stringify(this.genero(index)));
+    localStorage.setItem("graficaPromedio", JSON.stringify(this.promedio(index)));
+    localStorage.setItem("graficaPuntajeLectura", JSON.stringify(this.lenturaCritica(index)));
+    localStorage.setItem("graficaPuntajeMatema", JSON.stringify(this.matematica(index)));
+    localStorage.setItem("graficaCalifiGlobal", JSON.stringify(this.global(index)));
+
+
+
+  }
 
   obtenerIA() {
 
@@ -191,29 +173,31 @@ export class IaComponent implements OnInit {
 
   }
 
-
-
   edad(index: number) {
-    this.cargar[index] = true;
-    let Graph: graficas = this.actualGraph;
-    this.graficas[index] = Graph;
 
-    Graph.barChartLabels = ["< 18", "19 - 21", "22 - 24", " > 25 "]
+    let Graph: graficas = {
+      titulo: this.alertasInArt[index].nombreAlerta,
+      barChartData: [],
+      barChartLabels: [],
+    };
+
+    Graph.barChartLabels = ["< 18", "19 - 21", "22 - 24", " > 25 "];
+
     let menora18 = 0;
     let de19a21 = 0;
     let de22a24 = 0;
     let mayora25 = 0;
     this.alertasInArt[index].Estudiante.forEach(element2 => {
-      if (element2.edad < 18) {
+      if (element2.edad <= 18) {
         menora18++;
       }
-      if (element2.edad > 19 && element2.edad < 21) {
+      if (element2.edad >= 19 && element2.edad <= 21) {
         de19a21++;
       }
-      if (element2.edad > 22 && element2.edad < 24) {
+      if (element2.edad >= 22 && element2.edad <= 24) {
         de22a24++;
       }
-      if (element2.edad > 25) {
+      if (element2.edad >= 25) {
         mayora25++;
       }
     });
@@ -250,18 +234,19 @@ export class IaComponent implements OnInit {
 
     Graph.barChartData.push(dataBarchart);
 
-
-    this.graficas[index] = Graph;
+    return Graph;
 
   }
 
   genero(index: number) {
-    this.cargar[index] = true;
 
-    this.actualGraph.barChartData = [];
+    let Graph: graficas = {
+      titulo: this.alertasInArt[index].nombreAlerta,
+      barChartData: [],
+      barChartLabels: [],
+    };
 
-
-    this.actualGraph.barChartLabels = ["M", "F"]
+    Graph.barChartLabels = ["M", "F"];
     let m = 0;
     let f = 0;
     this.alertasInArt[index].Estudiante.forEach(element2 => {
@@ -283,54 +268,338 @@ export class IaComponent implements OnInit {
       label: "M",
     }
 
-    this.actualGraph.barChartData.push(dataBarchart);
+    Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, f],
       label: "F",
     }
 
-    this.actualGraph.barChartData.push(dataBarchart);
+    Graph.barChartData.push(dataBarchart);
 
-
-
+    return Graph;
   }
 
   promedio(index: number) {
-    this.actualGraph.barChartLabels = ["< 2", "2.1 - 3", "3.1 - 4", "4.1 - 5 "]
-    let menora2 = 0;
-    let de21a3 = 0;
-    let de31a4 = 0;
-    let de41a5 = 0;
-    this.alertasInArt.forEach(element => {
-      element.Estudiante.forEach(element2 => {
-        if (element2.edad) {
+    let Graph: graficas = {
+      titulo: this.alertasInArt[index].nombreAlerta,
+      barChartData: [],
+      barChartLabels: [],
+    };
 
-        }
-      });
+    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    let de0a1 = 0;
+    let de1a2 = 0;
+    let de2a3 = 0;
+    let de3a4 = 0;
+    let de4a5 = 0;
+
+    this.alertasInArt[index].Estudiante.forEach(element2 => {
+
+      if (element2.promedio_ponderado >= 0 && element2.promedio_ponderado <= 1) {
+        de0a1++;
+      }
+
+      if (element2.promedio_ponderado >= 1.1 && element2.promedio_ponderado <= 2) {
+        de1a2++;
+      }
+
+      if (element2.promedio_ponderado >= 2.1 && element2.promedio_ponderado <= 3) {
+        de2a3++;
+      }
+
+      if (element2.promedio_ponderado >= 3.1 && element2.promedio_ponderado <= 4) {
+        de3a4++;
+      }
+
+      if (element2.promedio_ponderado >= 4.1 && element2.promedio_ponderado <= 5) {
+        de4a5++;
+      }
 
     });
+
+    let dataBarchart = {
+      data: [de0a1, 0, 0, 0, 0],
+      label: "de 0 a 1",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, de1a2, 0, 0, 0],
+      label: "de 1.1 a 2",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, de2a3, 0, 0],
+      label: "de 2.1 a 3",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, de3a4, 0],
+      label: "de 3.1 a 4",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, 0, de4a5],
+      label: "de 4.1 a 5",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+
+    return Graph;
+
   }
 
 
-}
+  lenturaCritica(index: number) {
+    let Graph: graficas = {
+      titulo: this.alertasInArt[index].nombreAlerta,
+      barChartData: [],
+      barChartLabels: [],
+    };
 
+    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    let de0a1 = 0;
+    let de1a2 = 0;
+    let de2a3 = 0;
+    let de3a4 = 0;
+    let de4a5 = 0;
+
+    this.alertasInArt[index].Estudiante.forEach(element2 => {
+
+      if (element2.Puntaje_Lectura_Critica >= 0 && element2.Puntaje_Lectura_Critica <= 1) {
+        de0a1++;
+      }
+
+      if (element2.Puntaje_Lectura_Critica >= 1.1 && element2.Puntaje_Lectura_Critica <= 2) {
+        de1a2++;
+      }
+
+      if (element2.Puntaje_Lectura_Critica >= 2.1 && element2.Puntaje_Lectura_Critica <= 3) {
+        de2a3++;
+      }
+
+      if (element2.Puntaje_Lectura_Critica >= 3.1 && element2.Puntaje_Lectura_Critica <= 4) {
+        de3a4++;
+      }
+
+      if (element2.Puntaje_Lectura_Critica >= 4.1 && element2.Puntaje_Lectura_Critica <= 5) {
+        de4a5++;
+      }
+
+    });
+
+    let dataBarchart = {
+      data: [de0a1, 0, 0, 0, 0],
+      label: "de 0 a 1",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, de1a2, 0, 0, 0],
+      label: "de 1.1 a 2",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, de2a3, 0, 0],
+      label: "de 2.1 a 3",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, de3a4, 0],
+      label: "de 3.1 a 4",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, 0, de4a5],
+      label: "de 4.1 a 5",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+
+    return Graph;
+  }
+
+  matematica(index: number) {
+    let Graph: graficas = {
+      titulo: this.alertasInArt[index].nombreAlerta,
+      barChartData: [],
+      barChartLabels: [],
+    };
+
+    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    let de0a1 = 0;
+    let de1a2 = 0;
+    let de2a3 = 0;
+    let de3a4 = 0;
+    let de4a5 = 0;
+
+    this.alertasInArt[index].Estudiante.forEach(element2 => {
+
+      if (element2.Puntaje_Matematica >= 0 && element2.Puntaje_Matematica <= 1) {
+        de0a1++;
+      }
+
+      if (element2.Puntaje_Matematica >= 1.1 && element2.Puntaje_Matematica <= 2) {
+        de1a2++;
+      }
+
+      if (element2.Puntaje_Matematica >= 2.1 && element2.Puntaje_Matematica <= 3) {
+        de2a3++;
+      }
+
+      if (element2.Puntaje_Matematica >= 3.1 && element2.Puntaje_Matematica <= 4) {
+        de3a4++;
+      }
+
+      if (element2.Puntaje_Matematica >= 4.1 && element2.Puntaje_Matematica <= 5) {
+        de4a5++;
+      }
+
+    });
+
+    let dataBarchart = {
+      data: [de0a1, 0, 0, 0, 0],
+      label: "de 0 a 1",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, de1a2, 0, 0, 0],
+      label: "de 1.1 a 2",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, de2a3, 0, 0],
+      label: "de 2.1 a 3",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, de3a4, 0],
+      label: "de 3.1 a 4",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, 0, de4a5],
+      label: "de 4.1 a 5",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+
+    return Graph;
+
+  }
+
+  global(index: number) {
+    let Graph: graficas = {
+      titulo: this.alertasInArt[index].nombreAlerta,
+      barChartData: [],
+      barChartLabels: [],
+    };
+
+    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    let de0a1 = 0;
+    let de1a2 = 0;
+    let de2a3 = 0;
+    let de3a4 = 0;
+    let de4a5 = 0;
+
+    this.alertasInArt[index].Estudiante.forEach(element2 => {
+
+      if (element2.Calif_Global >= 0 && element2.Calif_Global <= 1) {
+        de0a1++;
+      }
+
+      if (element2.Calif_Global >= 1.1 && element2.Calif_Global <= 2) {
+        de1a2++;
+      }
+
+      if (element2.Calif_Global >= 2.1 && element2.Calif_Global <= 3) {
+        de2a3++;
+      }
+
+      if (element2.Calif_Global >= 3.1 && element2.Calif_Global <= 4) {
+        de3a4++;
+      }
+
+      if (element2.Calif_Global >= 4.1 && element2.Calif_Global <= 5) {
+        de4a5++;
+      }
+
+    });
+
+    let dataBarchart = {
+      data: [de0a1, 0, 0, 0, 0],
+      label: "de 0 a 1",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, de1a2, 0, 0, 0],
+      label: "de 1.1 a 2",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, de2a3, 0, 0],
+      label: "de 2.1 a 3",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, de3a4, 0],
+      label: "de 3.1 a 4",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+    dataBarchart = {
+      data: [0, 0, 0, 0, de4a5],
+      label: "de 4.1 a 5",
+    }
+
+    Graph.barChartData.push(dataBarchart);
+
+
+    return Graph;
+
+  }
+
+}
 
 
 interface graficas {
+  titulo: string;
   barChartLabels: string[];
-  barChartType: string;
-  barChartLegend: boolean;
-  barChartOptions: option;
   barChartData: data[];
 
-}
-
-
-interface option {
-  scaleShowVerticalLines: boolean;
-  responsive: boolean;
-  maintainAspectRatio: boolean;
 }
 
 interface data {

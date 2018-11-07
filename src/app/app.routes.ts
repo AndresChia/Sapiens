@@ -24,6 +24,7 @@ import { ConsultarComponent } from './components/admin/crudadmin/consultar/consu
 import { HomeComponent } from './components/home/home.component';
 import { InformacionComponent } from './components/bodys/director/alertas/informacion/informacion.component';
 import { from } from 'rxjs';
+import { GraficaComponent } from './components/bodys/director/ia/grafica/grafica.component';
 const ROUTES: Routes = [
     {
         path: 'consejero', component: ConsejeroComponent, canActivate: [AuthGuardGuard], canActivateChild: [AuthGuardGuard],
@@ -45,6 +46,7 @@ const ROUTES: Routes = [
             { path: 'alertas', component: AlertasComponent },
             { path: 'ia', component: IaComponent },
             { path: 'informacion', component: InformacionComponent },
+            { path: 'grafica', component: GraficaComponent },
             { path: '', component: EmptyComponent },
             { path: '**', component: PageNotFoundComponent },
 
