@@ -58,17 +58,17 @@ export class IaComponent implements OnInit {
   obtenerIA() {
 
     let _LogInService = this._LogInService;
-    var carrera = "";
-    switch (this._LogInService.usuario.nombreUsuario){
+    let carrera = "";
+    switch (this._LogInService.usuario.nombreUsuario) {
       case "mcuriel":
         carrera = "ingenieria sistemas";
-      break;
+        break;
       case "agonzalez":
         carrera = "ingenieria electronica";
-      break;
+        break;
       case "barrera-o":
         carrera = "ingenieria industrial";
-      break;
+        break;
     }
     this._DirectorService.ia(carrera, this._LogInService.usuario.nombreUsuario).subscribe(res => {
       res.forEach(element => {
@@ -102,7 +102,7 @@ export class IaComponent implements OnInit {
   }
   guardarAlerta(alertas_ia: Array<any>, estudianteI: estudianteIA) {
 
-   alertas_ia.forEach(element1 => {
+    alertas_ia.forEach(element1 => {
       let banderaAlerta = false;
 
       let alertaAux: alertasIA = {
@@ -115,7 +115,7 @@ export class IaComponent implements OnInit {
 
 
       this.alertasInArt.forEach(element2 => {
-        if (element2.nombreAlerta === element1) {
+        if (element2.nombreAlerta === element1.nombre) {
           banderaAlerta = true;
           element2.Estudiante.push(estudianteI);
         }
@@ -158,28 +158,28 @@ export class IaComponent implements OnInit {
     });
 
     let dataBarchart = {
-      data: [menora18,0,0,0],
+      data: [menora18, 0, 0, 0],
       label: "<= 18",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
-      data: [0,de19a21,0,0],
+      data: [0, de19a21, 0, 0],
       label: "19 - 21",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
-      data: [0,0,de22a24,0],
+      data: [0, 0, de22a24, 0],
       label: "22 - 24",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
-      data: [0,0,0,mayora25],
+      data: [0, 0, 0, mayora25],
       label: ">= 25 ",
     }
 

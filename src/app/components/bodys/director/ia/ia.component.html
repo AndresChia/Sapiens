@@ -3,10 +3,12 @@
   <div class="titulo text-center">
     <ul class="ulclass ">
       <li>
-        <h1 class="text-center">{{alertaIA.nombreAlerta}} </h1>
+        <h1 class="text-center">{{alertaIA.nombreAlerta}} &nbsp;</h1>
       </li>
       <li>
-        <h1 [ngClass]="{'textRojo': 'Alta'===alertaIA.criticidad}">({{alertaIA.criticidad}}) </h1>
+        <h1 [ngClass]="{'textRojo': 'alta'===alertaIA.criticidad,
+        'textNaranja': 'media'===alertaIA.criticidad }">({{alertaIA.criticidad}})
+        </h1>
       </li>
     </ul>
 
