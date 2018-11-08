@@ -58,7 +58,19 @@ export class IaComponent implements OnInit {
   obtenerIA() {
 
     let _LogInService = this._LogInService;
-    this._DirectorService.ia("ingenieria industrial", this._LogInService.usuario.nombreUsuario).subscribe(res => {
+    var carrera = "";
+    switch (this._LogInService.usuario.nombreUsuario){
+      case "mcuriel":
+        carrera = "ingenieria sistemas";
+      break;
+      case "agonzalez":
+        carrera = "ingenieria electronica";
+      break;
+      case "barrera-o":
+        carrera = "ingenieria industrial";
+      break;
+    }
+    this._DirectorService.ia(carrera, this._LogInService.usuario.nombreUsuario).subscribe(res => {
       res.forEach(element => {
 
         let estudianteActual: estudianteIA = {
@@ -90,7 +102,7 @@ export class IaComponent implements OnInit {
   }
   guardarAlerta(alertas_ia: Array<any>, estudianteI: estudianteIA) {
 
-    alertas_ia.forEach(element1 => {
+   alertas_ia.forEach(element1 => {
       let banderaAlerta = false;
 
       let alertaAux: alertasIA = {
@@ -110,17 +122,10 @@ export class IaComponent implements OnInit {
 
       });
 
-
-
-
       if (banderaAlerta === false) {
         this.alertasInArt.push(alertaAux);
       }
-
-
     })
-
-
   }
 
   edad(index: number) {
@@ -131,7 +136,7 @@ export class IaComponent implements OnInit {
       barChartLabels: [],
     };
 
-    Graph.barChartLabels = ["< 18", "19 - 21", "22 - 24", " > 25 "];
+    Graph.barChartLabels = ["<= 18", "19 - 21", "22 - 24", " >= 25 "];
 
     let menora18 = 0;
     let de19a21 = 0;
@@ -152,34 +157,30 @@ export class IaComponent implements OnInit {
       }
     });
 
-
-
-
-
     let dataBarchart = {
-      data: [menora18],
-      label: "> 18",
+      data: [menora18,0,0,0],
+      label: "<= 18",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
-      data: [de19a21],
+      data: [0,de19a21,0,0],
       label: "19 - 21",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
-      data: [de22a24],
+      data: [0,0,de22a24,0],
       label: "22 - 24",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
-      data: [mayora25],
-      label: "< 25 ",
+      data: [0,0,0,mayora25],
+      label: ">= 25 ",
     }
 
     Graph.barChartData.push(dataBarchart);
@@ -210,8 +211,6 @@ export class IaComponent implements OnInit {
       }
 
     });
-
-
 
     let dataBarchart = {
       data: [m, 0],
@@ -316,68 +315,56 @@ export class IaComponent implements OnInit {
       barChartLabels: [],
     };
 
-    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    Graph.barChartLabels = ["<= 50", "51 - 70", "71 - 86", ">= 87"];
     let de0a1 = 0;
     let de1a2 = 0;
     let de2a3 = 0;
     let de3a4 = 0;
-    let de4a5 = 0;
 
     this.alertasInArt[index].Estudiante.forEach(element2 => {
 
-      if (element2.Puntaje_Lectura_Critica >= 0 && element2.Puntaje_Lectura_Critica <= 1) {
+      if (element2.Puntaje_Lectura_Critica >= 0 && element2.Puntaje_Lectura_Critica <= 50) {
         de0a1++;
       }
 
-      if (element2.Puntaje_Lectura_Critica >= 1.1 && element2.Puntaje_Lectura_Critica <= 2) {
+      if (element2.Puntaje_Lectura_Critica >= 51 && element2.Puntaje_Lectura_Critica <= 70) {
         de1a2++;
       }
 
-      if (element2.Puntaje_Lectura_Critica >= 2.1 && element2.Puntaje_Lectura_Critica <= 3) {
+      if (element2.Puntaje_Lectura_Critica >= 71 && element2.Puntaje_Lectura_Critica <= 86) {
         de2a3++;
       }
 
-      if (element2.Puntaje_Lectura_Critica >= 3.1 && element2.Puntaje_Lectura_Critica <= 4) {
+      if (element2.Puntaje_Lectura_Critica >= 87) {
         de3a4++;
-      }
-
-      if (element2.Puntaje_Lectura_Critica >= 4.1 && element2.Puntaje_Lectura_Critica <= 5) {
-        de4a5++;
       }
 
     });
 
     let dataBarchart = {
       data: [de0a1, 0, 0, 0, 0],
-      label: "de 0 a 1",
+      label: "<= 50",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, de1a2, 0, 0, 0],
-      label: "de 1.1 a 2",
+      label: "51 - 70",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, 0, de2a3, 0, 0],
-      label: "de 2.1 a 3",
+      label: "71 - 86",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, 0, 0, de3a4, 0],
-      label: "de 3.1 a 4",
-    }
-
-    Graph.barChartData.push(dataBarchart);
-
-    dataBarchart = {
-      data: [0, 0, 0, 0, de4a5],
-      label: "de 4.1 a 5",
+      label: ">= 87",
     }
 
     Graph.barChartData.push(dataBarchart);
@@ -393,68 +380,55 @@ export class IaComponent implements OnInit {
       barChartLabels: [],
     };
 
-    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    Graph.barChartLabels = ["<= 50", "51 - 70", "71 - 86", ">= 87"];
     let de0a1 = 0;
     let de1a2 = 0;
     let de2a3 = 0;
     let de3a4 = 0;
-    let de4a5 = 0;
 
     this.alertasInArt[index].Estudiante.forEach(element2 => {
 
-      if (element2.Puntaje_Matematica >= 0 && element2.Puntaje_Matematica <= 1) {
+      if (element2.Puntaje_Matematica >= 0 && element2.Puntaje_Matematica <= 50) {
         de0a1++;
       }
 
-      if (element2.Puntaje_Matematica >= 1.1 && element2.Puntaje_Matematica <= 2) {
+      if (element2.Puntaje_Matematica >= 51 && element2.Puntaje_Matematica <= 70) {
         de1a2++;
       }
 
-      if (element2.Puntaje_Matematica >= 2.1 && element2.Puntaje_Matematica <= 3) {
+      if (element2.Puntaje_Matematica >= 71 && element2.Puntaje_Matematica <= 86) {
         de2a3++;
       }
 
-      if (element2.Puntaje_Matematica >= 3.1 && element2.Puntaje_Matematica <= 4) {
+      if (element2.Puntaje_Matematica >= 87) {
         de3a4++;
       }
-
-      if (element2.Puntaje_Matematica >= 4.1 && element2.Puntaje_Matematica <= 5) {
-        de4a5++;
-      }
-
     });
 
     let dataBarchart = {
       data: [de0a1, 0, 0, 0, 0],
-      label: "de 0 a 1",
+      label: "<= 50",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, de1a2, 0, 0, 0],
-      label: "de 1.1 a 2",
+      label: "51 - 70",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, 0, de2a3, 0, 0],
-      label: "de 2.1 a 3",
+      label: "71 - 86",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, 0, 0, de3a4, 0],
-      label: "de 3.1 a 4",
-    }
-
-    Graph.barChartData.push(dataBarchart);
-
-    dataBarchart = {
-      data: [0, 0, 0, 0, de4a5],
-      label: "de 4.1 a 5",
+      label: ">= 87"
     }
 
     Graph.barChartData.push(dataBarchart);
@@ -471,72 +445,59 @@ export class IaComponent implements OnInit {
       barChartLabels: [],
     };
 
-    Graph.barChartLabels = ["0 - 1", "1.1 - 2", "2.1 - 3", "3.1 - 4", "4.1 - 5"];
+    Graph.barChartLabels = ["0 - 125", "126 - 250", "251 - 375", "376 - 500"];
     let de0a1 = 0;
     let de1a2 = 0;
     let de2a3 = 0;
     let de3a4 = 0;
-    let de4a5 = 0;
 
     this.alertasInArt[index].Estudiante.forEach(element2 => {
 
-      if (element2.Calif_Global >= 0 && element2.Calif_Global <= 1) {
+      if (element2.Calif_Global >= 0 && element2.Calif_Global <= 125) {
         de0a1++;
       }
 
-      if (element2.Calif_Global >= 1.1 && element2.Calif_Global <= 2) {
+      if (element2.Calif_Global >= 126 && element2.Calif_Global <= 250) {
         de1a2++;
       }
 
-      if (element2.Calif_Global >= 2.1 && element2.Calif_Global <= 3) {
+      if (element2.Calif_Global >= 251 && element2.Calif_Global <= 375) {
         de2a3++;
       }
 
-      if (element2.Calif_Global >= 3.1 && element2.Calif_Global <= 4) {
+      if (element2.Calif_Global >= 375) {
         de3a4++;
-      }
-
-      if (element2.Calif_Global >= 4.1 && element2.Calif_Global <= 5) {
-        de4a5++;
       }
 
     });
 
     let dataBarchart = {
       data: [de0a1, 0, 0, 0, 0],
-      label: "de 0 a 1",
+      label: "0 - 125",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, de1a2, 0, 0, 0],
-      label: "de 1.1 a 2",
+      label: "126 - 250",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, 0, de2a3, 0, 0],
-      label: "de 2.1 a 3",
+      label: "251 - 375",
     }
 
     Graph.barChartData.push(dataBarchart);
 
     dataBarchart = {
       data: [0, 0, 0, de3a4, 0],
-      label: "de 3.1 a 4",
+      label: "376 - 500"
     }
 
     Graph.barChartData.push(dataBarchart);
-
-    dataBarchart = {
-      data: [0, 0, 0, 0, de4a5],
-      label: "de 4.1 a 5",
-    }
-
-    Graph.barChartData.push(dataBarchart);
-
 
     return Graph;
 

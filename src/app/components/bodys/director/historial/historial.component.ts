@@ -185,8 +185,6 @@ export class HistorialComponent implements OnInit {
     let _LogInService = this._LogInService;
     this._DirectorService.obtenerHistorialDirector(this._LogInService.usuario.nombreUsuario).subscribe(res => {
       res.forEach(alert => {
-
-
         let intervencionActual: any = {
           _id: alert._id,
           actores: alert.actores,
@@ -244,7 +242,12 @@ export class HistorialComponent implements OnInit {
       element.roles.forEach(element2 => {
         if (element2.rol === "fuente") {
           fuenteT = true;
-          arregloActual[2] = (element.nombres + " " + element.apellido1);
+          if(element.identificacion === "sistema") {
+            arregloActual[2] = "sistema";
+          }
+          else {
+            arregloActual[2] = (element.nombres + " " + element.apellido1);
+          }
         }
         if (element2.rol === "estudiante") {
           estudianteT = true;

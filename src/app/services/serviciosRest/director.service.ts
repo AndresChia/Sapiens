@@ -89,7 +89,7 @@ export class DirectorService {
       }), catchError(this.handleError));
   }
 
-  citarEstudiantes(idProfesor: string, estudiantes: string[]) {
+  citarEstudiantes(codigoDirector: string, estudiantes: string[]) {
     let body = {};
     let cad = "";
 
@@ -101,17 +101,19 @@ export class DirectorService {
       }
     }
 
-    return this.http.post(this.url + "Director/" + idProfesor + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico", body).pipe(
+    console.log(this.url + "Director/" + codigoDirector + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico");
+    return this.http.post(this.url + "Director/" + codigoDirector + "/CitarEstudiantes?" + cad + "&motivo=Bajo desempeño academico", body).pipe(
       map(res => {
         return res.ok;
       }), catchError(this.handleError));
   }
 
 
-  remitir(codigoAlertaPost: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoRemitidoPost: string) {
+  remitir(codigoAlertaPost: string, codigoIntervencion: string, codigoFuentePost: string, codigoEstudiantePost: string, codigoRemitidoPost: string) {
 
     let params = {
       codigoAlerta: codigoAlertaPost,
+      codigoIntervencion: codigoIntervencion,
       codigoFuente: codigoFuentePost,
       codigoRemitido: codigoRemitidoPost,
     }

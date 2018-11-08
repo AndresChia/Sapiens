@@ -164,6 +164,7 @@ export class AlertasComponent implements OnInit {
         for (let index = 0; index < this.estudiantes.length; index++) {
             this._DirectorService.remitir(
                 Idalerta,
+                this.estudiantes[index].intervencion,
                 this._LogInService.usuario.nombreUsuario,
                 this.estudiantes[index].identificacion,
                 Remitidoa).subscribe(res => {
@@ -180,7 +181,7 @@ export class AlertasComponent implements OnInit {
         this.alertas = []
         let _LogInService = this._LogInService;
         this._DirectorService.obtenerAlertasAgrupadas(this._LogInService.usuario.nombreUsuario).subscribe(res => {
-            res.forEach(element => {
+              res.forEach(element => {
 
 
                 let alertaAgregar: alerta = {
