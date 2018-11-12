@@ -6,11 +6,11 @@
   </ng-template>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Motivo de atencíon</ng-template>
+      <ng-template matStepLabel>Motivo de atención</ng-template>
 
       <form [formGroup]="forma" class="form-group ">
         <div class="form-group motivoDeAtencion m-5">
-          <label for="Alertas">Seleccione el motivo de atencíon:</label>
+          <label for="Alertas">Seleccione el motivo de atención:</label>
           <select #alerta (click)="elegirAlerta(alerta.value)" formControlName="opcion" [(ngModel)]="actualAlerta"
             class="form-control" id="Alertas" required>
             <option value="0">Seleccione una opción</option>
@@ -41,11 +41,11 @@
               <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaClases' && indiceActual === 1 && asc===true,
                               'fa-sort-desc': tablaActual === 'tablaClases' && indiceActual === 1 && asc===false,
                               'fa': indiceActual === 1 }"
-                style="cursor: pointer" (click)="ordenar(1,'tablaClases')" scope="col">Numero</th>
+                style="cursor: pointer" (click)="ordenar(1,'tablaClases')" scope="col">Número</th>
               <th [ngClass]="{'fa-sort-asc': tablaActual === 'tablaClases' && indiceActual === 2 && asc===true,
                               'fa-sort-desc': tablaActual === 'tablaClases' && indiceActual === 2 && asc===false,
                               'fa': indiceActual === 2 }"
-                style="cursor: pointer" (click)="ordenar(2,'tablaClases')" scope="col">Numero de estudiantes</th>
+                style="cursor: pointer" (click)="ordenar(2,'tablaClases')" scope="col">Número de estudiantes</th>
             </tr>
           </thead>
           <tbody>
@@ -130,7 +130,7 @@
           {{estudiante.apellido}} </li>
 
       </ul>
-      <label for="exampleFormControlTextarea1">Mas informacion de la alerta:</label>
+      <label for="exampleFormControlTextarea1">Mas información de la alerta:</label>
       <textarea [(ngModel)]="textArea" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
 

@@ -32,7 +32,7 @@ button.botton.fa.fa-arrow-up:hover p::before {
 button.botton.fa.fa-address-card:hover p::before {
   border-radius: inherit;
   width: 130px;
-  content: "Datos demograficos";
+  content: "Datos demográficos";
   font-family: sans-serif;
 }
 
@@ -40,7 +40,7 @@ button.botton.fa.fa-address-card:hover p::before {
 button.botton.fa.fa-graduation-cap:hover p::before {
   border-radius: inherit;
   width: 130px;
-  content: "Datos academicos";
+  content: "Datos académicos";
   font-family: sans-serif;
 }
 

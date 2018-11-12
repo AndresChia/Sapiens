@@ -206,8 +206,8 @@ export class AlertasComponent implements OnInit {
                         check: false,
                         facultad: "Ingenieria",
                         identificacion: element2.estudiante.identificacion,
-                        intervencion: element2._id
-
+                        intervencion: element2._id,
+                        responsable: element2.fuente.identificacion
                     }
 
                     this.estudiantesAgrupados.push(estudiantesPush);

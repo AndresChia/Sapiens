@@ -9,6 +9,7 @@ export interface estudiante {
     identificacion?: string;
     notasClase?: string[];
     intervencion?: string;
+    responsable?:string;
 }
 export interface clase {
     nombre: string;

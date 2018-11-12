@@ -167,9 +167,9 @@ export class BuscarComponent implements OnInit {
           element.alertas.forEach(element3 => {
             let datAlerta: alertaSemestre = {
               alerta: element3.alerta.nombre,
-              creador: "FALTA",
+              creador: element3.fuente,
               fecha: (element3.fechaInicio as string).split("T")[0],
-              semestre: "FALTA",
+              semestre: "1810",
             }
             compiladoAlertas.push(datAlerta);
           });
@@ -282,7 +282,7 @@ export class BuscarComponent implements OnInit {
     window.scrollTo(0, 0);
     this.mostrar = false;
 
-    this.snackBar.open("Atencion realizada", "Cerrar", {
+    this.snackBar.open("Atención realizada", "Cerrar", {
       duration: 2000,
       horizontalPosition: "center",
       panelClass: ['snackbar'],

@@ -1,4 +1,4 @@
-<h3>Filtros de busqueda</h3>
+<h3>Filtros de búsqueda</h3>
 <hr>
 <div class="form-group">
   <div class="row">
@@ -28,7 +28,7 @@
 
     </div>
     <div class="col-4">
-      <label for="">Fecha de creacion de la alerta</label>
+      <label for="">Fecha de creación de la alerta</label>
       <input #fecha type="month" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
 
       <label for="exampleFormControlSelect1">Estado de alerta</label>
@@ -83,10 +83,10 @@
     <ul class="pagination, centrar" style="margin-left: auto;
     padding-left: 0;
     margin-right: auto;">
-      <li class="page-item"><a (click)="cambioPag(1,'antes')" class="page-link">Previous</a></li>
+      <li class="page-item"><a (click)="cambioPag(1,'antes')" class="page-link">Anterior</a></li>
       <li *ngFor="let item of numeroDePags, let i=index" class="page-item"><a [ngClass]="{'activoPag': (i+1)===indice}"
           (click)="cambioPag(i,'pagina')" class="page-link">{{i+1}}</a></li>
-      <li class="page-item"><a (click)="cambioPag(1,'despues')" class="page-link">Next</a></li>
+      <li class="page-item"><a (click)="cambioPag(1,'despues')" class="page-link">Siguiente</a></li>
     </ul>
   </nav>
 

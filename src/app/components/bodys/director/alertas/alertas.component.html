@@ -55,7 +55,7 @@
             <td>{{estudiante.nombre}}</td>
             <td>{{estudiante.apellido}}</td>
             <td>{{estudiante.semestre}}</td>
-            <td>Nombre profesor</td>
+            <td>{{estudiante.responsable}}</td>
             <td class="text-center"><a (click)="cargarDatosInformacionExtra(i)" target="_blank" class="fa fa-search"
                 [routerLink]="[ '/director','informacion' ]"></a></td>
           </tr>

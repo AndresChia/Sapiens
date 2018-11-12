@@ -1,12 +1,12 @@
 <div [formGroup]="forma" class="form-group">
   <div class="row m-3 ">
     <div class="col-sm-6">
-      <label for="anio">Año academico</label>
+      <label for="anio">Año académico</label>
       <input [(ngModel)]="anoAcademico" formControlName="anioAcademico" type="text" class="form-control" name="anio" id="anio"
         aria-describedby="helpId" required>
     </div>
     <div class="col-sm-6">
-      <label for="periodo">Periodo academico</label>
+      <label for="periodo">Periodo académico</label>
       <input [(ngModel)]="periodoAcademico" formControlName="periodoAcademico" type="text" class="form-control" name="periodo"
         id="periodo" aria-describedby="as" required>
     </div>
@@ -18,7 +18,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Asignatura</th>
-        <th scope="col">Parametro</th>
+        <th scope="col">Parámetro</th>
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -35,11 +35,10 @@
 
   <div style="height: 45px" class="container m-1">
 
+    <a [ngClass]="{'disabledBtn': consultarBool === true,'enabledBtn': consultarBool === false}" (click)="crearConsulta()" href="#/director/consultaDemanda"
+      target="_blank" name="consultar" id="consultar" class="btn btn-primary m-1 pull-right " role="button">Consultar</a>
     <button name="agregar" id="agregar" class="btn btn-primary m-1 pull-right" (click)="agregarModal()" role="button"
       data-toggle="modal" data-target="#myModal">Agregar</button>
-    <a [ngClass]="{'disabledBtn': consultarBool === true,'enabledBtn': consultarBool === false}" (click)="crearConsulta()"
-      href="#/director/consultaDemanda" target="_blank" name="consultar" id="consultar" class="btn btn-primary m-1 pull-right "
-      role="button">Consultar</a>
 
   </div>
 
@@ -54,7 +53,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agendar cita</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Crear criterio de búsqueda</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -83,26 +82,26 @@
           </div>
           <div class="col-sm-6">
 
-            <h5>Parametro</h5>
+            <h5>Parámetro</h5>
             <div class="form-check">
               <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="Aprobo"
                 id="aprobo" checked required>
               <label class="form-check-label" for="aprobo">
-                Aprobo
+                Aprobó
               </label>
             </div>
             <div class="form-check">
               <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="Reprobo"
                 id="reprobo" checked required>
               <label class="form-check-label" for="reprobo">
-                Reprobo
+                Reprobó
               </label>
             </div>
             <div class="form-check">
               <input [(ngModel)]="actual.parametro" class="form-check-input" type="radio" name="parametro" value="Retiro"
                 id="retiro" checked required>
               <label class="form-check-label" for="retiro">
-                Retiro
+                Retiró
               </label>
             </div>
             <div class="form-check">

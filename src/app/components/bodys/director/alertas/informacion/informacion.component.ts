@@ -110,9 +110,9 @@ export class InformacionComponent implements OnInit {
         element.alertas.forEach(element3 => {
           let datAlerta: alertaSemestre = {
             alerta: element3.alerta.nombre,
-            creador: "FALTA",
+            creador: element3.fuente,
             fecha: (element3.fechaInicio as string).split("T")[0],
-            semestre: "FALTA",
+            semestre: "1810",
           }
           compiladoAlertas.push(datAlerta);
         });

@@ -19,7 +19,7 @@
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
           <th scope="col">Semestre</th>
-          <th scope="col">Ultima visita</th>
+          <th scope="col">Última visita</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
           <td>{{estudiante.nombre}}</td>
           <td>{{estudiante.apellido}}</td>
           <td>{{estudiante.semestre}}</td>
-          <td>Otto</td>
+          <td>10/11/2018</td>
         </tr>
       </tbody>
     </table>
@@ -40,7 +40,7 @@
   <br>
   <hr>
   <div #demograficos id="demograficos" class="datosdemograficos">
-    <h1 class="text-center">Datos Demograficos</h1>
+    <h1 class="text-center">Datos Demográficos</h1>
     <hr>
     <div class="datospersonales">
       <h4>Datos personales</h4>
@@ -50,11 +50,11 @@
           <input id="id" type="text" class="form-control" placeholder="id" disabled="true" [value]="demograficoActual.id">
           <label for="nacimiento">Nacimiento</label>
           <input id="nacimiento" type="text" class="form-control" placeholder="nacimiento" disabled="true" [value]="demograficoActual.nacimiento">
-          <label for="origen">País Origen</label>
+          <label for="origen">País de origen</label>
           <input id="origen" type="text" class="form-control" placeholder="origen" disabled="true" [value]="demograficoActual.pais">
         </div>
         <div class="col">
-          <label for="Genero">Genero</label>
+          <label for="Genero">Género</label>
           <input id="Genero" type="text" class="form-control" placeholder="Genero" disabled="true" [value]="demograficoActual.genero">
           <label for="estado">Estado Civil</label>
           <input id="estado" type="text" class="form-control" placeholder="estado" disabled="true" [value]="demograficoActual.estado_civil">
@@ -98,7 +98,7 @@
   <br>
   <hr>
   <div #academicos class="datosAcademicos">
-    <h1 class="text-center">Datos academicos</h1>
+    <h1 class="text-center">Datos académicos</h1>
     <hr>
     <div class="notas">
       <table id="tabla" class="table table-hover">
@@ -106,8 +106,8 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Semestre</th>
-            <th scope="col">Creditos aprobados</th>
-            <th scope="col">Creditos retirados</th>
+            <th scope="col">Créditos aprobados</th>
+            <th scope="col">Créditos retirados</th>
             <th scope="col">Promedio</th>
           </tr>
         </thead>
@@ -272,7 +272,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atención</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Escalar Alerta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
